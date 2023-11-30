@@ -20,9 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('email', 225)->unique();
             $table->string('phone', 15)->nullable();
             $table->string('avatar', 225)->nullable();
-            $table->tinyInteger('gender')->default('0')->comment('0 = male, 1 = female');
+            $table->boolean('gender')->default('0')->comment('0 = male, 1 = female');
             $table->tinyInteger('role')->default('0')->comment('0 = user, 1 = staff, 2 = admin');
             $table->tinyInteger('status')->default('0')->comment('0 = active, 1 = block, 2 = verify');
+            $table->timestamps();
         });
     }
 

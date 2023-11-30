@@ -17,6 +17,7 @@ class CreateLikesTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('blog_id');
+            $table->timestamps();
         });
     }
 
