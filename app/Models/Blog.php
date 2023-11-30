@@ -19,7 +19,7 @@ class Blog extends Model
         'category_id',
         'title',
         'content',
-        'image'
+        'image',
     ];
 
     public function comments(): HasMany

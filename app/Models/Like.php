@@ -14,7 +14,7 @@ class Like extends Model
 
     protected $fillable = [
         'user_id',
-        'blog_id'
+        'blog_id',
     ];
 
     public function blog(): BelongsTo
