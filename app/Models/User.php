@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Model
 {
@@ -30,16 +29,11 @@ class User extends Model
 
     public function blogs(): HasMany
     {
-        return $this->hasMany(Blog::class, 'user_id', 'id');
+        return $this->hasMany(Blog::class, 'user_id');
     }
 
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class, 'user_id', 'id');
-    }
-
-    public function likes(): BelongsToMany
-    {
-        return $this->belongsToMany(Like::class, 'user_id', 'id');
+        return $this->hasMany(Comment::class, 'user_id');
     }
 }
