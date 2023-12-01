@@ -25,6 +25,7 @@ class User extends Model
         'avatar',
         'role',
         'status',
+        'token',
     ];
 
     public function blogs(): HasMany

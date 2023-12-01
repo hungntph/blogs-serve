@@ -1,0 +1,70 @@
+.account-login, .form, .register-logo, .register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-signup p, .register-logo span {
+  font-family: Noto Sans JP;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28.96px;
+}
+
+.account-login a, .form-signup b {
+  font-family: Noto Sans JP;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 21.72px;
+}
+
+.register-logo {
+  width: 100%;
+  padding-top: 157px;
+  width: 151px;
+  height: 61px;
+}
+.register-logo img {
+  width: 61px;
+  height: 61px;
+}
+.form {
+  padding-top: 75px;
+  width: 100%;
+}
+.form-signup {
+  width: 570px;
+}
+.form-signup input {
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+  border: 1px solid #DEDEDE;
+}
+.form-signup button {
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  line-height: 23.17px;
+  width: 280px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #007BFF;
+  background: #007BFF;
+  color: #DEDEDE;
+  margin: 16px 25% 0px 25%;
+}
+.form-signup span {
+  color: #C40000;
+}
+
+.account-login {
+  width: 100%;
+  margin-top: 11px;
+  margin-bottom: 264px;
+}
+.account-login a {
+  text-decoration: none;
+  color: #007BFF;
+}/*# sourceMappingURL=main.css.map */
