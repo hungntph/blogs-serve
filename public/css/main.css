@@ -1,70 +1,94 @@
-.account-login, .form, .register-logo, .register {
+.account-login, .form-signup-help-remember, .form-signup-btn, .form, .regit-logo, .regit {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.form-signup p, .register-logo span {
-  font-family: Noto Sans JP;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 28.96px;
+.form-signup p, .regit-logo span {
+  font: 700 20px/28.96px Noto Sans JP;
 }
 
-.account-login a, .form-signup b {
-  font-family: Noto Sans JP;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 21.72px;
+.account-login a, .form-signup-help a, .form-signup-help-remember label, .form-signup b {
+  font: 400 15px/21.72px Noto Sans JP;
 }
 
-.register-logo {
-  width: 100%;
-  padding-top: 157px;
+.regit-logo {
+  padding: 157px 0px 0px 0px;
   width: 151px;
   height: 61px;
 }
-.register-logo img {
+.regit-logo img {
   width: 61px;
   height: 61px;
 }
 .form {
-  padding-top: 75px;
+  padding: 75px 0px 0px 0px;
   width: 100%;
 }
 .form-signup {
   width: 570px;
 }
+.form-signup-input {
+  margin: 0px 0px 24px 0px;
+}
+.form-signup-btn {
+  width: 100;
+  height: 40px;
+  margin: 16px 0px 0px 0px;
+}
+.form-signup p {
+  margin: 0px 0px 16px 0px;
+}
+.form-signup b {
+  margin: 0px 0px 10px 0px;
+}
 .form-signup input {
   width: 100%;
   height: 40px;
-  margin-top: 10px;
-  margin-bottom: 24px;
+  margin: 10px 0px 0px 0px;
   border-radius: 4px;
   border: 1px solid #DEDEDE;
 }
 .form-signup button {
-  font-family: Noto Sans JP;
-  font-size: 16px;
-  line-height: 23.17px;
+  font: 16px/23.17px Noto Sans JP;
   width: 280px;
   height: 40px;
   border-radius: 4px;
   border: 1px solid #007BFF;
   background: #007BFF;
   color: #DEDEDE;
-  margin: 16px 25% 0px 25%;
 }
 .form-signup span {
   color: #C40000;
 }
+.form-signup-help {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 38px 0px 40px 0px;
+}
+.form-signup-help-remember input[type=checkbox] {
+  width: 24px;
+  height: 24px;
+  margin: 0px 7px 0px 0px;
+  border: 1.5px solid #292D32;
+}
+.form-signup-help a {
+  color: #007BFF;
+  text-decoration: none;
+}
 
 .account-login {
   width: 100%;
-  margin-top: 11px;
-  margin-bottom: 264px;
+  margin: 11px 0px 264px 0px;
 }
 .account-login a {
   text-decoration: none;
   color: #007BFF;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }/*# sourceMappingURL=main.css.map */

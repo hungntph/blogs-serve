@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Services\UserService;
 use App\Http\Requests\RegisterUserRequest;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Mail\SendMail;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
 
-    protected $userService;
+    public $userService;
 
     public function __construct(
         UserService $userService
@@ -18,39 +22,46 @@ class AuthController extends Controller
         $this->userService = $userService;
     }
 
-    public function register()
+    public function register(): View
     {
         return view("auth.register");
     }
 
-    public function registerUser(RegisterUserRequest $request)
+    public function login(): View
+    {
+        return view("auth.login");
+    }
+
+    public function registerUser(RegisterUserRequest $request): RedirectResponse
     {
         try {
-            $register = $this->userService->register($request->all());
+            DB::beginTransaction();
+            $register = $this->userService->register($request->only('name', 'email', 'password'));
             if (!$register) {
-                return back()->with('fail', 'Register Failed');
+                return back()->with('fail', '');
             }
-            Mail::send('emails.active_account', compact('register'), function ($email) use ($register) {
-                $email->subject('RT-Blogs active account');
-                $email->to($register['email'], $register['name']);
-            });
-            return back()->with('success', 'Register successfully! Please check email to active account!');
-        } catch (\Throwable $th) {
-            return $th;
+            Mail::to($register['email'])->send(new SendMail($register));
+            DB::commit();
+            return back()->with('success', '');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $e->getMessage();
         }
     }
 
-    public function verified(User $register, $token)
+    public function verified(User $register, $token): RedirectResponse
     {
         try {
             if ($register->token === $token) {
-                $this->userService->verified($register);
-                return redirect()->route('login');
+                $verified = $this->userService->verified($register);
+                if ($verified === true) {
+                    return redirect()->intended('auth.login');
+                }
             } else {
-                return redirect()->route('verify-failed');
+                return redirect()->intended('verify-failed');
             }
-        } catch (\Throwable $th) {
-            return $th;
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
     }
 }

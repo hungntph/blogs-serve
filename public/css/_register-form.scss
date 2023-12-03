@@ -1,3 +1,5 @@
+@import "_style-color";
+
 %align-center {
   display: flex;
   align-items: center;
@@ -5,25 +7,18 @@
 }
 
 %font-700 {
-  font-family: Noto Sans JP;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 28.96px;
+  font: 700 20px/28.96px Noto Sans JP;
 }
 
 %font-400 {
-  font-family: Noto Sans JP;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 21.72px;
+  font: 400 15px/21.72px Noto Sans JP;
 }
 
-.register {
+.regit {
   @extend %align-center;
   &-logo {
     @extend %align-center;
-    width: 100%;
-    padding-top: 157px;
+    padding: 157px 0px 0px 0px;
     width: 151px;
     height: 61px;
     img {
@@ -38,38 +33,68 @@
 
 .form {
   @extend %align-center;
-  padding-top: 75px;
+  padding: 75px 0px 0px 0px;
   width: 100%;
   &-signup {
     width: 570px;
+    &-input {
+      margin: 0px 0px 24px 0px;
+    }
+    &-btn {
+      @extend %align-center;
+      width: 100;
+      height: 40px;
+      margin: 16px 0px 0px 0px;
+    }
     p {
       @extend %font-700;
+      margin: 0px 0px 16px 0px;
     }
     b {
       @extend %font-400;
+      margin: 0px 0px 10px 0px;
     }
     input {
       width: 100%;
       height: 40px;
-      margin-top: 10px;
-      margin-bottom: 24px;
+      margin: 10px 0px 0px 0px;
       border-radius: 4px;
       border: 1px solid $color-DEDEDE;
     }
     button {
-      font-family: Noto Sans JP;
-      font-size: 16px;
-      line-height: 23.17px;
+      font: 16px/23.17px Noto Sans JP;
       width: 280px;
       height: 40px;
       border-radius: 4px;
       border: 1px solid $color-007BFF;
       background: $color-007BFF;
       color: $color-DEDEDE;
-      margin: 16px 25% 0px 25%;
     }
     span {
-        color: $color-C40000;
+      color: $color-C40000;
+    }
+    &-help {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 38px 0px 40px 0px;
+      &-remember {
+        @extend %align-center;
+        input[type="checkbox"] {
+          width: 24px;
+          height: 24px;
+          margin: 0px 7px 0px 0px;
+          border: 1.5px solid $color-292D32;
+        }
+        label {
+          @extend %font-400;
+        }
+      }
+      a {
+        @extend %font-400;
+        color: $color-007BFF;
+        text-decoration: none;
+      }
     }
   }
 }
@@ -77,8 +102,7 @@
 .account-login {
   @extend %align-center;
   width: 100%;
-  margin-top: 11px;
-  margin-bottom: 264px;
+  margin: 11px 0px 264px 0px;
   a {
     @extend %font-400;
     text-decoration: none;

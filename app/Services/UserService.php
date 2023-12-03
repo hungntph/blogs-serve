@@ -2,11 +2,12 @@
 namespace App\Services;
 
 use App\Repositories\UserRepository;
+use App\Models\User;
 
 class UserService
 {
 
-    protected $userRepository;
+    public $userRepository;
 
     public function __construct(
         UserRepository $userRepository
@@ -14,14 +15,13 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function register($request)
+    public function register($request): User
     {
         return $this->userRepository->register($request);
     }
 
-    public function verified($request)
+    public function verified($request): bool
     {
-        $this->userRepository->update($request->id, [], ['status'=> config('constant.user.status.verified')]);
-        return true;
+        return $this->userRepository->verified($request);
     }
 }

@@ -9,8 +9,8 @@
     <link href="https://fonts.cdnfonts.com/css/svn-gilroy" rel="stylesheet">
 </head>
 <body>
-    <div class="register">
-        <div class="register-logo">
+    <div class="regit">
+        <div class="regit-logo">
             <img src="/image/logo-regit.png">
             <span>RT-Blogs</span>
         </div>
@@ -19,47 +19,53 @@
         <div class="form-signup">
             @if(Session::has('success'))
                 <div>
-                    {{ Session::get('success') }}
+                    {{ __('message.register-success') }}
                 </div>
             @endif
             @if(Session::has('fail'))
                 <div>
-                    {{ Session::get('fail') }}
+                {{ __('message.register-fail') }}
                 </div>
             @endif
-            <p>Sign up</p>
             <form action="{{ route('register') }}" method="POST">
                 @csrf
-                <label for="name"><b>Username</b><span>*</span></label>
-                <input type="text" name="name" id="name" required>
-                @error('name')
-                    <span class="text-sm text-red-500">{{ $message }}</span><br>
-                @enderror
-
-                <label for="email"><b>Email</b><span>*</span></label>
-                <input type="text" name="email" id="email" required>
-                @error('email')
-                    <span class="text-sm text-red-500">{{ $message }}</span><br>
-                @enderror
-
-                <label for="password"><b>Password</b><span>*</span></label>
-                <input type="password" name="password" id="password" required>
-                @error('password')
-                    <span class="text-sm text-red-500">{{ $message }}</span><br>
-                @enderror
-
-                <label for="password-re"><b>Password confirm</b><span>*</span></label>
-                <input type="password" name="password-confirm" id="password-confirm" required>
-                @error('password-confirm')
-                    <span class="text-sm text-red-500">{{ $message }}</span><br>
-                @enderror
-
-                <button type="submit" class="register">Sign up</button>
+                <p>Sign up</p>
+                <div class="form-signup-input">
+                    <label for="name"><b>{{ __('message.name') }}</b><span>*</span></label>
+                    <input type="text" name="name" id="name" required> 
+                    @error('name')
+                        <span class="text-sm text-red-500">{{ $message }}</span><br>
+                    @enderror 
+                </div>
+                <div class="form-signup-input">
+                    <label for="email"><b>{{ __('message.email') }}</b><span>*</span></label>
+                    <input type="text" name="email" id="email" required>
+                    @error('email')
+                        <span class="text-sm text-red-500">{{ $message }}</span><br>
+                    @enderror   
+                </div>
+                <div class="form-signup-input">
+                    <label for="password"><b>{{ __('message.password') }}</b><span>*</span></label>
+                    <input type="password" name="password" id="password" required>
+                    @error('password')
+                        <span class="text-sm text-red-500">{{ $message }}</span><br>
+                    @enderror
+                </div>
+                <div class="form-signup-input">
+                    <label for="password-confirm"><b>{{ __('message.password-confirm') }}</b><span>*</span></label>
+                    <input type="password" name="password_confirmation" id="password_confirmation" required>
+                    @error('password_confirmation')
+                        <span class="text-sm text-red-500">{{ $message }}</span><br>
+                    @enderror   
+                </div>
+                <div class="form-signup-btn">
+                    <button type="submit" class="register">{{ __('message.login') }}</button>
+                </div>
             </form>
         </div>
     </div>
     <div class="account-login">
-        <a href="">Already have an account? Login</a>
+        <a href="">{{ __('message.login-acount') }}</a>
     </div>
 </body>
 </html>

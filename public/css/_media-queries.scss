@@ -1,0 +1,5 @@
+@mixin mobie {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+}
