@@ -10,6 +10,8 @@ class User extends Model
 {
     use HasFactory;
 
+    const STATUS_VERIFIED = 2;
+
     protected $table = 'users';
 
     protected $hidden = [
@@ -25,6 +27,7 @@ class User extends Model
         'avatar',
         'role',
         'status',
+        'token',
     ];
 
     public function blogs(): HasMany
