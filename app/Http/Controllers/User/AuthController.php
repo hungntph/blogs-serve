@@ -50,7 +50,7 @@ class AuthController extends Controller
     {
         try {
             if ($register->token === $token) {
-                $verified = $this->userService->verified($register);
+                $verified = $this->userService->verified();
                 if ($verified === true) {
                     return redirect()->intended('auth.login');
                 }

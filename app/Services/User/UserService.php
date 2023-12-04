@@ -20,8 +20,9 @@ class UserService
         return $this->userRepository->register($request);
     }
 
-    public function verified($request): bool
+    public function verified(): bool
     {
+        $request = User::STATUS_VERIFIED;
         return $this->userRepository->verified($request);
     }
 }

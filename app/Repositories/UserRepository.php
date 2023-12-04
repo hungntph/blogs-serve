@@ -25,7 +25,7 @@ class UserRepository
 
     public function verified($request): bool
     {
-        $update = DB::table('users')->where('id', $request['id'])->update(['status' => User::STATUS_VERIFIED]);
+        $update = DB::table('users')->update(['status' => $request]);
         return $update;
     }
 }
