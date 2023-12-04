@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Services\UserService;
+use App\Http\Controllers\Controller;
+use App\Services\User\UserService;
 use App\Http\Requests\RegisterUserRequest;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Mail\SendMail;
 use Illuminate\Http\RedirectResponse;
@@ -35,16 +35,13 @@ class AuthController extends Controller
     public function registerUser(RegisterUserRequest $request): RedirectResponse
     {
         try {
-            DB::beginTransaction();
             $register = $this->userService->register($request->only('name', 'email', 'password'));
             if (!$register) {
                 return back()->with('fail', '');
             }
             Mail::to($register['email'])->send(new SendMail($register));
-            DB::commit();
             return back()->with('success', '');
         } catch (\Exception $e) {
-            DB::rollback();
             return $e->getMessage();
         }
     }
