@@ -16,4 +16,5 @@ return [
     'register-success' => 'Register successfully! Please check email to active account!',
     'register-faild' => 'Register faild!',
     'login-failed' => 'Email or username is incorrect!',
+    'verify-failed' => 'verify faild',
 ];

@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -11,7 +10,7 @@ class UserRepository
 {
     const MODEL = User::class;
 
-    public function register($request): User
+    public function register(array $request): User
     {
         $token = Str::random(20);
         $userInfo = [
@@ -23,9 +22,8 @@ class UserRepository
         return User::create($userInfo);
     }
 
-    public function verified($request): bool
+    public function verified(User $request): bool
     {
-        $update = DB::table('users')->update(['status' => $request]);
-        return $update;
+        return User::where('id', $request->id)->update(['status' => User::STATUS_VERIFIED]);
     }
 }

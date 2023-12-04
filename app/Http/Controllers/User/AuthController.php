@@ -14,7 +14,7 @@ use Illuminate\View\View;
 class AuthController extends Controller
 {
 
-    public $userService;
+    public UserService $userService;
 
     public function __construct(
         UserService $userService
@@ -37,28 +37,28 @@ class AuthController extends Controller
         try {
             $register = $this->userService->register($request->only('name', 'email', 'password'));
             if (!$register) {
-                return back()->with('fail', '');
+                return back()->with('fail', trans('message.register-faild'));
             }
             Mail::to($register['email'])->send(new SendMail($register));
-            return back()->with('success', '');
+            return back()->with('success', trans('message.register-success'));
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return back()->with('errors', $e->getMessage());
         }
     }
 
-    public function verified(User $register, $token): RedirectResponse
+    public function verified(User $register, string $token): RedirectResponse
     {
         try {
             if ($register->token === $token) {
-                $verified = $this->userService->verified();
-                if ($verified === true) {
-                    return redirect()->intended('auth.login');
+                $verified = $this->userService->verified($register);
+                if ($verified) {
+                    return redirect()->route('auth.login');
                 }
             } else {
-                return redirect()->intended('verify-failed');
+                return redirect()->route('verify-failed')->with('errors', trans('message.verify-failed'));
             }
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return redirect()->route('verify-failed')->with('errors', $e->getMessage());
         }
     }
 }

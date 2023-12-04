@@ -7,7 +7,7 @@ use App\Models\User;
 class UserService
 {
 
-    public $userRepository;
+    public UserRepository $userRepository;
 
     public function __construct(
         UserRepository $userRepository
@@ -15,14 +15,13 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function register($request): User
+    public function register(array $request): User
     {
         return $this->userRepository->register($request);
     }
 
-    public function verified(): bool
+    public function verified(User $request): bool
     {
-        $request = User::STATUS_VERIFIED;
         return $this->userRepository->verified($request);
     }
 }
