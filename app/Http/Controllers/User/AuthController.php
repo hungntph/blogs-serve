@@ -5,11 +5,11 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Services\User\UserService;
 use App\Http\Requests\RegisterUserRequest;
-use Illuminate\Support\Facades\Mail;
 use App\Models\User;
-use App\Mail\SendMail;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
+use App\Http\Requests\LoginUserRequest;
+use App\Http\Requests\ResendMailRequest;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -22,43 +22,85 @@ class AuthController extends Controller
         $this->userService = $userService;
     }
 
-    public function register(): View
+    public function register()
     {
         return view("auth.register");
     }
 
-    public function login(): View
+    public function login()
     {
         return view("auth.login");
     }
 
-    public function registerUser(RegisterUserRequest $request): RedirectResponse
+    public function home()
     {
-        try {
-            $register = $this->userService->register($request->only('name', 'email', 'password'));
-            if (!$register) {
-                return back()->with('fail', trans('message.register-faild'));
-            }
-            Mail::to($register['email'])->send(new SendMail($register));
-            return back()->with('success', trans('message.register-success'));
-        } catch (\Exception $e) {
-            return back()->with('errors', $e->getMessage());
-        }
+        return view("user.home");
     }
 
-    public function verified(User $register, string $token): RedirectResponse
+    public function resendMailVerify()
     {
-        try {
-            if ($register->token === $token) {
-                $verified = $this->userService->verified($register);
-                if ($verified) {
-                    return redirect()->route('auth.login');
-                }
-            } else {
-                return redirect()->route('verify-failed')->with('errors', trans('message.verify-failed'));
-            }
-        } catch (\Exception $e) {
-            return redirect()->route('verify-failed')->with('errors', $e->getMessage());
+        return view("auth.resend");
+    }
+
+    public function registerUser(RegisterUserRequest $request)
+    {
+        $register = $this->userService->register($request->only('name', 'email', 'password'));
+        if ($register) {
+            return back()->with('success', trans('message.register-success'));
         }
+        return back()->with('fail', trans('message.register-faild'));
+    }
+
+    public function verified(User $user, string $token)
+    {
+        $timenow = now();
+        $diff = $timenow->diffInMinutes(Carbon::parse($user->mail_verify_at));
+        if ($diff > config('constant.expire_time')) {
+            return redirect()->route('verify-expired')->with('errors', trans('message.verify-expired'));
+        }
+        if ($user->token === $token) {
+            if ($user->status == User::STATUS_VERIFIED) {
+                return redirect()->route('login');
+            }
+            $verified = $this->userService->verified($user);
+            if ($verified) {
+                return redirect()->route('login');
+            }
+        }
+        return redirect()->route('verify-failed')->with('errors', trans('message.verify-failed'));
+    }
+
+    public function resendMail(ResendMailRequest $request)
+    {
+        $send = $this->userService->resendMailVerify($request->only('email'));
+        if ($send) {
+            return back()->with('resend-success', trans('message.resend-mail-success'));
+        }
+        return back()->with('email-incorrect', trans('message.mail-incorrect'));
+    }
+
+    public function loginUser(LoginUserRequest $request)
+    {
+        $user = $this->userService->login($request);
+        if ($user) {
+            if ($user->status == User::STATUS_NOT_VERIFIED) {
+                return redirect()->route('resend-mail-verify');
+            }
+            if ($user->status == User::STATUS_BLOCKED) {
+                return back()->with('blocked', trans('message.blocked'));
+            }
+            Auth::login($user, $request['remember'] ? true: false);
+            if ($user->role == User::ADMIN_ROLE) {
+                return redirect()->route('admin.dashboard');
+            }
+            return redirect()->route('home');
+        }
+        return back()->with('email-password-incorrect', trans('message.email-password-incorrect'));
+    }
+
+    public function logoutUser()
+    {
+        $this->userService->logout();
+        return redirect()->route('login');
     }
 }

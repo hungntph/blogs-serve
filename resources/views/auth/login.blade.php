@@ -7,6 +7,16 @@
     <div class="form-signup">
         <form action="{{ route('login') }}" method="POST">
             @csrf
+            @if(Session::has('email-password-incorrect'))
+                <span class="text-sm text-red-500">
+                    {{ Session::get('email-password-incorrect') }}
+                </span>
+            @endif
+            @if(Session::has('blocked'))
+                <span class="text-sm text-red-500">
+                    {{ Session::get('blocked') }}
+                </span>
+            @endif
             <p>{{ __('message.signin') }}</p>
             <div class="form-signup-input">
                 <label for="name"><b>{{ __('message.user-or-email') }}</b><span>*</span></label>
@@ -14,9 +24,9 @@
                 @error('email')
                     <span class="text-sm text-red-500">{{ $message }}</span><br>
                 @enderror 
-                @if(Session::has('login-failed'))
+                @if(Session::has('username-email-incorrect'))
                     <span class="text-sm text-red-500">
-                        {{ __('message.login-failed') }}
+                        {{ __('message.username-email-incorrect') }}
                     </span>
                 @endif
             </div>
@@ -26,6 +36,11 @@
                 @error('password')
                     <span class="text-sm text-red-500">{{ $message }}</span><br>
                 @enderror
+                @if(Session::has('password-incorrect'))
+                    <span class="text-sm text-red-500">
+                        {{ __('message.password-incorrect') }}
+                    </span>
+                @endif
             </div>
             <div class="form-signup-help">
                 <div class="form-signup-help-remember">
@@ -43,6 +58,6 @@
     </div>
 </div>
 <div class="account-login">
-    <a href="">{{ __('message.register-acount') }}</a>
+    <a href="{{ route('register') }}">{{ __('message.register-acount') }}</a>
 </div>
 @endsection
