@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
     use HasFactory;
 
+    const STATUS_NOT_VERIFIED = 0;
+    const STATUS_BLOCKED = 1;
     const STATUS_VERIFIED = 2;
+    const ADMIN_ROLE = 2;
+    const USER_ROLE = 0;
 
     protected $table = 'users';
 
@@ -28,6 +32,8 @@ class User extends Model
         'role',
         'status',
         'token',
+        'mail_verify_at',
+        'remember_token',
     ];
 
     public function blogs(): HasMany
