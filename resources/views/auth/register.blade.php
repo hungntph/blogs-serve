@@ -7,12 +7,12 @@
     <div class="form-signup">
         @if(Session::has('success'))
             <div>
-                {{ trans('message.register-success') }}
+                {{ __('message.register-success') }}
             </div>
         @endif
         @if(Session::has('fail'))
             <div>
-            {{ trans('message.register-fail') }}
+            {{ __('message.register-fail') }}
             </div>
         @endif
         <form action="{{ route('register') }}" method="POST">
@@ -47,12 +47,12 @@
                 @enderror   
             </div>
             <div class="form-signup-btn">
-                <button type="submit" class="register">{{ __('message.login') }}</button>
+                <button type="submit" class="register">{{ __('message.signup') }}</button>
             </div>
         </form>
     </div>
 </div>
 <div class="account-login">
-    <a href="">{{ __('message.login-acount') }}</a>
+    <a href="{{ route('login') }}">{{ __('message.login-acount') }}</a>
 </div>
 @endsection
