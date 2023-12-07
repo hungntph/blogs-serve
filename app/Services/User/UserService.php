@@ -11,13 +11,9 @@ use Exception;
 
 class UserService
 {
-
-    public UserRepository $userRepository;
-
     public function __construct(
-        UserRepository $userRepository
+        public UserRepository $userRepository
     ) {
-        $this->userRepository = $userRepository;
     }
 
     public function register(array $request): bool

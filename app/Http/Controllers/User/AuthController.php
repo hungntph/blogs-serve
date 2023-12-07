@@ -13,13 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-
-    public UserService $userService;
-
     public function __construct(
-        UserService $userService
+        public UserService $userService
     ) {
-        $this->userService = $userService;
     }
 
     public function register()
@@ -60,11 +56,11 @@ class AuthController extends Controller
         }
         if ($user->token === $token) {
             if ($user->status == User::STATUS_VERIFIED) {
-                return redirect()->route('login');
+                return redirect()->route('login.index');
             }
             $verified = $this->userService->verified($user);
             if ($verified) {
-                return redirect()->route('login');
+                return redirect()->route('login.index');
             }
         }
         return redirect()->route('verify-failed')->with('errors', trans('message.verify-failed'));
@@ -101,6 +97,6 @@ class AuthController extends Controller
     public function logoutUser()
     {
         $this->userService->logout();
-        return redirect()->route('login');
+        return redirect()->route('login.index');
     }
 }

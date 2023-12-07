@@ -53,6 +53,6 @@
     </div>
 </div>
 <div class="account-login">
-    <a href="{{ route('login') }}">{{ __('message.login-acount') }}</a>
+    <a href="{{ route('login.index') }}">{{ __('message.login-acount') }}</a>
 </div>
 @endsection

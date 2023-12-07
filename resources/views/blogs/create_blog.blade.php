@@ -7,12 +7,12 @@
 
 <div class="create-blog">
     <div class="create-blog-link">
-        <a href="">Home</a> > <span>Create Blog</span>
+        <a href="">{{ __('message.home') }}</a> > <span>{{ __('message.create-blog') }}</span>
     </div>
     <div class="create-blog-form">
-        <form action="{{ route('create-blog') }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('blog.create') }}" enctype="multipart/form-data" method="POST">
         @csrf
-            <p>Create blog</p>
+            <p>{{ __('message.create-blog') }}</p>
             @if(Session::has('create-success'))
                 <span class="text-sm text-red-500">
                     {{ __('message.create-success') }}
@@ -24,17 +24,18 @@
                 </span>
             @endif
             <div class="create-blog-form-input">
+                <input type="hidden" name="user_id" value="{{$userId}}">
                 <div>
-                    <label for="name"><b>Category</b><span>*</span></label>
+                    <label for="name"><b>{{ __('message.blog-category') }}</b><span>*</span></label>
                 </div>
-                <select name="categories" id="categories">
-                @foreach ($getCategory as $category)
+                <select name="category_id">
+                @foreach ($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
                 </select>
             </div>
             <div class="create-blog-form-input">
-                <label for="name"><b>Title</b><span>*</span></label>
+                <label for="name"><b>{{ __('message.blog-title') }}</b><span>*</span></label>
                 <input type="text" name="title"> 
                 @error('title')
                     <span class="text-sm text-red-500">{{ $message }}</span><br>
@@ -42,10 +43,10 @@
             </div>
             <div class="create-blog-form-upload">
                 <div class="create-blog-form-upload-title">
-                    <label for="name"><b>Upload image</b><span>*</span></label>
+                    <label for="name"><b>{{ __('message.blog-upload-image') }}</b><span>*</span></label>
                 </div>
                 <div class="create-blog-form-upload-btn">
-                    <label for="uploadImg" class="">Upload image</label>
+                    <label for="uploadImg" class="">{{ __('message.blog-upload-image') }}</label>
                     <input accept="image/*" onchange="loadFile(event)" type="file" name="file" id="uploadImg" class="form-control-file" hidden>
                 </div>
                 <div class="create-blog-form-upload-image">
@@ -56,7 +57,7 @@
                 @enderror 
             </div>
             <div class="create-blog-form-input">
-                <label for="name"><b>Description</b><span>*</span></label>
+                <label for="name"><b>{{ __('message.blog-desc') }}</b><span>*</span></label>
                 <div>
                     <textarea name="content"></textarea>
                 </div>
@@ -65,12 +66,14 @@
                 @enderror 
             </div>
             <div class="create-blog-form-submit">
-                <button type="submit" class="create">Create blog</button>
+                <button type="submit" class="create">{{ __('message.create-blog') }}</button>
             </div>
         </form>
     </div>
 </div>
 
 @include('layouts.footer')
+
+<script src="{{ Vite::asset('resources/js/app.js') }}"></script>
 
 @endsection

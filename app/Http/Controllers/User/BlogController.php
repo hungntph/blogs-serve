@@ -5,30 +5,33 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateBlogRequest;
 use App\Services\User\BlogService;
+use App\Services\User\CategoryService;
+use App\Services\User\UploadFileService;
 
 class BlogController extends Controller
 {
-    public BlogService $blogService;
-
     public function __construct(
-        BlogService $blogService
+        public BlogService $blogService,
+        public CategoryService $categoryService,
+        public UploadFileService $uploadFileService,
     ) {
-        $this->blogService = $blogService;
     }
 
-    public function formCreateBlog()
+    public function index()
     {
-        $getCategory = $this->blogService->getCategory();
-        return view("blogs.create_blog", compact('getCategory'));
+        $userId = auth()->user()->id;
+        $categories = $this->categoryService->getCategories();
+        return view("blogs.create_blog", compact('categories', 'userId'));
     }
 
-    public function createBlog(CreateBlogRequest $request)
+    public function create(CreateBlogRequest $request)
     {
-        $file = $request->file('file');
-        $path = "image";
-        $image = $file->getClientOriginalName();
-        $file->move($path, $image);
-        $createBlog = $this->blogService->create($request->only('categories', 'title', 'content'), $image);
+        if ($request->file('file')) {
+            $uploadFile = $this->uploadFileService->uploadFile($request->file('file'));
+        } else {
+            $uploadFile = null;
+        }
+        $createBlog = $this->blogService->create($request->only('user_id', 'category_id', 'title', 'content'), $uploadFile);
         if ($createBlog) {
             return back()->with('create-success', trans('message.create-success'));
         }

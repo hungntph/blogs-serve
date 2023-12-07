@@ -22,7 +22,10 @@ class CreateBlogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'categories' => [
+            'user_id' => [
+                'exists:users,id',
+            ],
+            'category_id' => [
                 'required',
                 'exists:categories,id',
             ],
@@ -34,7 +37,7 @@ class CreateBlogRequest extends FormRequest
                 'required',
             ],
             'file' => [
-                'required',
+                'max:2099',
                 'mimes:jpeg,jpg,png',
             ],
         ];

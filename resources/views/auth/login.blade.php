@@ -58,6 +58,6 @@
     </div>
 </div>
 <div class="account-login">
-    <a href="{{ route('register') }}">{{ __('message.register-acount') }}</a>
+    <a href="{{ route('register.index') }}">{{ __('message.register-acount') }}</a>
 </div>
 @endsection
