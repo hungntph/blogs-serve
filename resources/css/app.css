@@ -1,0 +1,205 @@
+.create-blog-form-submit, .create-blog-form-upload-btn, .account-login, .form-signup-help-remember, .form-signup-btn, .form, .regit-logo, .regit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-blog-form form p, .form-signup p, .regit-logo span {
+  font: 700 20px/28.96px Noto Sans JP;
+}
+
+.create-blog-form-upload-btn, .create-blog-form-upload button, .create-blog-form form b, .account-login a, .form-signup-help a, .form-signup-help-remember label, .form-signup b {
+  font: 400 15px/21.72px Noto Sans JP;
+}
+
+.create-blog-form form textarea, .create-blog-form form input, .create-blog-form form select, .form-signup input {
+  border-radius: 4px;
+  border: 1px solid #DEDEDE;
+}
+
+.regit-logo {
+  padding: 157px 0px 0px 0px;
+  width: 151px;
+  height: 61px;
+}
+.regit-logo img {
+  width: 61px;
+  height: 61px;
+}
+.form {
+  padding: 75px 0px 0px 0px;
+  width: 100%;
+}
+.form-signup {
+  width: 570px;
+}
+.form-signup-input {
+  margin: 0px 0px 24px 0px;
+}
+.form-signup-btn {
+  width: 100;
+  height: 40px;
+  margin: 16px 0px 0px 0px;
+}
+.form-signup p {
+  margin: 0px 0px 16px 0px;
+}
+.form-signup b {
+  margin: 0px 0px 10px 0px;
+}
+.form-signup input {
+  width: 100%;
+  height: 40px;
+  margin: 10px 0px 0px 0px;
+}
+.form-signup button {
+  font: 16px/23.17px Noto Sans JP;
+  width: 280px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #007BFF;
+  background: #007BFF;
+  color: #DEDEDE;
+}
+.form-signup span {
+  color: #C40000;
+}
+.form-signup-help {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 38px 0px 40px 0px;
+}
+.form-signup-help-remember input[type=checkbox] {
+  width: 24px;
+  height: 24px;
+  margin: 0px 7px 0px 0px;
+  border: 1.5px solid #292D32;
+}
+.form-signup-help a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.account-login {
+  width: 100%;
+  margin: 11px 0px 264px 0px;
+}
+.account-login a {
+  text-decoration: none;
+  color: #007BFF;
+}
+
+.header {
+  width: 100%;
+  height: 122px;
+}
+
+.create-blog {
+  margin: 0px 7%;
+}
+.create-blog-link {
+  width: 100%;
+  height: 23px;
+  margin: 0px 0px 34px 0px;
+}
+.create-blog-link a {
+  font: 700 16px/23.17px Noto Sans JP;
+  text-decoration: none;
+}
+.create-blog-link span {
+  font: 700 16px/23.17px Noto Sans JP;
+}
+.create-blog-form {
+  width: 100%;
+  height: 1106px;
+  background: #D9D9D9;
+}
+.create-blog-form form {
+  padding: 30px 30px 52px 30px;
+}
+.create-blog-form form p {
+  width: 100%;
+  height: 29px;
+  margin: 0px 0px 16px 0px;
+}
+.create-blog-form form select {
+  width: 30%;
+  height: 40px;
+  margin: 10px 0px 34px 0px;
+}
+@media screen and (max-width: 768px) {
+  .create-blog-form form select {
+    width: 50%;
+  }
+}
+.create-blog-form form span {
+  color: #C40000;
+}
+.create-blog-form form input {
+  width: 100%;
+  height: 40px;
+  margin: 10px 0px 0px 0px;
+}
+.create-blog-form form textarea {
+  width: 100%;
+  height: 459px;
+}
+.create-blog-form-upload-title {
+  padding: 20px 0px 20px 0px;
+}
+.create-blog-form-upload button {
+  width: 13%;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #007BFF;
+  color: #007BFF;
+}
+@media screen and (max-width: 768px) {
+  .create-blog-form-upload button {
+    width: 25%;
+    font-size: 10px;
+  }
+}
+.create-blog-form-upload img {
+  width: 100%;
+  height: 170px;
+  border: none;
+}
+.create-blog-form-upload-image {
+  width: 25%;
+  height: 170px;
+  margin: 10px 0px 27px 0px;
+}
+.create-blog-form-upload-btn {
+  width: 13%;
+  height: 40px;
+  border-radius: 4px;
+  background: white;
+  border: 1px solid #007BFF;
+  color: #007BFF;
+}
+@media screen and (max-width: 768px) {
+  .create-blog-form-upload-btn {
+    width: 25%;
+    font-size: 10px;
+  }
+}
+.create-blog-form-submit {
+  margin: 15px 0px 0px 0px;
+}
+.create-blog-form-submit button {
+  font: 16px/23.17px Noto Sans JP;
+  width: 280px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #007BFF;
+  background: #007BFF;
+  color: #DEDEDE;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}/*# sourceMappingURL=app.css.map */

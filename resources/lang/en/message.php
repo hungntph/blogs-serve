@@ -25,4 +25,12 @@ return [
     'send-email' => 'Send email',
     'resend-mail-success' => 'Resend email successfully! Please check email to active account!',
     'email-password-incorrect' => 'Email or password is incorrect!',
+    'create-success' => 'create blog successfully!',
+    'create-failed' => 'create blog failed!',
+    'home' => 'Home',
+    'create-blog' => 'Create Blog',
+    'blog-category' => 'Category',
+    'blog-title' => 'Title',
+    'blog-upload-image' => 'Upload image',
+    'blog-desc' => 'Description',
 ];
