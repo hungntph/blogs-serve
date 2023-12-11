@@ -23,4 +23,22 @@ class BlogService
             throw new Exception($e->getMessage());
         }
     }
+
+    public function getBlog(int $id): Blog
+    {
+        try {
+            return $this->blogRepository->getBlogById($id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function update(array $request): bool
+    {
+        try {
+            return $this->blogRepository->update($request);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }

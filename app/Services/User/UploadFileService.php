@@ -11,7 +11,7 @@ class UploadFileService
     {
         try {
             $image = $file->getClientOriginalName();
-            Storage::putFileAs('upload', $file, $image);
+            Storage::putFileAs('public/upload', $file, $image);
             return $image;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());

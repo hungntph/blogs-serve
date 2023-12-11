@@ -29,8 +29,13 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('/resend', [AuthController::class, 'resendMail'])->name('resend');
 
         //blog
-        Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-        Route::post('/blog/create', [BlogController::class, 'create'])->name('blog.create');
-        Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
+        Route::group(['prefix' => 'blog'], function () {
+            Route::get('/', [BlogController::class, 'index'])->name('blog.index');
+            Route::post('/create', [BlogController::class, 'create'])->name('blog.create');
+            Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
+            Route::post('/update', [BlogController::class, 'update'])->name('blog.update');
+            Route::get('/detail/{id}', [BlogController::class, 'show'])->name('blog.show');
+            Route::post('/delete/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+        });
     });
 });

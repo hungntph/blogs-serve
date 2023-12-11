@@ -12,4 +12,14 @@ class BlogRepository
     {
         return Blog::create($request);
     }
+
+    public function getBlogById(int $id): Blog
+    {
+        return Blog::with('category', 'comments.user', 'user')->findOrFail($id);
+    }
+
+    public function update($request): bool
+    {
+        return Blog::where('id', $request['id'])->update($request);
+    }
 }
