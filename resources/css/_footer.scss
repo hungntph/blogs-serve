@@ -1,0 +1,15 @@
+.footer {
+  @extend %align-center;
+  bottom: 0;
+  width: 100%;
+  height: 94px;
+  background: $color-black1;
+  &-content {
+    width: 251px;
+    height: 20px;
+    p {
+      @extend %font-500;
+      color: $color-white1;
+    }
+  }
+}

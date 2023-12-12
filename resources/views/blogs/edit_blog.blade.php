@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('layouts.header')
+@include('layouts.navbar')
 
 <div class="create-blog">
     <div class="create-blog-link">

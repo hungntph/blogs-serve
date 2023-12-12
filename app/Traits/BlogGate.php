@@ -11,11 +11,15 @@ trait BlogGate
             return $user->id == $blog->user_id;
         });
 
-        Gate::define('show', function ($user, $blog) {
+        Gate::define('update', function ($user, $blog) {
             return $user->id == $blog->user_id;
         });
 
-        Gate::define('update', function ($user, $blog) {
+        Gate::define('delete', function ($user, $blog) {
+            return $user->id == $blog->user_id;
+        });
+
+        Gate::define('show', function ($user, $blog) {
             return $user->id == $blog->user_id;
         });
     }

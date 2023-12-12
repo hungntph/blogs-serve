@@ -11,6 +11,9 @@ class Blog extends Model
 {
     use HasFactory;
 
+    const STATUS_NOT_APPROVED = 0;
+    const STATUS_APPROVED = 1;
+
     protected $table = 'blogs';
 
     protected $fillable = [
