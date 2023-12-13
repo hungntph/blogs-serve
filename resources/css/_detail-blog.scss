@@ -1,157 +1,278 @@
-.detail-blog {
-  margin: 0px 7%;
-  &-link {
-    width: 100%;
-    height: 23px;
-    margin: 0px 0px 34px 0px;
-      a {
-        font: 700 16px/23.17px Noto Sans JP;
-        text-decoration: none;
-      }
-      span {
-        font: 700 16px/23.17px Noto Sans JP;
-      }
-  }
-  &-title {
-    width: 100%;
-    height: 26px;
-    margin: 0px 0px 44px 0px;
-    p {
-      font: 700 18px/26.06px Noto Sans JP;
-    }
-  }
-  &-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 36px;
-    margin: 0px 0px 41px 0px;
-    &-user {
-      display: flex;
-      img {
-        width: 36px;
-        height: 36px;
-        border-radius: 50px;
-        margin: 0px 8px 0px 0px;
-      }
-      a {
-        text-decoration: none;
-        font: 500 12px/17.38px Noto Sans JP;
-        color: $color-black1;
-      }
-      p {
-        font: 400 11px/15.93px Noto Sans JP;
-        color: $color-gray1;
-      }
-    }
-    &-btn {
-      display: flex;
-      button {
-        width: 110px;
-          height: 29px;
-          border-radius: 3px;
-          background: $color-blue1;
-          color: $color-white1;
+.blog {
+  &-container {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    &-detail {
+      margin: 156px 7% 60px 7%;
+      position: relative;
+      z-index: 1;
+      &-link {
+        width: 100%;
+        height: 23px;
+        margin: 0 0 34px 0;
+          a {
+            font: 700 16px/23.17px Noto Sans JP;
+            text-decoration: none;
+          }
+          span {
+            font: 700 16px/23.17px Noto Sans JP;
+          }
+        }
+        &-title {
+          width: 100%;
+          height: 26px;
+          margin: 0 0 44px 0;
+          p {
+            font: 700 18px/26.06px Noto Sans JP;
+          }
+        }
+        &-info {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          height: 36px;
+          margin: 0 0 41px 0;
+          &-user {
+            display: flex;
+            img {
+              width: 36px;
+              height: 36px;
+              border-radius: 50px;
+              margin: 0 8px 0 0;
+            }
+            a {
+              text-decoration: none;
+              font: 500 12px/17.38px Noto Sans JP;
+              color: $color-black1;
+            }
+            p {
+              font: 400 11px/15.93px Noto Sans JP;
+              color: $color-gray1;
+            }
+          }
+          &-btn {
+            display: flex;
+            button {
+              width: 110px;
+                height: 29px;
+                border-radius: 3px;
+                background: $color-blue1;
+                color: $color-white1;
+                border: none;
+                margin: 0 0 0 20px;
+                cursor: pointer;
+            }
+            &-approved {
+              button {
+                background: $color-blue1;
+              }
+            }
+            &-notapproved {
+              button {
+                background: $color-gray1;
+              }
+            }
+            &-delete {
+              button {
+                background: $color-btn-red;
+              }
+            }
+          }
+        }
+        &-image {
+          width: 100%;
+          height: 555px;
+          margin: 0 0 41px 0;
+          img {
+            width: 100%;
+            height: 555px;
+            border: none;
+          }
+        }
+        &-desc {
+          width: 100%;
+          height: 67px;
+          padding: 0 0 40px 0;
+          p {
+            font: 400 14px/20.27px Noto Sans JP;
+            color: $color-gray2;
+          }
+        }
+        &-comment {
+          @extend %align-center;
+          width: 100%;
+          height: 35px;
+          margin: 35px 0 18px 0;
+          span {
+            font: 700 24px/34.75px Noto Sans JP;
+          }
+        }
+        &-line {
+          @extend %align-center;
+          margin: 0 0 18px 0;
+          hr {
+            width: 63px;
+            color: $color-gray2;
+          }
+        }
+        &-related {
+          width: 100%;
+          margin: 0 0 10px 0;
+        }
+        .card {
+          width: 265px;
+          height: 340px;
           border: none;
-          margin: 0px 0px 0px 20px;
-      }
-      &-approved {
-        button {
-          background: $color-blue;
+          margin: 0 0 20px 0;
+          img {
+            width: 265px;
+            height: 265px;
+            font: 700 24px/34.75px Noto Sans JP;
+          }
+          a {
+            text-decoration: none;
+            color: $color-black1;
+            font: 700 17px/28px Noto Sans JP;
+            cursor: pointer;
+          }
+        }
+        .card-body {
+          border: 1px solid $color-boder;
+          border-radius: 0 0 8px 8px;
+          font: 700 24px/34.75px Noto Sans JP;
+        }
+        &-input {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 50px;
+          margin: 0 0 49px 0;
+          img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50px;
+            margin: 0 17px 0 0;
+          }
+          input {
+            width: 100%;
+            height: 50px;
+            border-radius: 4px;
+            border: 1px solid $color-input;
+          }
+        }
+        &-comments {
+          &-user {
+            display: flex;
+            align-items: center;
+            img {
+              width: 48px;
+              height: 48px;
+              border-radius: 50px;
+              margin: 0 17px 0 0;
+            }
+            p {
+              font: 700 24px/34.75px Noto Sans JP;
+            }
+          }
+          &-content {
+            margin: 0 0 0 65px;
+            span {
+              font: 400 14px/20.27px Noto Sans JP;
+              color: $color-black2;
+            }
+            p {
+              font: 400 14px/20.27px Noto Sans JP;
+              color: $color-gray2;
+            }
+          }
         }
       }
-      &-notapproved {
-        button {
-          background: $color-gray1;
-        }
-      }
-      &-delete {
-        button {
-          background: $color-btn-red;
-        }
-      }
-    }
-  }
-  &-image {
-    width: 100%;
-    height: 555px;
-    margin: 0px 0px 41px 0px;
-    img {
-      width: 100%;
-      height: 555px;
-      border: none;
-    }
-  }
-  &-desc {
-    width: 100%;
-    height: 67px;
-    padding: 0px 0px 40px 0px;
-    p {
-      font: 400 14px/20.27px Noto Sans JP;
-      color: $color-gray2;
-    }
-  }
-  &-comment {
-    @extend %align-center;
-    width: 100%;
-    height: 35px;
-    margin: 0px 0px 18px 0px;
-    span {
-      font: 700 24px/34.75px Noto Sans JP;
-    }
-  }
-  &-line {
-    @extend %align-center;
-    margin: 0px 0px 18px 0px;
-    hr {
-      width: 63px;
-      color: $color-gray2;
-    }
-  }
-  &-input {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    margin: 0px 0px 49px 0px;
-    img {
-      width: 48px;
-      height: 48px;
-      border-radius: 50px;
-      margin: 0px 17px 0px 0px;
-    }
-    input {
-      width: 100%;
-      height: 50px;
-      border-radius: 4px;
-      border: 1px solid #E1E1E1;
-    }
-  }
-  &-comments {
-    &-user {
+    } 
+  &-popup {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    width: 542px;
+    height: 251px;
+    transform: translate(-50%, -50%) scale(0);
+    background: $color-white;
+    z-index: 10;
+    &-top {
       display: flex;
-      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 61px;
+      border-bottom: 1px solid $color-gray;
       img {
-        width: 48px;
-        height: 48px;
-        border-radius: 50px;
-        margin: 0px 17px 0px 0px;
+        width: 13px;
+        height: 13px;
+        margin: 10px 10px;
+        cursor: pointer;
+        &:hover {
+          background: $color-gray3;
+        }
       }
       p {
-        font: 700 24px/34.75px Noto Sans JP;
+        font: 700 20px/28.96px Noto Sans JP;
+        margin: 16px 28px;
       }
     }
     &-content {
-      margin: 0px 0px 0px 65px;
+      @extend %align-center;
+      width: 100%;
+      height: 122px;
+      border-bottom: 1px solid $color-gray;
       span {
-        font: 400 14px/20.27px Noto Sans JP;
-        color: $color-black2;
-      }
-      p {
-        font: 400 14px/20.27px Noto Sans JP;
-        color: $color-gray2;
+        @extend %font-400;
       }
     }
+    &-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 68px;
+      button {
+        width: 80px;
+        height: 40px;
+        border-radius: 4px;
+        border: none;
+        font: 400 20px/28.96px Noto Sans JP;
+        color: $color-white;
+        background: $color-btn-red;
+        margin: 0 54px 0 0;
+        cursor: pointer;
+      }
+      &-cancel {
+        @extend %align-center;
+        width: 80px;
+        height: 40px;
+        margin: 0 0 0 54px;
+        border-radius: 4px;
+        border: none;
+        background-color: $color-gray3;
+        cursor: pointer;
+        a {
+          text-decoration: none;
+          font: 400 20px/28.96px Noto Sans JP;
+          color: $color-white;
+        }
+      }
+    }
+  }
+
+  .active &-container {
+    background: $color-black3;
+    position: fixed;
+    display: block;
+  }
+
+  .active &-popup {
+    position: fixed;
+    transform: translate(-50%, -50%) scale(1);
   }
 }

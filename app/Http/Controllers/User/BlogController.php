@@ -4,9 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateBlogRequest;
+use App\Http\Requests\DeleteBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use App\Models\Blog;
 use App\Services\User\BlogService;
 use App\Services\User\CategoryService;
+use App\Services\User\CommentService;
 use App\Services\User\UploadFileService;
 use Illuminate\Support\Facades\Gate;
 
@@ -16,14 +19,15 @@ class BlogController extends Controller
         public BlogService $blogService,
         public CategoryService $categoryService,
         public UploadFileService $uploadFileService,
+        public CommentService $commentService,
     ) {
     }
 
     public function index()
     {
-        $userId = auth()->user()->id;
+        $auth = auth()->user();
         $categories = $this->categoryService->getCategories();
-        return view("blogs.create_blog", compact('categories', 'userId'));
+        return view("blogs.create_blog", compact('categories', 'auth'));
     }
 
     public function create(CreateBlogRequest $request)
@@ -42,10 +46,11 @@ class BlogController extends Controller
 
     public function edit(int $id)
     {
+        $auth = auth()->user();
         $blog = $this->blogService->getBlog($id);
         $categories = $this->categoryService->getCategories();
         if (Gate::allows('edit', $blog)) {
-            return view("blogs.edit_blog", compact('categories', 'blog'));
+            return view("blogs.edit_blog", compact('categories', 'blog', 'auth'));
         }
         abort(403);
     }
@@ -70,12 +75,28 @@ class BlogController extends Controller
 
     public function show(int $id)
     {
+        $auth = auth()->user();
         $blog = $this->blogService->getBlog($id);
-        if (!$blog) {
-            return abort(403);
+        $relatedBlogs = $this->blogService->getRelatedBlog($id);
+        if ($blog->status == Blog::STATUS_NOT_APPROVED) {
+            if (Gate::allows('show', $blog)) {
+                return view("blogs.detail_blog", compact('blog', 'relatedBlogs', 'auth'));
+            }
+            abort(404);
         }
-        if (Gate::allows('show', $blog)) {
-            return view("blogs.detail_blog", compact('blog'));
+        return view("blogs.detail_blog", compact('blog', 'relatedBlogs', 'auth'));
+    }
+
+    public function destroy(DeleteBlogRequest $request, int $id)
+    {
+        if (Gate::allows('delete', $request)) {
+            $deleted = $this->blogService->deleteBlog($id);
+            if ($deleted) {
+                $this->uploadFileService->deleteFile($request->only('image'));
+                $this->commentService->deleteComment($id);
+                return view("blogs.list_blog")->with('delete-blog-success', trans('message.delete-blog-success'));
+            }
+            return back()->with('delete-blog-failed', trans('message.delete-blog-failed'));
         }
         abort(403);
     }

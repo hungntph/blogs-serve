@@ -40,4 +40,12 @@ return [
     'blog-notapproved' => 'Not approved',
     'blog-delete' => 'Delete Blog',
     'blog-comment' => 'Comment',
+    'blog-related' => 'Related',
+    'blog-search' => 'Search blog',
+    'delete' => 'Delete',
+    'cancel' => 'Cancel',
+    'delete-confirm' => 'Are you sure want to delete this  blog?',
+    'delete-blog-failed' => 'delete blog successfully!',
+    'delete-blog-failed' => 'delete blog failed!',
+    'top' => 'Top',
 ];

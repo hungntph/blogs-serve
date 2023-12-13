@@ -21,6 +21,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/verified/{register}/{token}', [AuthController::class, 'verified'])->name('register.verified');
     Route::get('/login', [AuthController::class, 'login'])->name('login.index');
     Route::post('/login', [AuthController::class, 'loginUser'])->name('login');
+    Route::get('/blog/detail/{id}', [BlogController::class, 'show'])->name('blog.show');
 
     Route::group(['middleware' => 'auth_user'], function () {
         Route::get('/', [AuthController::class, 'home'])->name('home');
@@ -34,7 +35,6 @@ Route::group(['prefix' => 'user'], function () {
             Route::post('/create', [BlogController::class, 'create'])->name('blog.create');
             Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
             Route::post('/update', [BlogController::class, 'update'])->name('blog.update');
-            Route::get('/detail/{id}', [BlogController::class, 'show'])->name('blog.show');
             Route::post('/delete/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
         });
     });

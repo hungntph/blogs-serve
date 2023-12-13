@@ -3,7 +3,7 @@
 
 @section('content')
 
-@include('layouts.header')
+@include('layouts.navbar')
 
 <div class="create-blog">
     <div class="create-blog-link">
@@ -24,7 +24,7 @@
                 </span>
             @endif
             <div class="create-blog-form-input">
-                <input type="hidden" name="user_id" value="{{ $userId }}">
+                <input type="hidden" name="user_id" value="{{ $auth->id }}">
                 <div>
                     <label for="name"><b>{{ __('message.blog-category') }}</b><span>*</span></label>
                 </div>
