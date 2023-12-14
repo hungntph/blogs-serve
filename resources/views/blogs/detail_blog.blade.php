@@ -8,7 +8,7 @@
     <div class="blog-container">
         <div class="blog-container-detail">
             <div class="blog-container-detail-link">
-                <a href="">{{ __('message.home') }}</a> > <span>{{ __('message.edit-blog') }}</span>
+                <a href=" {{ route('home') }} ">{{ __('message.home') }}</a> > <span>{{ __('message.detail-blog') }}</span>
             </div>
             <div class="blog-container-detail-title">
                 <p>{{ $blog->title }}</p>

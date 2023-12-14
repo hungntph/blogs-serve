@@ -6,6 +6,7 @@ use App\Repositories\BlogRepository;
 use App\Repositories\CategoryRepository;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class BlogService
 {
@@ -56,6 +57,15 @@ class BlogService
     {
         try {
             return $this->blogRepository->deleteById($id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function getBlogList(array $request): LengthAwarePaginator
+    {
+        try {
+            return $this->blogRepository->getBlogsList($request);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

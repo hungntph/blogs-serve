@@ -38,4 +38,9 @@ class Blog extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('status', Blog::STATUS_APPROVED);
+    }
 }

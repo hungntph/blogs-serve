@@ -8,13 +8,17 @@ use App\Http\Requests\RegisterUserRequest;
 use App\Models\User;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\ResendMailRequest;
+use App\Services\User\BlogService;
+use App\Services\User\CategoryService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function __construct(
-        public UserService $userService
+        public UserService $userService,
+        public BlogService $blogService,
+        public CategoryService $categoryService
     ) {
     }
 
@@ -26,11 +30,6 @@ class AuthController extends Controller
     public function login()
     {
         return view("auth.login");
-    }
-
-    public function home()
-    {
-        return view("user.home");
     }
 
     public function resendMailVerify()
