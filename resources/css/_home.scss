@@ -1,0 +1,150 @@
+.blogs {
+  padding: 532px 7% 0 7%;
+
+  @include mobie {
+    padding: 342px 0 0 0;
+  }
+
+  &-title {
+    @extend %align-center;
+    margin: 68px 0 38px 0;
+    height: 68px;
+    justify-content: space-between;
+    p {
+      font: 700 50px/72.4px Noto Sans JP;       
+    }
+
+    @include mobie {
+      padding: 69px 0 0 0;
+      margin: 0px 9%;
+      &-name {
+        padding: 10px 0 0 0;
+        font-size: 30px;
+        line-height: 43.44px;
+      }
+    }
+
+    select {
+      font: 500 15px/21.72px Noto Sans JP;   
+      border-radius: 4px;
+      border: 1px solid $color-white;
+      outline: none;
+      padding: 7px 40px 7px 15px;
+      margin-top: 15px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url(/public/image/select.png);
+      background-repeat: no-repeat;
+      background-position: 113px center;
+      @include mobie {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .row {
+    margin: 34px 0 0 0;
+    .card {
+      margin: 20px 0 50px 0;
+      border: none;
+      .card-body {
+        border: 1px solid $color-boder;
+        border-radius: 0 0 8px 8px;
+        .author-time {
+          display: flex;
+          align-items: center;
+        }
+        button {
+          @extend %align-center;
+          background: $color-white1;
+          color: $color-red;
+          width: 137px;
+          height: 40px;
+          font: 400 14px/20px SVN-Gilroy;
+          border: solid 1px $color-white;
+          border-radius: 4px;
+          &:hover {
+            border-radius: 5px;
+            background: $color-red;
+            color: $color-white1;
+            a {
+              color: $color-white1;
+            }
+            svg {
+              path {
+                stroke: $color-white1;
+              }
+            }
+          }
+        }
+        h6 {
+          font: 700 20px/28px SVN-Gilroy;
+        }
+        p {
+          margin: 0 0 29px 0;
+          font: 400 18px/25px SVN-Gilroy;
+        }
+        i {
+          padding: 0 5px 0 0;
+        }
+        h7 {
+          padding: 0 25px 0 3px;
+          margin: 0 0 15px 0;
+          font: 400 18px/30px SVN-Gilroy;
+          @include mobie {
+            font-size: 15px;
+            padding:0 0 15px 0;
+          }
+        }
+      }
+    }
+  }
+
+  &-pagination {
+    @extend %align-center;
+    margin:0 0 96px 0;
+
+    .page-item {
+      .page-link {
+        @extend %align-center;
+        font: 700 20px/28px SVN-Gilroy;
+        color: $color-black1;
+        border: none;
+        border-radius: 50px;
+        height: 40px;
+        width: 40px;
+        margin: 0 10px 0 10px;
+        &:hover {
+          color: $color-white1;
+          background: $color-red;
+        }
+      }
+      &:first-child {
+        .page-link {
+          background-color: $color-red;
+          border-radius: 50px;
+          color: $color-white1;
+        }
+      }
+      &:last-child {
+        .page-link {
+          background-color: $color-gray4;
+          border-radius: 50px;
+          color: $color-white1;
+        }
+      }
+      &.active {
+        .page-link {
+          background-color: $color-red;
+        }
+      }
+      &.disabled {
+        .page-link {
+          background-color: $color-gray4;
+          border-radius: 50px;
+        }
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@
       @extend %font-700;
       margin: 0 10px 0 0;
     }
-    &-input {
+    form {
       @extend %align-center;
       width: 48%;
       margin: 0 0 0 20px;
@@ -23,7 +23,7 @@
       border-radius: 5px;
       position: relative;
       input {
-        padding-left: 10px;
+        padding: 0 0 0 10px;
         width: 100%;
         height: 100%;
         border: none;
@@ -38,12 +38,16 @@
           outline: none;
         }
       }
-      svg {
+      button {
         position: absolute;
         width: 19px;
         height: 19px;
         border: none;
         left: 91%;
+        svg {
+          background: $color-white1;
+          margin: 0 0 10px 0;
+        }
       }
     }
   }

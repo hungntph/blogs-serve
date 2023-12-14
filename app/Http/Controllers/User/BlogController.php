@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateBlogRequest;
 use App\Http\Requests\DeleteBlogRequest;
+use App\Http\Requests\GetListBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
 use App\Services\User\BlogService;
@@ -99,5 +100,13 @@ class BlogController extends Controller
             return back()->with('delete-blog-failed', trans('message.delete-blog-failed'));
         }
         abort(403);
+    }
+
+    public function getListBlog(GetListBlogRequest $request)
+    {
+        $auth = auth()->user();
+        $blogs = $this->blogService->getBlogList($request->only('query', 'category_id'));
+        $categories = $this->categoryService->getCategories();
+        return view("user.home", compact('auth', 'blogs', 'categories'));
     }
 }

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'user'], function () {
+    Route::get('/', [BlogController::class, 'getListBlog'])->name('home');
     Route::get('/register', [AuthController::class, 'register'])->name('register.index');
     Route::post('/register', [AuthController::class, 'registerUser'])->name('register');
     Route::get('/verified/{register}/{token}', [AuthController::class, 'verified'])->name('register.verified');
@@ -24,7 +25,6 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/blog/detail/{id}', [BlogController::class, 'show'])->name('blog.show');
 
     Route::group(['middleware' => 'auth_user'], function () {
-        Route::get('/', [AuthController::class, 'home'])->name('home');
         Route::post('/logout', [AuthController::class, 'logoutUser'])->name('logout');
         Route::get('/resend-mail-verify', [AuthController::class, 'resendMailVerify'])->name('resend-mail-verify');
         Route::post('/resend', [AuthController::class, 'resendMail'])->name('resend');

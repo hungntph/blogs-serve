@@ -34,6 +34,7 @@ return [
     'blog-upload-image' => 'Upload image',
     'blog-desc' => 'Description',
     'edit-blog' => 'Edit Blog',
+    'detail-blog' => 'Blog detail',
     'update-success' => 'update blog successfully!',
     'update-failed' => 'update blog failed!',
     'blog-approved' => 'Approved',

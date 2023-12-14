@@ -1,4 +1,9 @@
 .header {
-    width: 100%;
-    height: 122px;
+  position: relative;
+  width: 100%;
+    .image-banner {
+      position: absolute;
+      width: 100%;
+      height: 519.42px;
+  }
 }
