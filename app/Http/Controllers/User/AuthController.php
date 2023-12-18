@@ -8,6 +8,7 @@ use App\Http\Requests\RegisterUserRequest;
 use App\Models\User;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\ResendMailRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Services\User\BlogService;
 use App\Services\User\CategoryService;
 use Carbon\Carbon;
@@ -97,5 +98,33 @@ class AuthController extends Controller
     {
         $this->userService->logout();
         return redirect()->route('login.index');
+    }
+
+    public function resetForm()
+    {
+        return view("auth.send-reset-password");
+    }
+
+    public function sendResetPassword(ResendMailRequest $request)
+    {
+        $send = $this->userService->sendMailResetPassword($request->only('email'));
+        if ($send) {
+            return back()->with('send-reset-success', trans('message.send-reset-password-success'));
+        }
+        return back()->with('email-incorrect', trans('message.mail-incorrect'));
+    }
+
+    public function mailResetPassword(string $token)
+    {
+        return view("auth.reset-password", compact('token'));
+    }
+
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+        $reset = $this->userService->reseted($request->only('token', 'password'));
+        if ($reset) {
+            return redirect()->route('login.index');
+        }
+        abort(403);
     }
 }

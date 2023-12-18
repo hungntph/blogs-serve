@@ -49,4 +49,5 @@ return [
     'delete-blog-failed' => 'delete blog successfully!',
     'delete-blog-failed' => 'delete blog failed!',
     'top' => 'Top',
+    'save' => 'Save',
 ];

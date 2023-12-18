@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\BlogController;
+use App\Http\Controllers\User\CommentController;
+use App\Http\Controllers\User\LikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +25,12 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login.index');
     Route::post('/login', [AuthController::class, 'loginUser'])->name('login');
     Route::get('/blog/detail/{id}', [BlogController::class, 'show'])->name('blog.show');
+    Route::get('/reset-password-form', [AuthController::class, 'resetForm'])->name('reset.index');
+    Route::post('/send-reset-password', [AuthController::class, 'sendResetPassword'])->name('reset.send');
+    Route::get('/reset/{token}', [AuthController::class, 'mailResetPassword'])->name('reset.mail');
+    Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('reset.password');
+
+
 
     Route::group(['middleware' => 'auth_user'], function () {
         Route::post('/logout', [AuthController::class, 'logoutUser'])->name('logout');
@@ -36,6 +44,16 @@ Route::group(['prefix' => 'user'], function () {
             Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
             Route::post('/update', [BlogController::class, 'update'])->name('blog.update');
             Route::post('/delete/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+        });
+
+        // comment
+        Route::group(['prefix' => 'comment'], function () {
+            Route::post('/create', [CommentController::class, 'create'])->name('comment.create');
+        });
+
+        // like
+        Route::group(['prefix' => 'like'], function () {
+            Route::post('/create', [LikeController::class, 'create'])->name('like.create');
         });
     });
 });
