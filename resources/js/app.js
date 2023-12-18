@@ -1,3 +1,4 @@
+//show file image
 let loadFile = (event) => {
   let showImage = document.getElementById('showImage');
   showImage.src = URL.createObjectURL(event.target.files[0]);
@@ -6,10 +7,13 @@ let loadFile = (event) => {
   };
 };
 
+//toogle popup
 let tooglePoup = () => {
   document.getElementById("popup").classList.toggle("active");
 }
 
+
+//scroll
 let previousScroll = window.scrollY;
 
 document.addEventListener('scroll', () => {

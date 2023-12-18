@@ -48,7 +48,7 @@
                     <label for="check">{{ __('message.remember-password') }}</label>
                 </div>
                 <div class="form-signup-help-forgot">
-                    <a href="">{{ __('message.forgot-password') }}</a>
+                    <a href="{{ route('reset.index') }}">{{ __('message.forgot-password') }}</a>
                 </div>
             </div>
             <div class="form-signup-btn">

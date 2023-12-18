@@ -48,6 +48,9 @@
             <div class="blog-container-detail-desc">
                 <p>{{ $blog->content }}</p>
             </div>
+
+            @include('like.create-like')
+
             <div class="blog-container-detail-comment">
                 <span>{{ __('message.blog-related') }}</span>
             </div>
@@ -78,28 +81,9 @@
             <div class="blog-container-detail-line">
                 <hr>
             </div>
-            @if ($auth)
-            <div class="blog-container-detail-input">
-                @if ($auth->avatar)
-                <img id="" src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}"/>
-                @endif
-                <input type="text">
-            </div>
-            @endif
-            @foreach ($blog->comments as $comment)
-            <div class="blog-container-detail-comments">
-                <div class="blog-container-detail-comments-user">
-                    @if ($comment->user->avatar)
-                    <img id="" src="{{ Vite::asset('public/storage/upload/' . $comment->user->avatar) }}"/>
-                    @endif
-                    <p>{{ $comment->user->name }}</p>
-                </div>
-                <div class="blog-container-detail-comments-content">
-                    <span>{{ $comment->content }}</span>
-                    <p>{{ $comment->created_at->diffForHumans() }}</p>
-                </div>
-            </div>
-            @endforeach
+            
+            @include('comment.create-comment')
+            
         </div>
         @include('layouts.footer')
     </div>
