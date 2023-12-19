@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Blog extends Model
@@ -39,7 +41,12 @@ class Blog extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function scopeApproved($query)
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'likes', 'blog_id', 'user_id');
+    }
+
+    public function scopeApproved($query): Builder
     {
         return $query->where('status', Blog::STATUS_APPROVED);
     }

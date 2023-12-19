@@ -17,7 +17,7 @@ class BlogRepository
 
     public function getBlogById(int $id): Blog
     {
-        return Blog::with('category', 'comments.user', 'user')->findOrFail($id);
+        return Blog::with('category', 'comments.user', 'user', 'likes')->findOrFail($id);
     }
 
     public function update(array $request): bool

@@ -70,4 +70,16 @@ class BlogService
             throw new Exception($e->getMessage());
         }
     }
+
+    public function checklike(Blog $blog): bool
+    {
+        try {
+            if (auth()->user()) {
+                return $blog->likes()->where('user_id', auth()->user()->id)->exists();
+            }
+            return false;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }

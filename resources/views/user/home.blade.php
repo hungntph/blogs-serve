@@ -39,7 +39,6 @@
                     <p class="card-text">{{ $blog->content }}</p>
                     <div class="read-more">
                     <form action="{{ route('blog.show', $blog->id) }}" method="GET">
-                        @csrf
                         <button type="submit">
                             Read more &nbsp;&nbsp;&nbsp;
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 20 10"

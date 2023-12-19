@@ -8,6 +8,7 @@ use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\LoginUserRequest;
 use App\Mail\SendMailResetPassword;
+use App\Models\Blog;
 use App\Repositories\ResetPasswordRepository;
 use Carbon\Carbon;
 use Exception;
@@ -126,6 +127,27 @@ class UserService
             return false;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
+        }
+    }
+
+    public function toggleLike(array $request): array
+    {
+        try {
+            $blogId = $request['blog_id'];
+            $user = auth()->user();
+            $checkLike = $user->likes()->where('blog_id', $blogId)->exists();
+            if ($checkLike) {
+                $user->likes()->detach($blogId);
+            } else {
+                $user->likes()->attach($blogId);
+            }
+            $totalLike = Blog::with('likes')->findOrFail($blogId);
+            return [
+                'checkLike' => $checkLike,
+                'total' => $totalLike->likes->count(),
+            ];
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
         }
     }
 }

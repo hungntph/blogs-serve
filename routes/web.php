@@ -3,7 +3,7 @@
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\User\CommentController;
-use App\Http\Controllers\User\LikeController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +37,10 @@ Route::group(['prefix' => 'user'], function () {
         Route::get('/resend-mail-verify', [AuthController::class, 'resendMailVerify'])->name('resend-mail-verify');
         Route::post('/resend', [AuthController::class, 'resendMail'])->name('resend');
 
+
+        //User
+        Route::post('/like-blog', [UserController::class, 'likeBlog'])->name('like.blog');
+
         //blog
         Route::group(['prefix' => 'blog'], function () {
             Route::get('/', [BlogController::class, 'index'])->name('blog.index');
@@ -49,11 +53,6 @@ Route::group(['prefix' => 'user'], function () {
         // comment
         Route::group(['prefix' => 'comment'], function () {
             Route::post('/create', [CommentController::class, 'create'])->name('comment.create');
-        });
-
-        // like
-        Route::group(['prefix' => 'like'], function () {
-            Route::post('/create', [LikeController::class, 'create'])->name('like.create');
         });
     });
 });

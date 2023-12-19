@@ -78,14 +78,15 @@ class BlogController extends Controller
     {
         $auth = auth()->user();
         $blog = $this->blogService->getBlog($id);
+        $checkLike = $this->blogService->checklike($blog);
         $relatedBlogs = $this->blogService->getRelatedBlog($id);
         if ($blog->status == Blog::STATUS_NOT_APPROVED) {
             if (Gate::allows('show', $blog)) {
-                return view("blogs.detail_blog", compact('blog', 'relatedBlogs', 'auth'));
+                return view("blogs.detail_blog", compact('blog', 'relatedBlogs', 'auth', 'checkLike'));
             }
-            abort(404);
+            abort(403);
         }
-        return view("blogs.detail_blog", compact('blog', 'relatedBlogs', 'auth'));
+        return view("blogs.detail_blog", compact('blog', 'relatedBlogs', 'auth', 'checkLike'));
     }
 
     public function destroy(DeleteBlogRequest $request, int $id)
