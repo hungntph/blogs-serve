@@ -18,7 +18,10 @@
     </div>
     <div class="navbar-menu">
         <div class="navbar-menu-btn">
-            <button>{{ __('message.top') }}</button>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit">{{ __('message.top') }}</button>
+            </form>
         </div>
         <div>
             <a href="{{ route('blog.index') }}">{{ __('message.create-blog') }}</a>

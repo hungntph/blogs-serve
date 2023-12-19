@@ -8,6 +8,8 @@ export default defineConfig({
             [
              'resources/css/app.css',
              'resources/js/app.js',
+             'resources/js/ajax/like.js',
+             'resources/js/ajax/comment.js',
             ],
             refresh: true,
         }),
