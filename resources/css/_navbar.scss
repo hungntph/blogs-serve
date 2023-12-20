@@ -82,6 +82,20 @@
         margin: 0 0 0 10px;
         border-radius: 50px;
       }
+      &-profile {
+        position: absolute;
+        margin: 10px 0 0 70px;
+        overflow: auto;
+        pointer-events: none;
+        opacity: 0;
+        li {
+          list-style: none;
+        }
+      }
+      .show-profile {
+        opacity: 1;
+        pointer-events: initial;
+      }
     }
   }
 }

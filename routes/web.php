@@ -37,22 +37,24 @@ Route::group(['prefix' => 'user'], function () {
         Route::get('/resend-mail-verify', [AuthController::class, 'resendMailVerify'])->name('resend-mail-verify');
         Route::post('/resend', [AuthController::class, 'resendMail'])->name('resend');
 
-
         //User
         Route::post('/like-blog', [UserController::class, 'likeBlog'])->name('like.blog');
+        Route::get('/profile', [UserController::class, 'index'])->name('profile.index');
 
         //blog
         Route::group(['prefix' => 'blog'], function () {
             Route::get('/', [BlogController::class, 'index'])->name('blog.index');
             Route::post('/create', [BlogController::class, 'create'])->name('blog.create');
             Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
-            Route::post('/update', [BlogController::class, 'update'])->name('blog.update');
-            Route::post('/delete/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+            Route::put('/update', [BlogController::class, 'update'])->name('blog.update');
+            Route::delete('/delete/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
         });
 
         // comment
         Route::group(['prefix' => 'comment'], function () {
             Route::post('/create', [CommentController::class, 'create'])->name('comment.create');
+            Route::put('/update/{id}', [CommentController::class, 'update'])->name('comment.update');
+            Route::delete('/delete{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
         });
     });
 });

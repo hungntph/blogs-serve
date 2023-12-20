@@ -96,7 +96,7 @@ class BlogController extends Controller
             if ($deleted) {
                 $this->uploadFileService->deleteFile($request->only('image'));
                 $this->commentService->deleteComment($id);
-                return view("blogs.list_blog")->with('delete-blog-success', trans('message.delete-blog-success'));
+                return redirect()->route('home')->with('delete-blog-success', trans('message.delete-blog-success'));
             }
             return back()->with('delete-blog-failed', trans('message.delete-blog-failed'));
         }

@@ -11,6 +11,7 @@
     <div class="create-blog-form">
         <form action="{{ route('blog.update') }}" enctype="multipart/form-data" method="POST">
         @csrf
+        @method('PUT')
             <p>{{ __('message.edit-blog') }}</p>
             @if(Session::has('blog-update-success'))
                 <span class="text-sm text-red-500">

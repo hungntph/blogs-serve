@@ -1,6 +1,7 @@
 <div class="blog-popup">
     <form action="{{ route('blog.destroy', $blog->id) }}" enctype="multipart/form-data" method="POST">
         @csrf
+        @method('DELETE')
         <input type="hidden" name="user_id" value="{{ $blog->user_id }}">
         <input type="hidden" name="image" value="{{ $blog->image }}">
         <div class="blog-popup-top">
