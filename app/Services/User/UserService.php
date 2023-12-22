@@ -159,4 +159,16 @@ class UserService
             throw new Exception($e->getMessage());
         }
     }
+
+    public function changePassword(int $id, array $request): bool
+    {
+        try {
+            $newPassword = [
+                'password' => Hash::make($request['password']),
+            ];
+            return $this->userRepository->update($id, $newPassword);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }

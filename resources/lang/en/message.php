@@ -56,4 +56,10 @@ return [
     'profile' => 'Profile',
     'change-password' => 'Change password',
     'my-blog' => 'My blog',
+    'old-password' => 'Old password',
+    'new-password' => 'New password',
+    'confirm-new-password' => 'Confirm new password',
+    'change-password-success' => 'Change password successfully!',
+    'change-password-failed' => 'Change password failed!',
+    'old-password-incorrect' => 'Old password is incorrect!',
 ];
