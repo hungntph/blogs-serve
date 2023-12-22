@@ -8,8 +8,6 @@ use Illuminate\Support\Str;
 
 class UserRepository
 {
-    const MODEL = User::class;
-
     public function register(array $request): User
     {
         $token = Str::random(20);

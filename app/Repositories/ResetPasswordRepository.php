@@ -7,8 +7,6 @@ use Illuminate\Support\Str;
 
 class ResetPasswordRepository
 {
-    const MODEL = ResetPassword::class;
-
     public function create(string $email): ResetPassword
     {
         $data = [

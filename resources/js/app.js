@@ -27,3 +27,11 @@ document.addEventListener('scroll', () => {
     }
     previousScroll = window.scrollY;
 });
+
+//show profile
+let toggle = document.getElementById('toggleFrofile');
+let profile = document.getElementById('profile');
+
+toggle.addEventListener('click', () => {
+  profile.classList.toggle('show-profile');
+})

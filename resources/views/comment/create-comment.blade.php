@@ -14,23 +14,46 @@
 
     <div id="commentList">
     @foreach ($blog->comments as $comment)
-        <div class="blog-container-detail-comments">
-            <div class="blog-container-detail-comments-user">
-                @if ($comment->user->avatar)
-                <img id="" src="{{ Vite::asset('public/storage/upload/' . $comment->user->avatar) }}"/>
-                @endif
-                <p>{{ $comment->user->name }}</p>
+        <div class="blog-container-detail-comments list">
+            <div id="commentRoute"
+                comment-create-route="{{ route('comment.create') }}"
+                comment-update-route="{{ route('comment.update', $comment->id) }}"
+                comment-delete-route="{{ route('comment.destroy', $comment->id) }}"
+            >
+            <div class="userComment">
+                <div class="blog-container-detail-comments-user">
+                    @if ($comment->user->avatar)
+                    <img id="" src="{{ Vite::asset('public/storage/upload/' . $comment->user->avatar) }}"/>
+                    @endif
+                    <p>{{ $comment->user->name }}</p>
+                </div>
+                <div class="blog-container-detail-comments-content comment" id="{{ $comment->id }}">
+                    <div class="blog-container-detail-comments-content-icon">
+                        <p id="content">{{ $comment->content }}</p>
+                        @if ($auth && $comment->user->id == $auth->id)
+                            <div class="blog-container-detail-comments-edit">
+                                <span class="show-edit">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </span>
+                                <span class="delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </span>
+                            </div>
+                        @endif
+                    </div>
+                    <span id="time">{{ $comment->created_at }}</span>
+                </div>
             </div>
-            <div class="blog-container-detail-comments-content">
-                <span id="content">{{ $comment->content }}</span>
-                <p id="time">{{ $comment->created_at }}</p>
-            </div>
-            @if ($auth && $comment->user->id == $auth->id)
-            <div class="blog-container-detail-comments-edit">
-                <i class="fa-solid fa-pen-to-square"></i>
-                <i class="fa-solid fa-trash"></i>
-            </div>
-            @endif
+            <form id="formEdit" class="update hidden">
+                <input type="hidden" id="id" name="id" value="{{ $comment->id }}">
+                <input id="comment" name="comment" value="{{ $comment->content }}">
+                <button type="submit"> 
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <span class="cancel-edit">
+                    <i class="fa-solid fa-trash"></i>
+                </span>
+            </form>
         </div>
     @endforeach
     </div>

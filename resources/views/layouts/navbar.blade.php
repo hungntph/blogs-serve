@@ -27,11 +27,18 @@
             <a href="{{ route('blog.index') }}">{{ __('message.create-blog') }}</a>
         </div>
         @if ($auth)
-        <div class="navbar-menu-user">
+        <div class="navbar-menu-user" id="toggleFrofile">
             <a href="#">{{ $auth->name }}</a>
             @if ($auth->avatar)
             <img src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}" alt="">
             @endif
+            <div class="navbar-menu-user-profile" id="profile">
+                <ul>
+                    <li><a href="{{ route('profile.index') }}">Frofile</a></li>
+                    <li><a href="">My Blogs</a></li>
+                    <li><a href="">Logout</a></li>
+                </ul>
+            </div>
         </div>
         @endif
     </div>

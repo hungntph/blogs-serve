@@ -8,8 +8,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class BlogRepository
 {
-    const MODEL = Blog::class;
-
     public function create(array $request): Blog
     {
         return Blog::create($request);

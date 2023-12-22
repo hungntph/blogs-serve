@@ -209,17 +209,34 @@
           }
           &-content {
             margin: 0 0 0 65px;
-            span {
+            &-icon {
+              display: flex;
+            }
+            p {
               font: 400 14px/20.27px Noto Sans JP;
               color: $color-black2;
             }
-            p {
+            span {
               font: 400 14px/20.27px Noto Sans JP;
               color: $color-gray2;
             }
           }
           &-edit {
             margin: 0 0 0 65px;
+          }
+          form {
+            margin: 0 0 0 65px;
+            input {
+              font: 400 14px/20.27px Noto Sans JP;
+              color: $color-black2;
+              border: 1px solid $color-input;
+            }
+            button {
+              border: none;
+            }
+          }
+          .hidden {
+            display: none;
           }
         }
       }
