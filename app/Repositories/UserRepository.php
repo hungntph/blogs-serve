@@ -36,4 +36,9 @@ class UserRepository
     {
         return User::where('id', $user->id)->update(['mail_verify_at' => $mailVerifyAt]);
     }
+
+    public function update(int $id, array $request): bool
+    {
+        return User::findOrFail($id)->update($request);
+    }
 }

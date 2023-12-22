@@ -34,9 +34,10 @@
             @endif
             <div class="navbar-menu-user-profile" id="profile">
                 <ul>
-                    <li><a href="{{ route('profile.index') }}">Frofile</a></li>
-                    <li><a href="">My Blogs</a></li>
-                    <li><a href="">Logout</a></li>
+                    <li><a href="{{ route('profile.index') }}">{{ __('message.profile') }}</a></li>
+                    <li><a href="{{ route('change.password') }}">{{ __('message.change-password') }}</a></li>
+                    <li><a href="">{{ __('message.my-blog') }}</a></li>
+                    <li><a href="">{{ __('message.logout') }}</a></li>
                 </ul>
             </div>
         </div>

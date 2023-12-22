@@ -16,6 +16,10 @@ class User extends Authenticatable
     const STATUS_VERIFIED = 2;
     const ADMIN_ROLE = 2;
     const USER_ROLE = 0;
+    const GENDER = [
+        0 => 'Male',
+        1 => 'Female',
+    ];
 
     protected $table = 'users';
 
