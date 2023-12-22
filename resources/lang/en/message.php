@@ -8,6 +8,7 @@ return [
     'signup' => 'Sign up',
     'signin' => 'Sign in',
     'login' => 'Login',
+    'logout' => 'Logout',
     'remember-password' => 'Remember password',
     'forgot-password' => 'Forgot your password?',
     'user-or-email' => 'Username or email',
@@ -50,4 +51,9 @@ return [
     'delete-blog-failed' => 'delete blog failed!',
     'top' => 'Top',
     'save' => 'Save',
+    'profile-update-success' => 'Update profile successfully!',
+    'profile-update-failed' => 'Update profile failed!',
+    'profile' => 'Profile',
+    'change-password' => 'Change password',
+    'my-blog' => 'My blog',
 ];

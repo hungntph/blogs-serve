@@ -18,10 +18,10 @@ class UploadFileService
         }
     }
 
-    public function deleteFile(array $image): bool
+    public function deleteFile(string $image): bool
     {
         try {
-            return Storage::delete('public/upload/' . $image['image']);
+            return Storage::delete('public/upload/' . $image);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

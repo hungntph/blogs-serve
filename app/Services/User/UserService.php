@@ -150,4 +150,13 @@ class UserService
             throw new Exception($ex->getMessage());
         }
     }
+
+    public function updateProfile(int $id, array $request): bool
+    {
+        try {
+            return $this->userRepository->update($id, $request);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }

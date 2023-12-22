@@ -40,6 +40,9 @@ Route::group(['prefix' => 'user'], function () {
         //User
         Route::post('/like-blog', [UserController::class, 'likeBlog'])->name('like.blog');
         Route::get('/profile', [UserController::class, 'index'])->name('profile.index');
+        Route::put('/update/{id}', [UserController::class, 'update'])->name('profile.update');
+        Route::get('/change-password', [UserController::class, 'changePassword'])->name('change.password');
+        Route::put('/change-password/{id}', [UserController::class, 'updatePassword'])->name('update.password');
 
         //blog
         Route::group(['prefix' => 'blog'], function () {
