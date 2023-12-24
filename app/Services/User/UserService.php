@@ -13,6 +13,7 @@ use App\Repositories\ResetPasswordRepository;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserService
 {
@@ -167,6 +168,35 @@ class UserService
                 'password' => Hash::make($request['password']),
             ];
             return $this->userRepository->update($id, $newPassword);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function getUserList(array $request): LengthAwarePaginator
+    {
+        try {
+            return $this->userRepository->getList($request);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function toggleBlockUser(int $id): bool
+    {
+        try {
+            $user = $this->userRepository->getUserById($id);
+            $verifyAt = $user->mail_verify_at;
+            if ($user->status != User::STATUS_BLOCKED) {
+                $newStatus = [
+                    'status' => User::STATUS_BLOCKED,
+                ];
+            } else {
+                $newStatus = [
+                    'status' => $verifyAt ? User::STATUS_VERIFIED : User::STATUS_NOT_VERIFIED,
+                ];
+            }
+            return $this->userRepository->update($id, $newStatus);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

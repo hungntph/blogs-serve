@@ -77,8 +77,9 @@ $(document).ready(function () {
         event.preventDefault();
         let oldComment = $(this).siblings('.comment');
         let newComment = $(this).find('#comment').val();
+        let url = $(this).attr("comment-update-route")
         $.ajax({
-            url: data.route.updateComment,
+            url: url,
             type: 'PUT',
             data: {
                 content: newComment,
@@ -100,8 +101,10 @@ $(document).ready(function () {
 
     $('#comments').on('click', '.delete', function(){
         let comment = $(this).closest('.userComment');
+        let data = $(this).closest('.comment');
+        let url = data.attr("comment-delete-route");
         $.ajax({
-            url: data.route.deleteComment,
+            url: url,
             type: 'DELETE',
             success:function(result) {
                 if (result) {

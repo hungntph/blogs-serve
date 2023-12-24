@@ -20,6 +20,11 @@ class User extends Authenticatable
         0 => 'Male',
         1 => 'Female',
     ];
+    const STATUSES = [
+        0 => 'Not verified',
+        1 => 'Block',
+        2 => 'Verified',
+    ];
 
     protected $table = 'users';
 

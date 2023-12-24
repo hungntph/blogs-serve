@@ -1,0 +1,66 @@
+.list {
+  padding: 50px 0 0 310px;
+
+  &-header {
+    margin: 0 20px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+
+    &-search {
+      @extend %align-center;
+      height: 40px;
+      border: 1px solid $color-boder;
+      border-radius: 20px;
+      overflow-x: hidden;
+
+      span {
+        display: inline-block;
+        padding: 0 10px 0 0;
+        cursor: pointer;
+      }
+
+      input {
+        padding: 0 0 0 10px;
+        height: 100%;
+        border: none;
+        outline: none;
+      }
+
+      button {
+        border: none;
+      }
+    }
+  }
+
+  &-pagination {
+    @extend %align-center;
+    margin: 50px 0;
+  }
+
+  table {
+    font: 400 16px/23.17px Noto Sans JP;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+
+    button {
+      font: 400 12px/23.17px Noto Sans JP;
+      width: 60px;
+      height: 30px;
+      border-radius: 30px;
+      border: none;
+      color: $color-white1;
+    }
+
+    td {
+      .unblocked {
+        background: $color-blue;
+      }
+      .blocked {
+        background: $color-red;
+      }
+    }
+  }
+}

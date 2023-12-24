@@ -62,4 +62,19 @@ return [
     'change-password-success' => 'Change password successfully!',
     'change-password-failed' => 'Change password failed!',
     'old-password-incorrect' => 'Old password is incorrect!',
+    'dashboard' => 'Dashboard',
+
+    //user list
+    'ul-user-list' => 'User list',
+    'ul-name' => 'Name',
+    'ul-avatar' => 'Avatar',
+    'ul-email' => 'Email',
+    'ul-phone' => 'Phone',
+    'ul-status' => 'Status',
+    'ul-block' => 'Block',
+    'ul-unblock' => 'UnBlock',
+    'ul-total' => 'Total',
+
+    //blog list
+    'bl-blog-list' => 'Blogs list',
 ];

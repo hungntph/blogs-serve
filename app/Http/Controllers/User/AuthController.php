@@ -87,7 +87,7 @@ class AuthController extends Controller
             }
             Auth::login($user, $request['remember'] ? true: false);
             if ($user->role == User::ADMIN_ROLE) {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.index');
             }
             return redirect()->route('home');
         }
