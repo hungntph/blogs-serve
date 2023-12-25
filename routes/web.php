@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\User\CommentController;
@@ -30,7 +31,13 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/reset/{token}', [AuthController::class, 'mailResetPassword'])->name('reset.mail');
     Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('reset.password');
 
-
+    Route::group(['middleware' => 'auth_admin'], function () {
+        Route::group(['prefix' => 'admin'], function () {
+            Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+            Route::get('/users', [AdminController::class, 'userList'])->name('user-list');
+            Route::put('/toggle-block/{id}', [AdminController::class, 'toggleBlock'])->name('toggle-block');
+        });
+    });
 
     Route::group(['middleware' => 'auth_user'], function () {
         Route::post('/logout', [AuthController::class, 'logoutUser'])->name('logout');
@@ -57,7 +64,7 @@ Route::group(['prefix' => 'user'], function () {
         Route::group(['prefix' => 'comment'], function () {
             Route::post('/create', [CommentController::class, 'create'])->name('comment.create');
             Route::put('/update/{id}', [CommentController::class, 'update'])->name('comment.update');
-            Route::delete('/delete{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
+            Route::delete('/delete/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
         });
     });
 });

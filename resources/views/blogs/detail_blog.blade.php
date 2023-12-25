@@ -4,7 +4,7 @@
 
 @include('layouts.navbar')
 
-<div id="route" like-route="{{ route('like.blog') }}"></div>
+<div id="route" like-route="{{ route('like.blog') }}" comment-create-route="{{ route('comment.create') }}"></div>
 
 <div class="blog" id="popup">
     <div class="blog-container">

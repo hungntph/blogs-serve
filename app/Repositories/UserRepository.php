@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -40,5 +41,19 @@ class UserRepository
     public function update(int $id, array $request): bool
     {
         return User::findOrFail($id)->update($request);
+    }
+
+    public function getList(array $request): LengthAwarePaginator
+    {
+        $builder = User::where('role', User::USER_ROLE);
+        if (isset($request['query'])) {
+            $builder->where('name', 'like', '%'. $request['query'] .'%');
+        }
+        return $builder->paginate(config('constant.paginate'));
+    }
+
+    public function getUserById(int $id): User
+    {
+        return User::findOrFail($id);
     }
 }

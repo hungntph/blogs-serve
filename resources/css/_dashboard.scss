@@ -1,0 +1,83 @@
+.sidebar {
+  top: 0;
+  left: 0;
+  width: 300px;
+  position: fixed;
+  height: 100%;
+  background: $color-gray2;
+  &-logo {
+    padding: 10px 7%;
+    img {
+      margin: 10px 0;
+      width: 61px;
+      height: 61px;
+    }
+    span {
+      @extend %font-700;
+    }
+  }
+  &-menu {
+    li {
+      width: 100%;
+      margin: 10px 0px;
+      list-style: none;
+    }
+    a {
+      width: 100%;
+      margin: 0 10px;
+      text-decoration: none;
+      font: 500 18px/23.17px Noto Sans JP;
+      color: $color-black1;
+    }
+  }
+}
+
+.main-content {
+  padding-left: 310px;
+  p {
+    font: 700 20px/23.17px Noto Sans JP;
+  }
+  header {
+    margin: 10px 0 0 0;
+    .header-title {
+      padding: 0 0 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+      &-dashboard {
+        margin: 15px 0 0 0;
+      }
+      &-search {
+        @extend %align-center;
+        height: 40px;
+        border: 1px solid $color-boder;
+        border-radius: 20px;
+        overflow-x: hidden;
+        span {
+          display: inline-block;
+          padding: 0 10px 0 0;
+          cursor: pointer;
+        }
+        input {
+          padding: 0 0 0 10px;
+          height: 100%;
+          border: none;
+          outline: none;
+        }
+      }
+      &-user {
+        margin: 0 20px 0 0;
+        span {
+          font: 400 16px/23.17px Noto Sans JP;
+        }
+        img {
+          margin: 0 0 0 10px;
+          width: 30px;
+          height: 30px;
+          border-radius: 50px;
+        }
+      }
+    }
+  }
+}
