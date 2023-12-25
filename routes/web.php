@@ -30,17 +30,23 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/send-reset-password', [AuthController::class, 'sendResetPassword'])->name('reset.send');
     Route::get('/reset/{token}', [AuthController::class, 'mailResetPassword'])->name('reset.mail');
     Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('reset.password');
+    Route::post('/logout', [AuthController::class, 'logoutUser'])->name('logout');
 
     Route::group(['middleware' => 'auth_admin'], function () {
+        //Admin
         Route::group(['prefix' => 'admin'], function () {
             Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-            Route::get('/users', [AdminController::class, 'userList'])->name('user-list');
-            Route::put('/toggle-block/{id}', [AdminController::class, 'toggleBlock'])->name('toggle-block');
+            Route::get('/users', [AdminController::class, 'users'])->name('user-list');
+            Route::put('/toggle-block/{id}', [AdminController::class, 'blockUser'])->name('toggle-block');
+            Route::get('/blogs', [AdminController::class, 'blogs'])->name('blog-list');
+            Route::get('/edit/blog/{id}', [AdminController::class, 'edit'])->name('blog-edit');
+            Route::put('/update/blog/{id}', [AdminController::class, 'update'])->name('blog-update');
+            Route::delete('/delete/blog/{id}', [AdminController::class, 'destroy'])->name('blog-delete');
+            Route::put('/toggle-approved/{id}', [AdminController::class, 'approvedBlog'])->name('toggle-approved');
         });
     });
 
     Route::group(['middleware' => 'auth_user'], function () {
-        Route::post('/logout', [AuthController::class, 'logoutUser'])->name('logout');
         Route::get('/resend-mail-verify', [AuthController::class, 'resendMailVerify'])->name('resend-mail-verify');
         Route::post('/resend', [AuthController::class, 'resendMail'])->name('resend');
 
@@ -56,7 +62,7 @@ Route::group(['prefix' => 'user'], function () {
             Route::get('/', [BlogController::class, 'index'])->name('blog.index');
             Route::post('/create', [BlogController::class, 'create'])->name('blog.create');
             Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
-            Route::put('/update', [BlogController::class, 'update'])->name('blog.update');
+            Route::put('/update/{id}', [BlogController::class, 'update'])->name('blog.update');
             Route::delete('/delete/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
         });
 

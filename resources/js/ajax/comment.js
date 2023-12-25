@@ -5,7 +5,7 @@ $(document).ready(function () {
     function comment(comment, user) {
         const element = 
         `
-        <div class="blog-container-detail-comments list">
+        <div class="blog-container-detail-comments" id="list">
             <div class="blog-container-detail-comments-user">
                 <img src="/storage/upload/${user.avatar}">
                 <p>${user.name}</p>
@@ -68,7 +68,7 @@ $(document).ready(function () {
     })
 
     $('#comments').on('click', '.cancel-edit', function(){
-        let form = $(this).closest('.list');
+        let form = $(this).closest('#list');
         form.find('form').addClass('hidden');
         form.find('.comment').show();
     })

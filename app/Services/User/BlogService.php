@@ -44,10 +44,10 @@ class BlogService
         }
     }
 
-    public function update(array $request): bool
+    public function update(int $id, array $request): bool
     {
         try {
-            return $this->blogRepository->update($request);
+            return $this->blogRepository->update($id, $request);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -78,6 +78,28 @@ class BlogService
                 return $blog->likes()->where('user_id', auth()->user()->id)->exists();
             }
             return false;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function blogList(array $request): LengthAwarePaginator
+    {
+        try {
+            return $this->blogRepository->getList($request);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function toggleApproved(int $id): bool
+    {
+        try {
+            $blog = $this->blogRepository->getBlogById($id);
+            $newStatus = [
+                'status' => $blog->status == Blog::STATUS_NOT_APPROVED ? Blog::STATUS_APPROVED : Blog::STATUS_NOT_APPROVED,
+            ];
+            return $this->blogRepository->update($id, $newStatus);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

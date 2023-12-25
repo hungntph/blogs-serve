@@ -56,7 +56,7 @@ class BlogController extends Controller
         abort(403);
     }
 
-    public function update(UpdateBlogRequest $request)
+    public function update($id, UpdateBlogRequest $request)
     {
         if (Gate::allows('update', $request)) {
             if ($request->file('file')) {
@@ -65,7 +65,7 @@ class BlogController extends Controller
             } else {
                 $request = array_merge($request->only('id', 'user_id', 'category_id', 'title', 'content'));
             }
-            $updateBlog = $this->blogService->update($request);
+            $updateBlog = $this->blogService->update($id, $request);
             if ($updateBlog) {
                 return back()->with('blog-update-success', trans('message.update-success'));
             }

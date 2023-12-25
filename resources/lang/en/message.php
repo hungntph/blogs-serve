@@ -39,6 +39,7 @@ return [
     'update-success' => 'update blog successfully!',
     'update-failed' => 'update blog failed!',
     'blog-approved' => 'Approved',
+    'blog-unapproved' => 'UnApproved',
     'blog-notapproved' => 'Not approved',
     'blog-delete' => 'Delete Blog',
     'blog-comment' => 'Comment',
@@ -47,14 +48,14 @@ return [
     'delete' => 'Delete',
     'cancel' => 'Cancel',
     'delete-confirm' => 'Are you sure want to delete this  blog?',
-    'delete-blog-failed' => 'delete blog successfully!',
+    'delete-blog-success' => 'delete blog successfully!',
     'delete-blog-failed' => 'delete blog failed!',
     'top' => 'Top',
     'save' => 'Save',
     'profile-update-success' => 'Update profile successfully!',
     'profile-update-failed' => 'Update profile failed!',
     'profile' => 'Profile',
-    'change-password' => 'Change password',
+    'change-password' => 'Password',
     'my-blog' => 'My blog',
     'old-password' => 'Old password',
     'new-password' => 'New password',
@@ -77,4 +78,8 @@ return [
 
     //blog list
     'bl-blog-list' => 'Blogs list',
+    'bl-title' => 'Title',
+    'bl-image' => 'Image',
+    'bl-author' => 'Author',
+    'bl-category' => 'Category',
 ];

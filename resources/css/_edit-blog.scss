@@ -1,0 +1,35 @@
+.edit-blog {
+  padding: 50px 10px 0 310px;
+  &-link {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 23px;
+    margin: 0 0 34px 0;
+    a {
+      font: 700 16px/23.17px Noto Sans JP;
+      text-decoration: none;
+    }
+    span {
+      font: 700 16px/23.17px Noto Sans JP;
+    }
+    button {
+      width: 110px;
+      height: 29px;
+      border-radius: 3px;
+      background: $color-blue1;
+      color: $color-white1;
+      border: none;
+      margin: 0 0 0 20px;
+      cursor: pointer;
+    }
+    &-btn {
+      .approved {
+        background: $color-blue1;
+      }
+      .un-approved {
+        background: $color-btn-red;
+      }
+    }
+  }
+}
