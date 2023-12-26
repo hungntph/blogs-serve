@@ -8,7 +8,7 @@ let loadFile = (event) => {
 };
 
 //toogle popup
-let tooglePoup = () => {
+let tooglePopup = () => {
   document.getElementById("popup").classList.toggle("active");
 }
 

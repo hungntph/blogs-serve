@@ -46,7 +46,7 @@ class UserRepository
     public function getList(array $request): LengthAwarePaginator
     {
         $builder = User::where('role', User::USER_ROLE);
-        if (isset($request['query'])) {
+        if (data_get($request, 'query')) {
             $builder->where('name', 'like', '%'. $request['query'] .'%');
         }
         return $builder->paginate(config('constant.paginate'));

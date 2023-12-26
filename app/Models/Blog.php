@@ -15,6 +15,10 @@ class Blog extends Model
 
     const STATUS_NOT_APPROVED = 0;
     const STATUS_APPROVED = 1;
+    const STATUSES = [
+        0 => 'Not approved',
+        1 => 'Approved',
+    ];
 
     protected $table = 'blogs';
 

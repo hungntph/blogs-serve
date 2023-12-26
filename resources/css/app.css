@@ -609,6 +609,9 @@
 .navbar-menu-user-profile li {
   list-style: none;
 }
+.navbar-menu-user-profile button {
+  border: none;
+}
 .navbar-menu-user .show-profile {
   opacity: 1;
   pointer-events: initial;
@@ -882,6 +885,7 @@
   margin: 0 20px 0 0;
 }
 .main-content header .header-title-user span {
+  cursor: pointer;
   font: 400 16px/23.17px Noto Sans JP;
 }
 .main-content header .header-title-user img {
@@ -889,6 +893,28 @@
   width: 30px;
   height: 30px;
   border-radius: 50px;
+}
+.main-content header .header-title-user-profile {
+  right: 50px;
+  position: absolute;
+  overflow: auto;
+  pointer-events: none;
+  opacity: 0;
+}
+.main-content header .header-title-user-profile li {
+  list-style: none;
+}
+.main-content header .header-title-user-profile a {
+  text-decoration: none;
+  color: #000000;
+  font: 400 14px/23.17px Noto Sans JP;
+}
+.main-content header .header-title-user-profile button {
+  border: none;
+}
+.main-content header .header-title-user .show-profile {
+  opacity: 1;
+  pointer-events: initial;
 }
 
 .list {
@@ -919,6 +945,15 @@
 .list-header-search button {
   border: none;
 }
+.list-header-select {
+  height: 100%;
+}
+.list-header-select select {
+  height: 100%;
+  border: 1px solid #CCCCCC;
+  cursor: pointer;
+  font: 400 14px/23.17px Noto Sans JP;
+}
 .list-pagination {
   margin: 50px 0;
 }
@@ -942,6 +977,40 @@
 }
 .list table td .blocked {
   background: #C40000;
+}
+
+.edit-blog {
+  padding: 50px 10px 0 310px;
+}
+.edit-blog-link {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 23px;
+  margin: 0 0 34px 0;
+}
+.edit-blog-link a {
+  font: 700 16px/23.17px Noto Sans JP;
+  text-decoration: none;
+}
+.edit-blog-link span {
+  font: 700 16px/23.17px Noto Sans JP;
+}
+.edit-blog-link button {
+  width: 110px;
+  height: 29px;
+  border-radius: 3px;
+  background: #18B727;
+  color: #FFFFFF;
+  border: none;
+  margin: 0 0 0 20px;
+  cursor: pointer;
+}
+.edit-blog-link-btn .approved {
+  background: #18B727;
+}
+.edit-blog-link-btn .un-approved {
+  background: #DC3545;
 }
 
 * {

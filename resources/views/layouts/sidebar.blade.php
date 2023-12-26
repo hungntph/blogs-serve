@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="">
+                <a href="{{ route('blog-list') }}">
                     <span><i class="fa-solid fa-blog"></i></span>
                     <span>{{ __('message.bl-blog-list') }}</span>
                 </a>

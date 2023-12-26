@@ -17,8 +17,8 @@
             </div>
             <div class="blog-container-detail-info">
                 <div class="blog-container-detail-info-user">
-                     @if ($blog->user->avatar)
-                        <img id="" src="{{ Vite::asset('public/storage/upload/' . $blog->user->avatar) }}"/>
+                    @if ($blog->user->avatar)
+                    <img id="" src="{{ Vite::asset('public/storage/upload/' . $blog->user->avatar) }}" />
                     @endif
                     <div>
                         <a href="">{{ $blog->user->name }}</a>
@@ -27,24 +27,24 @@
                 </div>
                 <div class="blog-container-detail-info-btn">
                     @if ($auth && $blog->user_id == $auth->id)
-                        @if ($blog->status == 1)
-                        <div class="blog-container-detail-info-btn-approved">
-                            <button>{{ __('message.blog-approved') }}</button>   
-                        </div>
-                        @elseif ($blog->status == 0)
-                        <div class="blog-container-detail-info-btn-notapproved">
-                            <button>{{ __('message.blog-notapproved') }}</button>   
-                        </div>
-                        @endif
-                        <div class="blog-container-detail-info-btn-delete">
-                            <button onclick="tooglePoup()">{{ __('message.blog-delete') }}</button>
-                        </div>
+                    @if ($blog->status == 1)
+                    <div class="blog-container-detail-info-btn-approved">
+                        <button>{{ __('message.blog-approved') }}</button>
+                    </div>
+                    @elseif ($blog->status == 0)
+                    <div class="blog-container-detail-info-btn-notapproved">
+                        <button>{{ __('message.blog-notapproved') }}</button>
+                    </div>
                     @endif
-                </div>   
+                    <div class="blog-container-detail-info-btn-delete">
+                        <button onclick="tooglePopup()">{{ __('message.blog-delete') }}</button>
+                    </div>
+                    @endif
+                </div>
             </div>
             <div class="blog-container-detail-image">
                 @if ($blog->image)
-                <img id="" src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}"/>
+                <img id="" src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}" />
                 @endif
             </div>
             <div class="blog-container-detail-desc">
@@ -66,7 +66,7 @@
                         <div class="card">
                             <a href="{{ route('blog.show', $relateBlog->id) }}">
                                 @if ($relateBlog->image)
-                                <img src="{{ Vite::asset('public/storage/upload/' . $relateBlog->image) }}"/>
+                                <img src="{{ Vite::asset('public/storage/upload/' . $relateBlog->image) }}" />
                                 @endif
                             </a>
                             <div class="card-body">
@@ -83,11 +83,13 @@
             <div class="blog-container-detail-line">
                 <hr>
             </div>
-            
+
             @include('comment.create-comment')
-            
+
         </div>
+
         @include('layouts.footer')
+        
     </div>
 
     @include('blogs.delete_blog_popup')

@@ -30,6 +30,15 @@
         border: none;
       }
     }
+    &-select {
+      height: 100%;
+      select {
+        height: 100%;
+        border: 1px solid $color-boder;
+        cursor: pointer;
+        font: 400 14px/23.17px Noto Sans JP;
+      }
+    }
   }
 
   &-pagination {

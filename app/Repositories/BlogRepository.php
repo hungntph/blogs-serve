@@ -18,9 +18,9 @@ class BlogRepository
         return Blog::with('category', 'comments.user', 'user', 'likes')->findOrFail($id);
     }
 
-    public function update(array $request): bool
+    public function update(int $id, array $request): bool
     {
-        return Blog::where('id', $request['id'])->update($request);
+        return Blog::where('id', $id)->update($request);
     }
 
     public function deleteById(int $id): bool
@@ -36,10 +36,22 @@ class BlogRepository
     public function getBlogsList(array $request): LengthAwarePaginator
     {
         $builder = Blog::approved()->with('user');
-        if (isset($request['query'])) {
+        if (data_get($request, 'query')) {
             $builder->where('title', 'like', '%'. $request['query'] .'%');
         }
-        if (isset($request['category_id'])) {
+        if (data_get($request, 'category_id')) {
+            $builder->where('category_id', $request['category_id']);
+        }
+        return $builder->paginate(config('constant.paginate'));
+    }
+
+    public function getList(array $request): LengthAwarePaginator
+    {
+        $builder = Blog::with('user', 'category');
+        if (data_get($request, 'query')) {
+            $builder->where('title', 'like', '%'. $request['query'] .'%');
+        }
+        if (data_get($request, 'category_id')) {
             $builder->where('category_id', $request['category_id']);
         }
         return $builder->paginate(config('constant.paginate'));

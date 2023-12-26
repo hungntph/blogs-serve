@@ -69,6 +69,7 @@
       &-user {
         margin: 0 20px 0 0;
         span {
+          cursor: pointer;
           font: 400 16px/23.17px Noto Sans JP;
         }
         img {
@@ -76,6 +77,28 @@
           width: 30px;
           height: 30px;
           border-radius: 50px;
+        }
+        &-profile {
+          right: 50px;
+          position: absolute;
+          overflow: auto;
+          pointer-events: none;
+          opacity: 0;
+          li {
+            list-style: none;
+          }
+          a {
+            text-decoration: none;
+            color: $color-black1;
+            font: 400 14px/23.17px Noto Sans JP;
+          }
+          button {
+            border: none;
+          }
+        }
+        .show-profile {
+          opacity: 1;
+          pointer-events: initial;
         }
       }
     }
