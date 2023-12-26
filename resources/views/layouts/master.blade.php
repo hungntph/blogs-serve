@@ -16,5 +16,7 @@
 </head>
 <body>
     @yield('content')
+
+    <script src="{{ Vite::asset('resources/js/app.js') }}"></script>
 </body>
 </html>

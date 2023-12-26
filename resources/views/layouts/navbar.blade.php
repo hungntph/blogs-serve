@@ -16,7 +16,9 @@
     </div>
     <div class="navbar-menu">
         <div class="navbar-menu-btn">
-            <button type="submit">{{ __('message.top') }}</button>
+            <form action="{{ route('home') }}" method="GET">
+                <button type="submit">{{ __('message.top') }}</button>
+            </form>
         </div>
         <div>
             <a href="{{ route('blog.index') }}">{{ __('message.create-blog') }}</a>
@@ -31,7 +33,7 @@
                 <ul>
                     <li><a href="{{ route('profile.index') }}">{{ __('message.profile') }}</a></li>
                     <li><a href="{{ route('change.password') }}">{{ __('message.change-password') }}</a></li>
-                    <li><a href="">{{ __('message.my-blog') }}</a></li>
+                    <li><a href="{{ route('blogs-user') }}">{{ __('message.my-blog') }}</a></li>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit">

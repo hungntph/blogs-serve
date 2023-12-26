@@ -34,4 +34,4 @@ let profile = document.getElementById('profile');
 
 toggle.addEventListener('click', () => {
   profile.classList.toggle('show-profile');
-})
+});

@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('layouts.navbar')
+
 @include('layouts.logo')
 
 <div class="form">
@@ -51,5 +53,7 @@
         </form>
     </div>
 </div>
+
+@include('layouts.footer')
 
 @endsection

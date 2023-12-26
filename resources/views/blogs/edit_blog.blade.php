@@ -6,7 +6,7 @@
 
 <div class="create-blog">
     <div class="create-blog-link">
-        <a href="">{{ __('message.home') }}</a> > <span>{{ __('message.edit-blog') }}</span>
+        <a href="{{ route('blogs-user') }}">{{ __('message.my-blog') }}</a> > <span>{{ __('message.edit-blog') }}</span>
     </div>
     <div class="create-blog-form">
         <form action="{{ route('blog.update', $blog->id) }}" enctype="multipart/form-data" method="POST">
@@ -77,7 +77,5 @@
 </div>
 
 @include('layouts.footer')
-
-<script src="{{ Vite::asset('resources/js/app.js') }}"></script>
 
 @endsection

@@ -36,7 +36,7 @@
                         <h7 class="time"><i class="bi bi-clock"></i>{{ $blog->created_at->diffForHumans() }}</h7>
                     </div>
                     <h6 class="card-text">{{ $blog->title }}</h6>
-                    <p class="card-text">{{ $blog->content }}</p>
+                    <p class="card-text">{{ $blog->short_content }}</p>
                     <div class="read-more">
                     <form action="{{ route('blog.show', $blog->id) }}" method="GET">
                         <button type="submit">
@@ -60,7 +60,5 @@
 </div>
 
 @include('layouts.footer')
-
-<script src="{{ Vite::asset('resources/js/app.js') }}"></script>
 
 @endsection
