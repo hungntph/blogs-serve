@@ -66,6 +66,4 @@
 
 @include('layouts.footer')
 
-<script src="{{ Vite::asset('resources/js/app.js') }}"></script>
-
 @endsection

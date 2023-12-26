@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Blog extends Model
 {
@@ -15,6 +16,7 @@ class Blog extends Model
 
     const STATUS_NOT_APPROVED = 0;
     const STATUS_APPROVED = 1;
+    const CONTENT_LIMIT = 50;
     const STATUSES = [
         0 => 'Not approved',
         1 => 'Approved',
@@ -52,6 +54,11 @@ class Blog extends Model
 
     public function scopeApproved($query): Builder
     {
-        return $query->where('status', Blog::STATUS_APPROVED);
+        return $query->where('status', self::STATUS_APPROVED);
+    }
+
+    public function getShortContentAttribute()
+    {
+        return Str::limit($this->content, self::CONTENT_LIMIT, '...');
     }
 }

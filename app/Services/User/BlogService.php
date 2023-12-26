@@ -104,4 +104,13 @@ class BlogService
             throw new Exception($e->getMessage());
         }
     }
+
+    public function getBlogsByUser(int $id): LengthAwarePaginator
+    {
+        try {
+            return $this->blogRepository->getBlogsByUser($id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }

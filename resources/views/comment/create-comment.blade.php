@@ -13,8 +13,8 @@
     @endif
 
     <div id="commentList">
-        @foreach ($blog->comments as $comment)
         <div class="blog-container-detail-comments" id="list">
+        @foreach ($blog->comments as $comment)
             <div class="userComment">
                 <div class="blog-container-detail-comments-user">
                     @if ($comment->user->avatar)
@@ -49,7 +49,7 @@
                     </span>
                 </form>
             </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
 </div>

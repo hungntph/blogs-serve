@@ -110,4 +110,11 @@ class BlogController extends Controller
         $categories = $this->categoryService->getCategories();
         return view("user.home", compact('auth', 'blogs', 'categories'));
     }
+
+    public function blogs()
+    {
+        $auth = auth()->user();
+        $blogs = $this->blogService->getBlogsByUser($auth->id);
+        return view("user.my_blogs", compact('auth', 'blogs'));
+    }
 }

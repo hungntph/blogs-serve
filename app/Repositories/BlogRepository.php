@@ -56,4 +56,9 @@ class BlogRepository
         }
         return $builder->paginate(config('constant.paginate'));
     }
+
+    public function getBlogsByUser(int $id): LengthAwarePaginator
+    {
+        return Blog::where('user_id', $id)->paginate(config('constant.paginate'));
+    }
 }

@@ -10,7 +10,7 @@
     <div class="blog-container">
         <div class="blog-container-detail">
             <div class="blog-container-detail-link">
-                <a href=" {{ route('home') }} ">{{ __('message.home') }}</a> > <span>{{ __('message.detail-blog') }}</span>
+                <a href=" {{ url()->previous() }} ">{{ __('message.back') }}</a> > <span>{{ __('message.detail-blog') }}</span>
             </div>
             <div class="blog-container-detail-title">
                 <p>{{ $blog->title }}</p>
@@ -93,10 +93,9 @@
     </div>
 
     @include('blogs.delete_blog_popup')
-
+    
 </div>
 
-<script src="{{ Vite::asset('resources/js/app.js') }}"></script>
 <script type="module" src="{{ Vite::asset('resources/js/ajax/like.js') }}"></script>
 <script type="module" src="{{ Vite::asset('resources/js/ajax/comment.js') }}"></script>
 

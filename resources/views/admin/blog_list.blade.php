@@ -93,6 +93,4 @@ use App\Models\Blog;
     </div>
 </div>
 
-<script src="{{ Vite::asset('resources/js/app.js') }}"></script>
-
 @endsection

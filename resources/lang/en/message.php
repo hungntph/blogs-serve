@@ -35,6 +35,7 @@ return [
     'blog-upload-image' => 'Upload image',
     'blog-desc' => 'Description',
     'edit-blog' => 'Edit Blog',
+    'view-blog' => 'View Blog',
     'detail-blog' => 'Blog detail',
     'update-success' => 'update blog successfully!',
     'update-failed' => 'update blog failed!',
@@ -64,6 +65,7 @@ return [
     'change-password-failed' => 'Change password failed!',
     'old-password-incorrect' => 'Old password is incorrect!',
     'dashboard' => 'Dashboard',
+    'back' => 'Back',
 
     //user list
     'ul-user-list' => 'User list',

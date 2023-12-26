@@ -1,0 +1,68 @@
+.my-blogs {
+  padding: 200px 7% 0 7%;
+  .row {
+    margin: 34px 0 0 0;
+    .card {
+      margin: 20px 0 50px 0;
+      border: none;
+      img {
+        height: 250px;
+      }
+      .card-body {
+        border: 1px solid $color-boder;
+        border-radius: 0 0 8px 8px;
+        .author-time {
+          display: flex;
+          align-items: center;
+        }
+        .read-more {
+          display: flex;
+          justify-content: center
+        }
+        button {
+          @extend %align-center;
+          background: $color-white1;
+          color: $color-red;
+          width: 137px;
+          height: 40px;
+          font: 400 14px/20px SVN-Gilroy;
+          border: solid 1px $color-white;
+          border-radius: 4px;
+          margin: 0 5px 0 5px;
+          &:hover {
+            border-radius: 5px;
+            background: $color-red;
+            color: $color-white1;
+            a {
+              color: $color-white1;
+            }
+            svg {
+              path {
+                stroke: $color-white1;
+              }
+            }
+          }
+        }
+        h6 {
+          font: 700 20px/28px SVN-Gilroy;
+        }
+        p {
+          margin: 0 0 29px 0;
+          font: 400 18px/25px SVN-Gilroy;
+        }
+        i {
+          padding: 0 5px 0 0;
+        }
+        h7 {
+          padding: 0 25px 0 3px;
+          margin: 0 0 15px 0;
+          font: 400 18px/30px SVN-Gilroy;
+          @include mobie {
+            font-size: 15px;
+            padding:0 0 15px 0;
+          }
+        }
+      }
+    }
+  }
+}

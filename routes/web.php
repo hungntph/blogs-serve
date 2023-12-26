@@ -64,6 +64,7 @@ Route::group(['prefix' => 'user'], function () {
             Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
             Route::put('/update/{id}', [BlogController::class, 'update'])->name('blog.update');
             Route::delete('/delete/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+            Route::get('/blogs', [BlogController::class, 'blogs'])->name('blogs-user');
         });
 
         // comment
