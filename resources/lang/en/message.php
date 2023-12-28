@@ -66,6 +66,8 @@ return [
     'old-password-incorrect' => 'Old password is incorrect!',
     'dashboard' => 'Dashboard',
     'back' => 'Back',
+    'block-message' => 'Your account has been locked due to violating Regit policies',
+    'block-confirm' => 'Confirm',
 
     //user list
     'ul-user-list' => 'User list',

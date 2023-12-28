@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::group(['prefix' => 'user'], function () {
     Route::get('/', [BlogController::class, 'getListBlog'])->name('home');
     Route::get('/register', [AuthController::class, 'register'])->name('register.index');

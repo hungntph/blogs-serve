@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\MessageNotify;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Repositories\UserRepository;
 use App\Services\User\BlogService;
 use App\Services\User\CategoryService;
 use App\Services\User\CommentService;
@@ -18,6 +21,7 @@ class AdminController extends Controller
         public CategoryService $categoryService,
         public UploadFileService $uploadFileService,
         public CommentService $commentService,
+        public UserRepository $userRepository,
     ) {
     }
 
@@ -37,7 +41,11 @@ class AdminController extends Controller
     public function blockUser($id)
     {
         $toggleBlock = $this->userService->toggleBlockUser($id);
+        $user = $this->userRepository->getUserById($id);
         if ($toggleBlock) {
+            if ($user->status == User::STATUS_BLOCKED) {
+                event(new MessageNotify($user->id));
+            }
             return back()->with('update-status-success', trans('message.update-status-success'));
         }
         return back()->with('update-status-failed', trans('message.update-status-failed'));

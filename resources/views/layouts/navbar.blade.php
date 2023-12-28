@@ -14,6 +14,18 @@
             </button>
         </form>
     </div>
+
+    <!-- Nav mobie -->
+    <div class="navbar-mobie">
+        <div class="navbar-mobie-search">
+            <img src="/image/Search.png" alt="">
+        </div>
+        <div class="navbar-mobie-bars">
+            <img src="/image/navbar-bars.png" alt="">
+        </div>
+    </div>
+    <!-- Nav mobie -->
+
     <div class="navbar-menu">
         <div class="navbar-menu-btn">
             <form action="{{ route('home') }}" method="GET">
