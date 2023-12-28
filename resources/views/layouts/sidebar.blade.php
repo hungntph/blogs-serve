@@ -23,6 +23,12 @@
                     <span>{{ __('message.bl-blog-list') }}</span>
                 </a>
             </li>
+            <li class="sidebar-menu-item">  
+                <a href="{{ route('category-list') }}">
+                    <span><i class="fa-solid fa-list"></i></span>
+                    <span>{{ __('message.cl-category-list') }}</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

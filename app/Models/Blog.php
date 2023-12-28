@@ -22,6 +22,11 @@ class Blog extends Model
         1 => 'Approved',
     ];
 
+    const ORDER_BY = [
+        'newest' => 'Newest',
+        'like' => 'Likes',
+    ];
+
     protected $table = 'blogs';
 
     protected $fillable = [

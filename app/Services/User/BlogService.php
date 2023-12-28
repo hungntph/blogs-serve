@@ -113,4 +113,13 @@ class BlogService
             throw new Exception($e->getMessage());
         }
     }
+
+    public function getBlogsByCategory(int $id): Collection
+    {
+        try {
+            return $this->blogRepository->getBlogsByCategory($id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }

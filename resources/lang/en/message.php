@@ -86,4 +86,19 @@ return [
     'bl-image' => 'Image',
     'bl-author' => 'Author',
     'bl-category' => 'Category',
+    'bl-total-like' => 'Likes',
+
+    //category list
+    'cl-category-list' => 'Categories',
+    'cl-blogs-total' => 'Blogs',
+    'category-name' => 'Category Name',
+    'create-category' => 'Create Category',
+    'create-category-success' => 'Create category successfully!',
+    'create-category-failed' => 'Create category failed!',
+    'edit-category' => 'Edit Category',
+    'update-category-success' => 'Update category successfully!',
+    'update-category-failed' => 'Update category failed!',
+    'delete-category-confirm' => 'Are you sure want to delete this  category?',
+    'delete-category-success' => 'Delete category successfully!',
+    'delete-category-failed' => 'Delete category failed!',
 ];
