@@ -6,15 +6,35 @@
   background: $color-nav;
   z-index: 2;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+
+  @include mobie {
+    height: 69px;
+    background: $color-white1;
+  }
+
   &-logo {
     display: flex;
     align-items: center;
     margin: 0 0 0 7%;
     width: 55%;
+
+    @include mobie {
+      justify-content: center;
+      margin: 5px 0 0 0;
+      font-size: 20px;
+      width: 100%;
+
+      img {
+        width: 47.09px;
+        height: 45px;
+      }
+    }
+
     span {
       @extend %font-700;
       margin: 0 10px 0 0;
     }
+
     form {
       @extend %align-center;
       width: 48%;
@@ -22,6 +42,7 @@
       height: 46px;
       border-radius: 5px;
       position: relative;
+
       input {
         padding: 0 0 0 10px;
         width: 100%;
@@ -31,35 +52,50 @@
         list-style: none;
         border: 1px solid $placeholder;
         border-radius: 4px;
+
         &::placeholder {
           color: $placeholder;
         }
+
         &:focus {
           outline: none;
         }
+
+        @include mobie {
+          display: none;
+        }
       }
+
       button {
         position: absolute;
         width: 19px;
         height: 19px;
         border: none;
         left: 91%;
+
         svg {
           background: $color-white1;
           margin: 0 0 10px 0;
         }
       }
+
+      @include mobie {
+        display: none;
+      }
     }
   }
+
   &-menu {
     display: flex;
     align-items: center;
     margin: 0 7% 0 0;
+
     a {
       @extend %font-500;
       text-decoration: none;
       color: $color-navbar-menu;
     }
+
     &-btn {
       @extend %align-center;
       width: 51px;
@@ -67,6 +103,7 @@
       border-radius: 3px;
       background: $color-red;
       margin: 0 10px 0 0;
+
       button {
         @extend %font-500;
         background: $color-red;
@@ -74,31 +111,51 @@
         color: $color-white1;
       }
     }
+
     &-user {
       margin: 0 0 0 50px;
+
       img {
         width: 26.67px;
         height: 26.67px;
         margin: 0 0 0 10px;
         border-radius: 50px;
       }
+
       &-profile {
         position: absolute;
         margin: 10px 0 0 70px;
         overflow: auto;
         pointer-events: none;
         opacity: 0;
+
         li {
           list-style: none;
         }
+
         button {
           border: none;
         }
       }
+
       .show-profile {
         opacity: 1;
         pointer-events: initial;
       }
+    }
+
+    @include mobie {
+      display: none;
+    }
+  }
+
+  &-mobie {
+    &-bars {
+      opacity: 0;
+    }
+
+    &-search {
+      opacity: 0;
     }
   }
 }

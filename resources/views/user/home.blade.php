@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 
 @section('content')
@@ -17,7 +16,7 @@
             @endif
             <select class="blogs-title-category" name="category_id" id="category" onchange="this.form.submit()">
                 <option value="">Categories</option>
-                @foreach ($categories as $category) 
+                @foreach ($categories as $category)
                 <option value="{{ $category->id }}" {{ $category->id == request()->input('category_id') ? 'selected' : '' }}>
                     {{ $category->name }}
                 </option>
@@ -38,20 +37,18 @@
                     <h6 class="card-text">{{ $blog->title }}</h6>
                     <p class="card-text">{{ $blog->short_content }}</p>
                     <div class="read-more">
-                    <form action="{{ route('blog.show', $blog->id) }}" method="GET">
-                        <button type="submit">
-                            Read more &nbsp;&nbsp;&nbsp;
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 20 10"
-                                fill="none">
-                                <path d="M19 5H1M19 5L15 9M19 5L15 1" stroke="#C40000" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
+                        <form action="{{ route('blog.show', $blog->id) }}" method="GET">
+                            <button type="submit">
+                                Read more &nbsp;&nbsp;&nbsp;
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 20 10" fill="none">
+                                    <path d="M19 5H1M19 5L15 9M19 5L15 1" stroke="#C40000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>
         @endforeach
         <div class="blogs-pagination">
             {{ $blogs->withQueryString()->links() }}
