@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap-icons-1.11.2/font/bootstrap-icons.min.css') }}">
-    <script src="{{ asset('jquery/jquery3.7.1.js') }}"></script>
-    <script src="{{ asset('jquery/chart.js') }}"></script>
 </head>
 
 <body>
@@ -25,6 +23,8 @@
 
     </div>
 
+    <script src="{{ asset('jquery/jquery3.7.1.js') }}"></script>
+    <script src="{{ asset('jquery/chart.js') }}"></script>
     <script src="{{ Vite::asset('resources/js/app.js') }}"></script>
     <script src="{{ Vite::asset('resources/js/ajax/block-message.js') }}"></script>
     <script src="{{ Vite::asset('resources/js/ajax/dashboard.js') }}"></script>
