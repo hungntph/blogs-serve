@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Events\MessageNotify;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Repositories\BlogRepository;
 use App\Repositories\UserRepository;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
@@ -14,13 +15,15 @@ class AdminController extends Controller
     public function __construct(
         public UserService $userService,
         public UserRepository $userRepository,
+        public BlogRepository $blogRepository,
     ) {
     }
 
     public function index()
     {
         $auth = auth()->user();
-        return view("admin.dashboard", compact('auth'));
+        $data = $this->blogRepository->getBlogByMonth();
+        return view("admin.dashboard", compact('auth', 'data'));
     }
 
     public function users(Request $request)

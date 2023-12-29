@@ -6,6 +6,11 @@
 
 @include('layouts.main-content')
 
-<script src="{{ Vite::asset('resources/js/app.js') }}"></script>
-
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <canvas id="blogChart" data={{ $data }}></canvas>
+        </div>
+    </div>
+</div>
 @endsection

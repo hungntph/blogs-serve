@@ -1,8 +1,12 @@
 /.phpunit.cache
 /node_modules
+/public/*
 /public/build
 /public/hot
 /public/storage
+/public/bootstrap
+/public/fontawesome
+/public/jquery
 /storage/*.key
 /vendor
 .env

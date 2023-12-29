@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Blog;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection as SupportCollection;
 
 class BlogRepository
 {
@@ -49,7 +50,7 @@ class BlogRepository
     {
         $builder = Blog::with('user', 'category', 'likes');
         if (data_get($request, 'query')) {
-            $builder->where('title', 'like', '%'. $request['query'] .'%');
+            $builder->where('title', 'like', '%' . $request['query'] . '%');
         }
         if (data_get($request, 'category_id')) {
             $builder->where('category_id', $request['category_id']);
@@ -83,5 +84,17 @@ class BlogRepository
     public function deleteBlogsByCategory(int $id): bool
     {
         return Blog::where('category_id', $id)->delete();
+    }
+
+    public function getBlogByMonth(): SupportCollection
+    {
+        $blogsByMonth = Blog::selectRaw("count(id) as total, DATE_FORMAT(created_at, '%m-%Y') as dates")
+            ->groupBy('dates')
+            ->orderBy('dates', 'asc')
+            ->get();
+        $data = $blogsByMonth->mapWithKeys(function ($item) {
+            return [$item->dates => $item->total];
+        });
+        return $data;
     }
 }
