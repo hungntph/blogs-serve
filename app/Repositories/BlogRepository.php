@@ -37,7 +37,7 @@ class BlogRepository
     {
         $builder = Blog::approved()->with('user');
         if (data_get($request, 'query')) {
-            $builder->where('title', 'like', '%'. $request['query'] .'%');
+            $builder->where('title', 'like', '%' . $request['query'] . '%');
         }
         if (data_get($request, 'category_id')) {
             $builder->where('category_id', $request['category_id']);
@@ -47,12 +47,25 @@ class BlogRepository
 
     public function getList(array $request): LengthAwarePaginator
     {
-        $builder = Blog::with('user', 'category');
+        $builder = Blog::with('user', 'category', 'likes');
         if (data_get($request, 'query')) {
             $builder->where('title', 'like', '%'. $request['query'] .'%');
         }
         if (data_get($request, 'category_id')) {
             $builder->where('category_id', $request['category_id']);
+        }
+        if (data_get($request, 'status')) {
+            $builder->where('status', $request['status']);
+        }
+        if (data_get($request, 'order_by')) {
+            switch ($request['order_by']) {
+                case 'like':
+                    $builder->withCount('likes')->orderBy("likes_count", 'desc');
+                    break;
+                case 'newest':
+                    $builder->orderBy('created_at', 'desc');
+                    break;
+            }
         }
         return $builder->paginate(config('constant.paginate'));
     }
@@ -60,5 +73,15 @@ class BlogRepository
     public function getBlogsByUser(int $id): LengthAwarePaginator
     {
         return Blog::where('user_id', $id)->paginate(config('constant.paginate'));
+    }
+
+    public function getBlogsByCategory(int $id): Collection
+    {
+        return Blog::where('category_id', $id)->get();
+    }
+
+    public function deleteBlogsByCategory(int $id): bool
+    {
+        return Blog::where('category_id', $id)->delete();
     }
 }

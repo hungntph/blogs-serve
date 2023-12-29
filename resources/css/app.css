@@ -1,4 +1,4 @@
-.block-popup-button, .my-blogs .row .card .card-body button, .list-pagination, .list-header-search, .main-content header .header-title-search, .profile-info-btn-cancel, .profile-info-btn, .profile-info-upload, .profile, .blogs-pagination .page-item .page-link, .blogs-pagination, .blogs .row .card .card-body button, .blogs-title, .footer, .navbar-menu-btn, .navbar-logo form, .blog-popup-button-cancel, .blog-popup-content, .blog-container-detail-line, .blog-container-detail-comment, .create-blog-form-submit, .create-blog-form-upload-btn, .account-login, .form-signup-help-remember, .form-signup-btn, .form, .regit-logo, .regit {
+.block-popup-button, .my-blogs .row .card .card-body button, .list-pagination, .list-search form .list-search-search, .main-content header .header-title-search, .profile-info-btn-cancel, .profile-info-btn, .profile-info-upload, .profile, .blogs-pagination .page-item .page-link, .blogs-pagination, .blogs .row .card .card-body button, .blogs-title, .footer, .navbar-menu-btn, .navbar-logo form, .blog-popup-button-cancel, .blog-popup-content, .blog-container-detail-line, .blog-container-detail-comment, .create-blog-form-submit, .create-blog-form-upload-btn, .account-login, .form-signup-help-remember, .form-signup-btn, .form, .regit-logo, .regit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -966,32 +966,40 @@
 .list-header {
   margin: 0 20px 10px 10px;
   display: flex;
-  justify-content: space-between;
 }
-.list-header-search {
+.list-search {
+  display: flex;
+  margin: 10px 0;
+}
+.list-search form {
+  display: flex;
+}
+.list-search form .list-search-search {
+  margin: 0 50px 0 0;
   height: 40px;
   border: 1px solid #CCCCCC;
   border-radius: 20px;
   overflow-x: hidden;
 }
-.list-header-search span {
+.list-search form .list-search-search span {
   display: inline-block;
   padding: 0 10px 0 0;
   cursor: pointer;
 }
-.list-header-search input {
+.list-search form .list-search-search input {
   padding: 0 0 0 10px;
   height: 100%;
   border: none;
   outline: none;
 }
-.list-header-search button {
+.list-search form .list-search-search button {
   border: none;
 }
-.list-header-select {
+.list-search form .list-search-select {
+  margin: 0 50px 0 50px;
   height: 100%;
 }
-.list-header-select select {
+.list-search form .list-search-select select {
   height: 100%;
   border: 1px solid #CCCCCC;
   cursor: pointer;

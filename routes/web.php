@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminBlogController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\BlogController;
@@ -37,11 +39,21 @@ Route::group(['prefix' => 'user'], function () {
             Route::get('/', [AdminController::class, 'index'])->name('admin.index');
             Route::get('/users', [AdminController::class, 'users'])->name('user-list');
             Route::put('/toggle-block/{id}', [AdminController::class, 'blockUser'])->name('toggle-block');
-            Route::get('/blogs', [AdminController::class, 'blogs'])->name('blog-list');
-            Route::get('/edit/blog/{id}', [AdminController::class, 'edit'])->name('blog-edit');
-            Route::put('/update/blog/{id}', [AdminController::class, 'update'])->name('blog-update');
-            Route::delete('/delete/blog/{id}', [AdminController::class, 'destroy'])->name('blog-delete');
-            Route::put('/toggle-approved/{id}', [AdminController::class, 'approvedBlog'])->name('toggle-approved');
+
+            //Admin blog
+            Route::get('/blogs', [AdminBlogController::class, 'blogs'])->name('blog-list');
+            Route::get('/edit/blog/{id}', [AdminBlogController::class, 'edit'])->name('blog-edit');
+            Route::put('/update/blog/{id}', [AdminBlogController::class, 'update'])->name('blog-update');
+            Route::delete('/delete/blog/{id}', [AdminBlogController::class, 'destroy'])->name('blog-delete');
+            Route::put('/toggle-approved/{id}', [AdminBlogController::class, 'approvedBlog'])->name('toggle-approved');
+
+            //Admin category
+            Route::get('/categories', [AdminCategoryController::class, 'categories'])->name('category-list');
+            Route::get('/category/create', [AdminCategoryController::class, 'index'])->name('category-index');
+            Route::post('/category/create', [AdminCategoryController::class, 'create'])->name('category-create');
+            Route::get('/edit/category/{id}', [AdminCategoryController::class, 'edit'])->name('category-edit');
+            Route::put('/update/category/{id}', [AdminCategoryController::class, 'update'])->name('category-update');
+            Route::delete('/delete/category/{id}', [AdminCategoryController::class, 'destroy'])->name('category-delete');
         });
     });
 
