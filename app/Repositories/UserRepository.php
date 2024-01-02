@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection as SupportCollection;
 
 class UserRepository
 {
@@ -47,7 +48,7 @@ class UserRepository
     {
         $builder = User::where('role', User::USER_ROLE);
         if (data_get($request, 'query')) {
-            $builder->where('name', 'like', '%'. $request['query'] .'%');
+            $builder->where('name', 'like', '%' . $request['query'] . '%');
         }
         return $builder->paginate(config('constant.paginate'));
     }
@@ -55,5 +56,17 @@ class UserRepository
     public function getUserById(int $id): User
     {
         return User::findOrFail($id);
+    }
+
+    public function getUserByMonth(): SupportCollection
+    {
+        $usersByMonth = User::selectRaw("count(id) as total, DATE_FORMAT(created_at, '%m-%Y') as dates")
+            ->groupBy('dates')
+            ->orderBy('dates', 'asc')
+            ->get();
+        $data = $usersByMonth->mapWithKeys(function ($item) {
+            return [$item->dates => $item->total];
+        });
+        return $data;
     }
 }

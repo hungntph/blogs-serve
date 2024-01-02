@@ -12,6 +12,7 @@ export default defineConfig({
              'resources/js/ajax/like.js',
              'resources/js/ajax/comment.js',
              'resources/js/ajax/block-message.js',
+             'resources/js/ajax/dashboard.js',
             ],
             refresh: true,
         }),
