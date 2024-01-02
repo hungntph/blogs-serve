@@ -95,8 +95,10 @@ class UserService
             $token = $this->generateToken($request['email']);
             if ($token) {
                 $user = $this->userRepository->getUserByNameOrEmail($request['email']);
-                Mail::to($user['email'])->send(new SendMailResetPassword($user, $token));
-                return true;
+                if ($user) {
+                    Mail::to($user['email'])->send(new SendMailResetPassword($user, $token));
+                    return true;
+                }
             }
             return false;
         } catch (Exception $e) {

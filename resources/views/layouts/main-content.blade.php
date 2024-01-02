@@ -6,10 +6,10 @@
                 <p>
             </div>
             <div class="header-title-user" id="toggleFrofile">
-                <span>{{ $auth->name }}</span>
-                <span>
+                <span onclick="showProfile()">{{ $auth->name }}</span>
+                <span onclick="showProfile()">
                     @if ($auth->avatar)
-                    <img src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}" alt="">
+                    <img src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}">
                     @endif
                     <img>
                 </span>
@@ -19,7 +19,7 @@
                         <li><a href="{{ route('change.password') }}">{{ __('message.change-password') }}</a></li>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button type="submit"><li><a>{{ __('message.logout') }}</a></li></button>
+                            <a href="#" onclick="this.parentNode.submit();">{{ __('message.logout') }}</a>
                         </form>
                     </ul>
                 </div>

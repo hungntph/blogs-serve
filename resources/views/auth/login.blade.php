@@ -8,19 +8,19 @@
         <form action="{{ route('login') }}" method="POST">
             @csrf
             @if(Session::has('email-password-incorrect'))
-                <span class="text-sm text-red-500">
+                <span class="text-danger">
                     {{ Session::get('email-password-incorrect') }}
                 </span>
             @endif
             @if(Session::has('blocked'))
-                <span class="text-sm text-red-500">
+                <span class="text-danger">
                     {{ Session::get('blocked') }}
                 </span>
             @endif
             <p>{{ __('message.signin') }}</p>
             <div class="form-signup-input">
                 <label for="name"><b>{{ __('message.user-or-email') }}</b><span>*</span></label>
-                <input type="text" name="email" id="email"> 
+                <input type="text" name="email" id="email" value="{{ old('email', request()->input('email')) }}"> 
                 @error('email')
                     <span class="text-sm text-red-500">{{ $message }}</span><br>
                 @enderror 

@@ -62,7 +62,7 @@
             <div class="blog-container-detail-related">
                 <div class="row">
                     @foreach ($relatedBlogs as $relateBlog)
-                    <div class="col-md-3 col-lg-3 col-sx-12 col-sm-6">
+                    <div id="item" class="col-md-3 col-lg-3 col-sx-12 col-sm-6 slides">
                         <div class="card">
                             <a href="{{ route('blog.show', $relateBlog->id) }}">
                                 @if ($relateBlog->image)
@@ -76,7 +76,13 @@
                     </div>
                     @endforeach
                 </div>
+                <div class="slide">
+                    @foreach ($relatedBlogs as $key => $relateBlog)
+                    <span class="dot" onclick="currentSlide({{$key+1}})"></span>
+                    @endforeach
+                </div>
             </div>
+
             <div class="blog-container-detail-comment">
                 <span>{{ __('message.blog-comment') }}</span>
             </div>
@@ -89,11 +95,11 @@
         </div>
 
         @include('layouts.footer')
-        
+
     </div>
 
     @include('blogs.delete_blog_popup')
-    
+
 </div>
 
 <script type="module" src="{{ Vite::asset('resources/js/ajax/like.js') }}"></script>

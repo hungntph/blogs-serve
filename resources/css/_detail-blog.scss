@@ -14,6 +14,7 @@
         height: 23px;
         margin: 0 0 34px 0;
           a {
+            color: $color-gray1;
             font: 700 16px/23.17px Noto Sans JP;
             text-decoration: none;
           }
@@ -36,6 +37,9 @@
           width: 100%;
           height: 36px;
           margin: 0 0 41px 0;
+          @include mobie {
+            margin: 0 0 20px 0;
+          }
           &-user {
             display: flex;
             img {
@@ -58,13 +62,18 @@
             display: flex;
             button {
               width: 110px;
-                height: 29px;
-                border-radius: 3px;
-                background: $color-blue1;
-                color: $color-white1;
-                border: none;
-                margin: 0 0 0 20px;
-                cursor: pointer;
+              height: 29px;
+              border-radius: 3px;
+              background: $color-blue1;
+              color: $color-white1;
+              border: none;
+              margin: 0 0 0 20px;
+              cursor: pointer;
+              @include mobie {
+                width: 70px;
+                margin: 0 0 10px 10px;
+                font: 500 12px/15.93px Noto Sans JP;
+              }
             }
             &-approved {
               button {
@@ -87,16 +96,23 @@
           width: 100%;
           height: 555px;
           margin: 0 0 41px 0;
+          @include mobie {
+            height: 323px;
+            margin: 0 0 30px 0;
+          }
           img {
             width: 100%;
-            height: 555px;
+            height: 100%;
             border: none;
           }
         }
         &-desc {
           width: 100%;
-          height: 67px;
           padding: 0 0 40px 0;
+          @include mobie {
+            padding: 0;
+            margin: 0 0 20px 0;
+          }
           p {
             font: 400 14px/20.27px Noto Sans JP;
             color: $color-gray2;
@@ -148,16 +164,64 @@
         &-related {
           width: 100%;
           margin: 0 0 10px 0;
+          @include mobie {
+            .dot {
+              cursor: pointer;
+              height: 15px;
+              width: 15px;
+              margin: 0 2px;
+              background-color: #bbb;
+              border-radius: 50%;
+              display: inline-block;
+              transition: background-color 0.6s ease;
+              &:hover {
+                background-color: $color-red;
+              }
+              .active {
+                background-color: $color-red;
+              }
+            }
+            .slides {
+              img {
+                width: 323px;
+                height: 323px;
+              }
+              &-text {
+                a {
+                  text-decoration: none;
+                  color: $color-black1;
+                  font: 700 17px/28px Noto Sans JP;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+        .slide {
+          display: flex;
+          justify-content: center;
+          opacity: 0;
+          @include mobie {
+            opacity: 1;
+          }
         }
         .card {
           width: 265px;
           height: 340px;
           border: none;
           margin: 0 0 20px 0;
+          @include mobie {
+            width: 323px;
+            height: 400px;
+          }
           img {
             width: 265px;
             height: 265px;
             font: 700 24px/34.75px Noto Sans JP;
+            @include mobie {
+              width: 323px;
+              height: 323px;
+            }
           }
           a {
             text-decoration: none;
@@ -250,6 +314,10 @@
     transform: translate(-50%, -50%) scale(0);
     background: $color-white;
     z-index: 10;
+    @include mobie {
+      width: 342px;
+      height: 251px;
+    }
     &-top {
       display: flex;
       justify-content: space-between;

@@ -9,19 +9,19 @@
         <form action="{{ route('reset.send') }}" method="POST">
             @csrf
             @if(Session::has('send-reset-success'))
-                <div>
+                <span class="text-success">
                     {{ __('message.resend-mail-success') }}
-                </div>
+                </span>
             @endif
             @if(Session::has('email-incorrect'))
-                <div>
+                <span class="text-danger">
                     {{ __('message.mail-incorrect') }}
-                </div>
+                </span>
             @endif
             <p>{{ __('message.email') }}</p>
             <div class="form-signup-input">
                 <label for="name"><b>{{ __('message.email') }}</b><span>*</span></label>
-                <input type="text" name="email" id="email"> 
+                <input type="text" name="email" id="email" value="{{ old('email') }}"> 
                 @error('email')
                     <span class="text-sm text-red-500">{{ $message }}</span><br>
                 @enderror 

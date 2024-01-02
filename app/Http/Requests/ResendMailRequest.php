@@ -25,7 +25,6 @@ class ResendMailRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                'exists:users,email',
                 'max:225',
             ],
         ];

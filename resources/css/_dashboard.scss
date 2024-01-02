@@ -79,21 +79,20 @@
           border-radius: 50px;
         }
         &-profile {
-          right: 50px;
+          margin: 10px 0;
+          right: 25px;
           position: absolute;
           overflow: auto;
           pointer-events: none;
           opacity: 0;
+          background: $color-nav1;
           li {
             list-style: none;
           }
           a {
-            text-decoration: none;
+            margin: 0 10px 0 0;
             color: $color-black1;
             font: 400 14px/23.17px Noto Sans JP;
-          }
-          button {
-            border: none;
           }
         }
         .show-profile {

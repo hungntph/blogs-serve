@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Models\User;
 use App\Services\User\UploadFileService;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
@@ -27,6 +28,9 @@ class UserController extends Controller
     public function index()
     {
         $auth = auth()->user();
+        if ($auth->role == User::ADMIN_ROLE) {
+            return view("admin.profile", compact('auth'));
+        }
         return view("user.profile", compact('auth'));
     }
 
@@ -52,7 +56,10 @@ class UserController extends Controller
     public function changePassword()
     {
         $auth = auth()->user();
-        return view("user.change-password", compact('auth'));
+        if ($auth->role == User::ADMIN_ROLE) {
+            return view("admin.change_password", compact('auth'));
+        }
+        return view("user.change_password", compact('auth'));
     }
 
     public function updatePassword(int $id, ChangePasswordRequest $request)

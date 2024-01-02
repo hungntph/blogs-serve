@@ -9,14 +9,14 @@
         <form action="{{ route('resend') }}" method="POST">
             @csrf
             @if(Session::has('resend-success'))
-                <div>
+                <span class="text-success">
                     {{ __('message.resend-mail-success') }}
-                </div>
+                </span>
             @endif
-            @if(Session::has('resend-failed'))
-                <div>
-                    {{ __('message.resend-failed') }}
-                </div>
+            @if(Session::has('email-incorrect'))
+                <span class="text-danger">
+                    {{ __('message.mail-incorrect') }}
+                </span>
             @endif
             <p>{{ __('message.enter-email') }}</p>
             <div class="form-signup-input">
