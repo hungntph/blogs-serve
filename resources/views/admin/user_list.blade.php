@@ -7,10 +7,20 @@
 @include('layouts.main-content')
 
 @php
-    use App\Models\User;
+use App\Models\User;
 @endphp
 
 <div class="list">
+        @if(Session::has('update-status-success'))
+        <span class="text-success">
+            {{ __('message.update-status-success') }}
+        </span>
+        @endif
+        @if(Session::has('update-status-failed'))
+        <span class="text-danger">
+            {{ __('message.update-status-failed') }}
+        </span>
+        @endif
     <div class="list-header">
         <div>
             <span>{{ __('message.ul-total') }}: </span><span>{{ $users->count() }}</span>
@@ -38,29 +48,29 @@
         <tbody>
             @foreach ($users as $key => $user)
             <form action="{{ route('toggle-block', $user->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <tr>
-                <th scope="row">{{ $key+1 }}</th>
-                <td>{{ $user->name }}</td>
-                <td>
-                    @if ($user->avatar)
-                    <img src="{{ Vite::asset('public/storage/upload/' . $user->avatar) }}" alt="">
-                    @endif
-                </td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->phone }}</td>
-                <td>
-                    {{  User::STATUSES[$user->status] }}
-                </td>
-                <td>
-                    @if ($user->status == User::STATUS_BLOCKED)
-                    <button type="submit" class="unblocked" >{{ __('message.ul-unblock') }}</button>
-                    @else
-                    <button type="submit" class="blocked">{{ __('message.ul-block') }}</button>
-                    @endif
-                </td>
-            </tr>
+                @csrf
+                @method('PUT')
+                <tr>
+                    <th scope="row">{{ $key+1 }}</th>
+                    <td>{{ $user->name }}</td>
+                    <td>
+                        @if ($user->avatar)
+                        <img src="{{ Vite::asset('public/storage/upload/' . $user->avatar) }}" alt="">
+                        @endif
+                    </td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->phone }}</td>
+                    <td>
+                        {{ User::STATUSES[$user->status] }}
+                    </td>
+                    <td>
+                        @if ($user->status == User::STATUS_BLOCKED)
+                        <button type="submit" class="unblocked">{{ __('message.ul-unblock') }}</button>
+                        @else
+                        <button type="submit" class="blocked">{{ __('message.ul-block') }}</button>
+                        @endif
+                    </td>
+                </tr>
             </form>
             @endforeach
         </tbody>

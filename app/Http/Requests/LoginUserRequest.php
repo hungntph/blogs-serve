@@ -25,7 +25,7 @@ class LoginUserRequest extends FormRequest
             'email' => [
                 'required',
                 'max:225',
-                'regex:/^[a-z]+$/',
+                'regex:/^[a-z0-9+@+\.]+$/',
             ],
             'password' => [
                 'required',

@@ -33,12 +33,12 @@ use App\Models\Blog;
             @method('PUT')
             <p>{{ __('message.edit-blog') }}</p>
             @if(Session::has('blog-update-success'))
-            <span class="text-sm text-red-500">
+            <span class="text-success">
                 {{ __('message.update-success') }}
             </span>
             @endif
             @if(Session::has('blog-update-failed'))
-            <span class="text-sm text-red-500">
+            <span class="text-danger">
                 {{ __('message.updaste-failed') }}
             </span>
             @endif

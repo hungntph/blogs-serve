@@ -26,10 +26,11 @@ class UpdateProfileRequest extends FormRequest
                 'required',
                 'unique:users,name',
                 'max:225',
-                'regex:/^[a-z]+$/',
+                'regex:/^[a-z0-9]+$/',
             ],
             'phone' => [
                 'max:11',
+                'nullable',
                 'regex:/^[0-9]+$/',
             ],
             'file' => [
