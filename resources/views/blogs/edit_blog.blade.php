@@ -14,12 +14,12 @@
         @method('PUT')
             <p>{{ __('message.edit-blog') }}</p>
             @if(Session::has('blog-update-success'))
-                <span class="text-sm text-red-500">
+                <span class="text-success">
                     {{ __('message.update-success') }}
                 </span>
             @endif
             @if(Session::has('blog-update-failed'))
-                <span class="text-sm text-red-500">
+                <span class="text-danger">
                     {{ __('message.updaste-failed') }}
                 </span>
             @endif
@@ -31,13 +31,14 @@
                 </div>
                 <select name="category_id">
                 @foreach ($categories as $category)
+                    old('gender', $auth->gender)
                     <option value="{{ $category->id }}" {{ $category->id == $blog->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
                 @endforeach
                 </select>
             </div>
             <div class="create-blog-form-input">
                 <label for="name"><b>{{ __('message.blog-title') }}</b><span>*</span></label>
-                <input type="text" name="title" value="{{$blog->title}}"> 
+                <input type="text" name="title" value="{{ old('title', $blog->title)}}"> 
                 @error('title')
                     <span class="text-sm text-red-500">{{ $message }}</span><br>
                 @enderror 
@@ -63,7 +64,7 @@
             <div class="create-blog-form-input">
                 <label for="name"><b>{{ __('message.blog-desc') }}</b><span>*</span></label>
                 <div>
-                    <textarea name="content">{{ $blog->content }}</textarea>
+                    <textarea name="content">{{ old('content', $blog->content)}}</textarea>
                 </div>
                 @error('content')
                     <span class="text-sm text-red-500">{{ $message }}</span><br>

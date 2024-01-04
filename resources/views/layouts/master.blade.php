@@ -26,7 +26,7 @@
     <script src="{{ asset('jquery/jquery3.7.1.js') }}"></script>
     <script src="{{ asset('jquery/chart.js') }}"></script>
     <script src="{{ Vite::asset('resources/js/app.js') }}"></script>
-    <script src="{{ Vite::asset('resources/js/ajax/block-message.js') }}"></script>
+    <script type="module" src="{{ Vite::asset('resources/js/ajax/block-message.js') }}"></script>
     <script src="{{ Vite::asset('resources/js/ajax/dashboard.js') }}"></script>
     <script type="module" src="{{ Vite::asset('resources/js/connect.js') }}"></script>
 </body>

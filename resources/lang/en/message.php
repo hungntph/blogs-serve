@@ -68,7 +68,10 @@ return [
     'back' => 'Back',
     'block-message' => 'Your account has been locked due to violating Regit policies',
     'block-confirm' => 'Confirm',
-
+    'update-profile' => 'Update profile',
+    'change-pw' => 'Change password',
+    'mail-incorrect' => 'Email incorrect!',
+ 
     //user list
     'ul-user-list' => 'User list',
     'ul-name' => 'Name',

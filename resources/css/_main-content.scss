@@ -1,0 +1,15 @@
+.main-content {
+  padding: 0 0 0 310px;
+
+  .title {
+    @extend %align-center;
+    margin: 20px 0;
+    label {
+      font: 700 18px/23.17px Noto Sans JP;
+    }
+  }
+
+  .profile {
+    margin: 30px 0;
+  }
+}

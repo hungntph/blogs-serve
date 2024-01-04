@@ -17,11 +17,39 @@
 
     <!-- Nav mobie -->
     <div class="navbar-mobie">
-        <div class="navbar-mobie-search">
-            <img src="/image/Search.png" alt="">
+        <div class="navbar-mobie-form">
+            <form action="{{ route('home') }}" method="GET" id="searchForm" {{ (request()->input('query')) ? '' : 'hidden' }}>
+                @if (request()->input('category_id'))
+                <input type="hidden" name="category_id" value="{{ old('query', request()->input('category_id')) }}">
+                @endif
+                <input type="text" name="query" value="{{ old('query', request()->input('query')) }}" placeholder="{{ __('message.blog-search') }}">
+                <img src="/image/x.png" onclick="showSearchInput()">
+            </form>
         </div>
-        <div class="navbar-mobie-bars">
-            <img src="/image/navbar-bars.png" alt="">
+        <div class="navbar-mobie-search">
+            <div id="searchIcon">
+                <img src="/image/Search.png" alt="" onclick="showSearchInput()">
+            </div>
+        </div>
+        <div class="navbar-mobie-bars" id="toggleMenu">
+            <img src="/image/navbar-bars.png" onclick="showMenu()">
+            <div class="navbar-mobie-bars-item" id="menu">
+                <ul>
+                    <li><a href="{{ route('home') }}">{{ __('message.home') }}</a></li>
+                    <li><a href="{{ route('blog.index') }}">{{ __('message.create-blog') }}</a></li>
+                    @if ($auth)
+                    <li><a href="{{ route('profile.index') }}">{{ __('message.profile') }}</a></li>
+                    <li><a href="{{ route('blogs-user') }}">{{ __('message.my-blog') }}</a></li>
+                    <li><a href="{{ route('change.password') }}">{{ __('message.change-password') }}</a></li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <a href="#" onclick="this.parentNode.submit();">{{ __('message.logout') }}</a>
+                    </form>
+                    @else
+                    <li><a href="{{ route('login') }}">{{ __('message.login') }}</a></li>
+                    @endif
+                </ul>
+            </div>
         </div>
     </div>
     <!-- Nav mobie -->
@@ -36,10 +64,10 @@
             <a href="{{ route('blog.index') }}">{{ __('message.create-blog') }}</a>
         </div>
         @if ($auth)
-        <div class="navbar-menu-user" id="toggleFrofile">
-            <a href="#">{{ $auth->name }}</a>
+        <div class="navbar-menu-user">
+            <a href="#" onclick="showProfile()">{{ $auth->name }}</a>
             @if ($auth->avatar)
-            <img src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}" alt="">
+            <img src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}" onclick="showProfile()">
             @endif
             <div class="navbar-menu-user-profile" id="profile">
                 <ul>
@@ -48,9 +76,7 @@
                     <li><a href="{{ route('blogs-user') }}">{{ __('message.my-blog') }}</a></li>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit">
-                            <li><a>{{ __('message.logout') }}</a></li>
-                        </button>
+                        <a href="#" onclick="this.parentNode.submit();">{{ __('message.logout') }}</a>
                     </form>
                 </ul>
             </div>

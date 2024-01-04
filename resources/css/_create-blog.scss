@@ -1,5 +1,3 @@
-@import '_media-queries';
-
 .create-blog {
   margin: 0 7% 40px 7%;
   &-link {
@@ -9,6 +7,7 @@
     a {
       font: 700 16px/23.17px Noto Sans JP;
       text-decoration: none;
+      color: $color-gray1;
     }
     span {
       font: 700 16px/23.17px Noto Sans JP;
@@ -16,10 +15,13 @@
   }
   &-form {
     width: 100%;
-    height: 1106px;
+    height: 1136px;
     background: $color-gray;
     form {
       padding: 30px 30px 52px 30px;
+      @include mobie {
+        padding: 30px 15px 52px 15px;
+      }
       p {
         @extend %font-700;
         width: 100%;
@@ -78,6 +80,9 @@
         width: 25%;
         height: 170px;
         margin: 10px 0 27px 0;
+        @include mobie {
+          width: 50%;
+        }
       }
       &-btn {
         @extend %font-400;

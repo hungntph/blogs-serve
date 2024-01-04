@@ -7,19 +7,19 @@
 
 <div class="create-blog">
     <div class="create-blog-link">
-        <a href="">{{ __('message.home') }}</a> > <span>{{ __('message.create-blog') }}</span>
+        <a href="{{ route('home') }}">{{ __('message.home') }}</a> > <span>{{ __('message.create-blog') }}</span>
     </div>
     <div class="create-blog-form">
         <form action="{{ route('blog.create') }}" enctype="multipart/form-data" method="POST">
         @csrf
             <p>{{ __('message.create-blog') }}</p>
             @if(Session::has('create-success'))
-                <span class="text-sm text-red-500">
+                <span class="text-success">
                     {{ __('message.create-success') }}
                 </span>
             @endif
             @if(Session::has('create-failed'))
-                <span class="text-sm text-red-500">
+                <span class="text-danger">
                     {{ __('message.create-failed') }}
                 </span>
             @endif
@@ -36,7 +36,7 @@
             </div>
             <div class="create-blog-form-input">
                 <label for="name"><b>{{ __('message.blog-title') }}</b><span>*</span></label>
-                <input type="text" name="title"> 
+                <input type="text" name="title" value="{{ old('title', request()->input('title')) }}"> 
                 @error('title')
                     <span class="text-sm text-red-500">{{ $message }}</span><br>
                 @enderror 
@@ -59,9 +59,9 @@
             <div class="create-blog-form-input">
                 <label for="name"><b>{{ __('message.blog-desc') }}</b><span>*</span></label>
                 <div>
-                    <textarea name="content"></textarea>
+                    <textarea name="content">{{ old('content', request()->input('content')) }}</textarea>
                 </div>
-                @error('title')
+                @error('content')
                     <span class="text-sm text-red-500">{{ $message }}</span><br>
                 @enderror 
             </div>

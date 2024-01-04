@@ -36,20 +36,20 @@
                 <span class="text-sm text-red-500">{{ $message }}</span><br>
             @enderror 
             <div class="profile-info-name">
-                <input type="text" name="name" value="{{ $auth->name }}">
+                <input type="text" name="name" value="{{ old('name', $auth->name) }}">
             </div>
             @error('name')
                 <span class="text-sm text-red-500">{{ $message }}</span><br>
             @enderror 
             <div class="profile-info-name">
-                <input type="text" name="phone" value="{{ $auth->phone }}">
+                <input type="text" name="phone" value="{{ old('phone', $auth->phone) }}">
             </div>
             @error('phone')
                 <span class="text-sm text-red-500">{{ $message }}</span><br>
             @enderror 
             <div class="profile-info-gender">
                 @foreach(User::GENDER as $key => $gender)
-                    <input type="radio" name="gender" value="{{$key}}" {{ $auth->gender == $key ? 'checked' : '' }}> {{ $gender }}
+                    <input type="radio" name="gender" value="{{$key}}" {{ old('gender', $auth->gender) == $key ? 'checked' : '' }}> {{ $gender }}
                 @endforeach
             </div>
             <div class="profile-info-btn">

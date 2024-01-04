@@ -49,6 +49,9 @@
     width: 570px;
     &-input {
       margin: 0 0 24px 0;
+      span {
+        color: $color-red;
+      }
     }
     &-btn {
       @extend %align-center;
@@ -78,9 +81,6 @@
       border: 1px solid $color-blue;
       background: $color-blue;
       color: $color-white;
-    }
-    span {
-      color: $color-red;
     }
     &-help {
       display: flex;

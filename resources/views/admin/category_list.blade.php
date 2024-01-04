@@ -18,7 +18,7 @@
     </span>
     @endif
     <div class="list-header">
-        <div>
+        <div class="list-header-create">
             <span>{{ __('message.ul-total') }}: </span><span>{{ $categories->count() }}</span>
             <button><a href="{{ route('category-index') }}">New Category</a></button>
         </div>

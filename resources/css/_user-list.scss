@@ -4,13 +4,58 @@
   &-header {
     margin: 0 20px 10px 10px;
     display: flex;
+    justify-content: space-between;
+    &-create {
+      a {
+        font: 14px/23.17px Noto Sans JP;
+        text-decoration: none;
+        color: $color-white;
+      }
+      button {
+        width: 120px;
+        height: 30px;
+        border-radius: 4px;
+        border: 1px solid $color-blue;
+        background: $color-blue;
+      }
+    }
+    &-search {
+      form {
+        display: flex;
+        @extend %align-center;
+        margin: 0 50px 0 0;
+        height: 40px;
+        border: 1px solid $color-boder;
+        border-radius: 20px;
+        overflow-x: hidden;
+
+        span {
+          display: inline-block;
+          padding: 0 10px 0 0;
+          cursor: pointer;
+        }
+
+        input {
+          padding: 0 0 0 10px;
+          height: 100%;
+          border: none;
+          outline: none;
+        }
+
+        button {
+          border: none;
+        }
+      }
+    }
   }
 
   &-search {
     display: flex;
     margin: 10px 0;
+
     form {
       display: flex;
+
       .list-search-search {
         @extend %align-center;
         margin: 0 50px 0 0;
@@ -18,27 +63,29 @@
         border: 1px solid $color-boder;
         border-radius: 20px;
         overflow-x: hidden;
-  
+
         span {
           display: inline-block;
           padding: 0 10px 0 0;
           cursor: pointer;
         }
-  
+
         input {
           padding: 0 0 0 10px;
           height: 100%;
           border: none;
           outline: none;
         }
-  
+
         button {
           border: none;
         }
       }
+
       .list-search-select {
         margin: 0 50px 0 50px;
         height: 100%;
+
         select {
           height: 100%;
           border: 1px solid $color-boder;
@@ -75,6 +122,7 @@
       .unblocked {
         background: $color-blue;
       }
+
       .blocked {
         background: $color-red;
       }
