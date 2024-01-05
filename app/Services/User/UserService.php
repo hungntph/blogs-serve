@@ -51,8 +51,8 @@ class UserService
         try {
             $user = $this->userRepository->getUserByNameOrEmail($request['email']);
             if ($user) {
-                $mailVerifyAt = now()->format('Y-m-d H:i:s');
-                $updateMailVerifyAt = $this->userRepository->updateMailVerifyAt($user, $mailVerifyAt);
+                $sendMailVerify = now()->format('Y-m-d H:i:s');
+                $updateMailVerifyAt = $this->userRepository->updateMailVerifyAt($user, $sendMailVerify);
                 if ($updateMailVerifyAt) {
                     Mail::to($user['email'])->send(new SendMail($user));
                     return true;

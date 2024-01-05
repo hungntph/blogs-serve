@@ -44,7 +44,9 @@
             </div>
             <div class="blog-container-detail-image">
                 @if ($blog->image)
-                <img id="" src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}" />
+                    <img src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}" />
+                @else
+                    <img src="/image/default-blog.png">
                 @endif
             </div>
             <div class="blog-container-detail-desc">
@@ -67,6 +69,8 @@
                             <a href="{{ route('blog.show', $relateBlog->id) }}">
                                 @if ($relateBlog->image)
                                 <img src="{{ Vite::asset('public/storage/upload/' . $relateBlog->image) }}" />
+                                @else
+                                <img src="/image/default-blog.png" alt="">
                                 @endif
                             </a>
                             <div class="card-body">

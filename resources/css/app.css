@@ -405,7 +405,7 @@
   .blog-container-detail-related .dot:hover {
     background-color: #C40000;
   }
-  .blog-container-detail-related .dot .active {
+  .blog-container-detail-related .active {
     background-color: #C40000;
   }
   .blog-container-detail-related .slides img {
@@ -1423,6 +1423,9 @@
 }
 .main-content .profile {
   margin: 30px 0;
+}
+.main-content span {
+  font: 700 14px/23.17px Noto Sans JP;
 }
 
 * {

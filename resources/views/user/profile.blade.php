@@ -59,7 +59,7 @@
                     <button type="submit">{{ __('message.save') }}</button>
                 </div>
                 <div class="profile-info-btn-cancel">
-                    <a href="{{ route('home') }}">{{ __('message.cancel') }}</a>
+                    <a href="{{ url()->previous() }}">{{ __('message.cancel') }}</a>
                 </div>
             </div>
         </form>

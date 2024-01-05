@@ -50,7 +50,7 @@ use App\Models\Blog;
                 <select name="status" id="status" onchange="this.form.submit()">
                     <option value="">Status</option>
                     @foreach (Blog::STATUSES as $key => $value)
-                    <option value="{{ $key }}" {{ $key == request()->input('status') ? 'selected' : ''}} >{{ $value }}</option>
+                    <option value="{{ $key }}" {{ $key == request()->input('status') ? 'selected' : ''}}>{{ $value }}</option>
                     @endforeach
                 </select>
             </div>

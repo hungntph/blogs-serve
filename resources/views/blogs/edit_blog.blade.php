@@ -10,18 +10,18 @@
     </div>
     <div class="create-blog-form">
         <form action="{{ route('blog.update', $blog->id) }}" enctype="multipart/form-data" method="POST">
-        @csrf
-        @method('PUT')
+            @csrf
+            @method('PUT')
             <p>{{ __('message.edit-blog') }}</p>
             @if(Session::has('blog-update-success'))
-                <span class="text-success">
-                    {{ __('message.update-success') }}
-                </span>
+            <span class="text-success">
+                {{ __('message.update-success') }}
+            </span>
             @endif
             @if(Session::has('blog-update-failed'))
-                <span class="text-danger">
-                    {{ __('message.updaste-failed') }}
-                </span>
+            <span class="text-danger">
+                {{ __('message.updaste-failed') }}
+            </span>
             @endif
             <div class="create-blog-form-input">
                 <input type="hidden" name="id" value="{{ $blog->id }}">
@@ -30,18 +30,18 @@
                     <label for="name"><b>{{ __('message.blog-category') }}</b><span>*</span></label>
                 </div>
                 <select name="category_id">
-                @foreach ($categories as $category)
+                    @foreach ($categories as $category)
                     old('gender', $auth->gender)
                     <option value="{{ $category->id }}" {{ $category->id == $blog->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
-                @endforeach
+                    @endforeach
                 </select>
             </div>
             <div class="create-blog-form-input">
                 <label for="name"><b>{{ __('message.blog-title') }}</b><span>*</span></label>
-                <input type="text" name="title" value="{{ old('title', $blog->title)}}"> 
+                <input type="text" name="title" value="{{ old('title', $blog->title)}}">
                 @error('title')
-                    <span class="text-sm text-red-500">{{ $message }}</span><br>
-                @enderror 
+                <span class="text-sm text-red-500">{{ $message }}</span><br>
+                @enderror
             </div>
             <div class="create-blog-form-upload">
                 <div class="create-blog-form-upload-title">
@@ -52,14 +52,15 @@
                     <input accept="image/*" onchange="loadFile(event)" type="file" name="file" id="uploadImg" class="form-control-file" hidden>
                 </div>
                 <div class="create-blog-form-upload-image">
-                    @if ($blog->image) 
-                    <img id="showImage" src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}"/>
+                    @if ($blog->image)
+                    <img id="showImage" src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}" />
+                    @else
+                    <img id="showImage" src="/image/default-blog.png">
                     @endif
-                    <img id="showImage" />
                 </div>
                 @error('file')
-                    <span class="text-sm text-red-500">{{ $message }}</span><br>
-                @enderror 
+                <span class="text-sm text-red-500">{{ $message }}</span><br>
+                @enderror
             </div>
             <div class="create-blog-form-input">
                 <label for="name"><b>{{ __('message.blog-desc') }}</b><span>*</span></label>
@@ -67,8 +68,8 @@
                     <textarea name="content">{{ old('content', $blog->content)}}</textarea>
                 </div>
                 @error('content')
-                    <span class="text-sm text-red-500">{{ $message }}</span><br>
-                @enderror 
+                <span class="text-sm text-red-500">{{ $message }}</span><br>
+                @enderror
             </div>
             <div class="create-blog-form-submit">
                 <button type="submit" class="create">{{ __('message.edit-blog') }}</button>

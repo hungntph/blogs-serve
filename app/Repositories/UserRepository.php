@@ -13,20 +13,21 @@ class UserRepository
     public function register(array $request): User
     {
         $token = Str::random(20);
-        $mailVerifyAt = now()->format('Y-m-d H:i:s');
+        $sendMailVerify = now()->format('Y-m-d H:i:s');
         $userInfo = [
             'token' => $token,
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'mail_verify_at' => $mailVerifyAt,
+            'send_mail_verify' => $sendMailVerify,
         ];
         return User::create($userInfo);
     }
 
     public function verified(User $request): bool
     {
-        return User::where('id', $request->id)->update(['status' => User::STATUS_VERIFIED]);
+        $mailVerifyAt = now()->format('Y-m-d H:i:s');
+        return User::where('id', $request->id)->update(['status' => User::STATUS_VERIFIED, 'mail_verify_at' => $mailVerifyAt]);
     }
 
     public function getUserByNameOrEmail(string $request): User | null
@@ -34,9 +35,9 @@ class UserRepository
         return User::where('email', $request)->orWhere('name', $request)->first();
     }
 
-    public function updateMailVerifyAt(User $user, string $mailVerifyAt): bool
+    public function updateMailVerifyAt(User $user, string $sendMailVerify): bool
     {
-        return User::where('id', $user->id)->update(['mail_verify_at' => $mailVerifyAt]);
+        return User::where('id', $user->id)->update(['send_mail_verify' => $sendMailVerify]);
     }
 
     public function update(int $id, array $request): bool

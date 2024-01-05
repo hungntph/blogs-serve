@@ -44,6 +44,7 @@ class User extends Authenticatable
         'token',
         'mail_verify_at',
         'remember_token',
+        'send_mail_verify',
     ];
 
     public function blogs(): HasMany

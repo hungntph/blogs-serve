@@ -7,7 +7,7 @@
 
 <div class="create-blog">
     <div class="create-blog-link">
-        <a href="{{ route('home') }}">{{ __('message.home') }}</a> > <span>{{ __('message.create-blog') }}</span>
+        <a href="{{ url()->previous() }}">{{ __('message.home') }}</a> > <span>{{ __('message.create-blog') }}</span>
     </div>
     <div class="create-blog-form">
         <form action="{{ route('blog.create') }}" enctype="multipart/form-data" method="POST">

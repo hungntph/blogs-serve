@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProfileRequest extends FormRequest
+class UpdateCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,8 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'unique:users,name,'.$this->id. ',id',
+                'unique:categories,name,'.$this->id. ',id',
                 'max:225',
-                'regex:/^[a-z0-9]+$/',
-            ],
-            'phone' => [
-                'max:11',
-                'nullable',
-                'regex:/^[0-9]+$/',
-            ],
-            'file' => [
-                'max:2000',
-                'mimes:jpeg,jpg,png',
             ],
         ];
     }

@@ -73,6 +73,8 @@ return [
     'mail-incorrect' => 'Email incorrect!',
     'update-status-success' => 'Change status successfully!',
     'update-status-failed' => 'Change status failed!',
+    'users-by-month' => 'Users by month',
+    'blogs-by-month' => 'Blogs by month',
  
     //user list
     'ul-user-list' => 'User list',

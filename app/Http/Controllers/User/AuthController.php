@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\ResendMailRequest;
 use App\Http\Requests\ResetPasswordRequest;
+use App\Repositories\UserRepository;
 use App\Services\User\BlogService;
 use App\Services\User\CategoryService;
 use Carbon\Carbon;
@@ -19,7 +20,8 @@ class AuthController extends Controller
     public function __construct(
         public UserService $userService,
         public BlogService $blogService,
-        public CategoryService $categoryService
+        public CategoryService $categoryService,
+        public UserRepository $userRepository
     ) {
     }
 
@@ -47,12 +49,13 @@ class AuthController extends Controller
         return back()->with('fail', trans('message.register-faild'));
     }
 
-    public function verified(User $user, string $token)
+    public function verified(int $register, string $token)
     {
+        $user = $this->userRepository->getUserById($register);
         $timenow = now();
-        $diff = $timenow->diffInMinutes(Carbon::parse($user->mail_verify_at));
+        $diff = $timenow->diffInMinutes(Carbon::parse($user->send_mail_verify));
         if ($diff > config('constant.expire_time')) {
-            return redirect()->route('verify-expired')->with('errors', trans('message.verify-expired'));
+            abort(403);
         }
         if ($user->token === $token) {
             if ($user->status == User::STATUS_VERIFIED) {
@@ -63,7 +66,7 @@ class AuthController extends Controller
                 return redirect()->route('login.index');
             }
         }
-        return redirect()->route('verify-failed')->with('errors', trans('message.verify-failed'));
+        abort(403);
     }
 
     public function resendMail(ResendMailRequest $request)
