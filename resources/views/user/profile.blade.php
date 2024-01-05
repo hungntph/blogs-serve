@@ -14,18 +14,20 @@
             @csrf
             @method('PUT')
             @if(Session::has('profile-update-success'))
-                <span class="text-sm text-red-500">
+                <span class="text-success">
                     {{ __('message.profile-update-success') }}
                 </span>
             @endif
             @if(Session::has('profile-update-failed'))
-                <span class="text-sm text-red-500">
+                <span class="text-danger">
                     {{ __('message.profile-update-failed') }}
                 </span>
             @endif
             <div class="profile-info-image">
                 @if($auth->avatar)
                     <img id="showImage" src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}"/>
+                @else
+                    <img id="showImage" src="/image/default-user.png">
                 @endif
             </div>
             <div class="profile-info-upload">
@@ -33,19 +35,19 @@
                 <input accept="image/*" onchange="loadFile(event)" type="file" name="file" id="uploadImg" class="form-control-file" hidden>
             </div>
             @error('file')
-                <span class="text-sm text-red-500">{{ $message }}</span><br>
+                <span class="text-danger">{{ $message }}</span><br>
             @enderror 
             <div class="profile-info-name">
                 <input type="text" name="name" value="{{ old('name', $auth->name) }}">
             </div>
             @error('name')
-                <span class="text-sm text-red-500">{{ $message }}</span><br>
+                <span class="text-danger">{{ $message }}</span><br>
             @enderror 
             <div class="profile-info-name">
                 <input type="text" name="phone" value="{{ old('phone', $auth->phone) }}">
             </div>
             @error('phone')
-                <span class="text-sm text-red-500">{{ $message }}</span><br>
+                <span class="text-danger">{{ $message }}</span><br>
             @enderror 
             <div class="profile-info-gender">
                 @foreach(User::GENDER as $key => $gender)

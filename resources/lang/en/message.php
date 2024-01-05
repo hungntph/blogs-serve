@@ -71,6 +71,8 @@ return [
     'update-profile' => 'Update profile',
     'change-pw' => 'Change password',
     'mail-incorrect' => 'Email incorrect!',
+    'update-status-success' => 'Change status successfully!',
+    'update-status-failed' => 'Change status failed!',
  
     //user list
     'ul-user-list' => 'User list',

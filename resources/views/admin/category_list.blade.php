@@ -8,12 +8,12 @@
 
 <div class="list" id="popup">
     @if(Session::has('delete-category-success'))
-    <span class="text-sm text-red-500">
+    <span class="text-success">
         {{ __('message.delete-category-success') }}
     </span>
     @endif
     @if(Session::has('delete-category-failed'))
-    <span class="text-sm text-red-500">
+    <span class="text-danger">
         {{ __('message.delete-category-failed') }}
     </span>
     @endif

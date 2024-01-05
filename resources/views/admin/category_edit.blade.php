@@ -18,12 +18,12 @@
             @method('PUT')
             <p>{{ __('message.blog-category') }}</p>
             @if(Session::has('update-category-success'))
-            <span class="text-sm text-red-500">
+            <span class="text-success">
                 {{ __('message.update-category-success') }}
             </span>
             @endif
             @if(Session::has('update-category-failed'))
-            <span class="text-sm text-red-500">
+            <span class="text-danger">
                 {{ __('message.update-category-failed') }}
             </span>
             @endif

@@ -51,8 +51,14 @@ $(document).ready(function () {
             success:function(result) {
                 $('#createComment')[0].reset();
                 let newComment = comment(result.comment, result.user);
-                let addComment = $("<div></div>").addClass('blog-container-detail-comments').html(newComment);
-                $("#commentList").prepend(addComment);
+                if (result.user.avatar) {
+                    let addComment = $("<div></div>").addClass('blog-container-detail-comments').html(newComment);
+                    $("#commentList").prepend(addComment);
+                } else {
+                    let addComment = $("<div></div>").addClass('blog-container-detail-comments').html(newComment);
+                    $("#commentList").prepend(addComment);
+                    $("#commentList img").remove();
+                }
             },
             error: function (err) {
                 throw new Error(err);

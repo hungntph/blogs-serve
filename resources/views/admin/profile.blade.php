@@ -20,18 +20,20 @@ use App\Models\User;
                 @csrf
                 @method('PUT')
                 @if(Session::has('profile-update-success'))
-                <span class="text-sm text-red-500">
+                <span class="text-success">
                     {{ __('message.profile-update-success') }}
                 </span>
                 @endif
                 @if(Session::has('profile-update-failed'))
-                <span class="text-sm text-red-500">
+                <span class="text-danger">
                     {{ __('message.profile-update-failed') }}
                 </span>
                 @endif
                 <div class="profile-info-image">
                     @if($auth->avatar)
-                    <img id="showImage" src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}"/>
+                    <img id="showImage" src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}"/>
+                    @else
+                    <img id="showImage" src="/image/default-user.png">
                     @endif
                 </div>
                 <div class="profile-info-upload">

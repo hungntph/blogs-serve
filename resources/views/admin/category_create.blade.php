@@ -17,12 +17,12 @@
             @csrf
             <p>{{ __('message.blog-category') }}</p>
             @if(Session::has('create-category-success'))
-            <span class="text-sm text-red-500">
+            <span class="text-success">
                 {{ __('message.create-category-success') }}
             </span>
             @endif
             @if(Session::has('create-category-failed'))
-            <span class="text-sm text-red-500">
+            <span class="text-danger">
                 {{ __('message.create-category-failed') }}
             </span>
             @endif

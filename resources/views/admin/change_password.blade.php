@@ -16,17 +16,17 @@
                 @csrf
                 @method('PUT')
                 @if(Session::has('change-password-success'))
-                <span class="text-sm text-red-500">
+                <span class="text-success">
                     {{ __('message.change-password-success') }}
                 </span>
                 @endif
                 @if(Session::has('change-password-failed'))
-                <span class="text-sm text-red-500">
+                <span class="text-danger">
                     {{ __('message.change-password-failed') }}
                 </span>
                 @endif
                 @if(Session::has('old-password-incorrect'))
-                <span class="text-sm text-red-500">
+                <span class="text-danger">
                     {{ __('message.old-password-incorrect') }}
                 </span>
                 @endif

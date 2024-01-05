@@ -12,12 +12,12 @@ use App\Models\Blog;
 
 <div class="list" id="popup">
     @if(Session::has('delete-blog-success'))
-    <span class="text-sm text-red-500">
+    <span class="text-success">
         {{ __('message.delete-blog-success') }}
     </span>
     @endif
     @if(Session::has('delete-blog-failed'))
-    <span class="text-sm text-red-500">
+    <span class="text-danger">
         {{ __('message.delete-blog-failed') }}
     </span>
     @endif
@@ -50,7 +50,7 @@ use App\Models\Blog;
                 <select name="status" id="status" onchange="this.form.submit()">
                     <option value="">Status</option>
                     @foreach (Blog::STATUSES as $key => $value)
-                    <option value="{{ $key }}">{{ $value }}</option>
+                    <option value="{{ $key }}" {{ $key == request()->input('status') ? 'selected' : ''}} >{{ $value }}</option>
                     @endforeach
                 </select>
             </div>
