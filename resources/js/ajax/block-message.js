@@ -11,7 +11,9 @@ $(document).ready(function() {
             success: function() {
                 $('#box').addClass("block");
                 $('#blockPopup').addClass("show");
-                $('#box').disabled = true;
+                $('#navbar').find('input, button').attr('disabled','disabled');
+                $('a').removeAttr('href');
+                $('img, a').removeAttr('onclick');
             }
         });
     })

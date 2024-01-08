@@ -55,7 +55,7 @@ class BlogRepository
         if (data_get($request, 'category_id')) {
             $builder->where('category_id', $request['category_id']);
         }
-        if (data_get($request, 'status')) {
+        if (data_get($request, 'status') || isset($request['status'])) {
             $builder->where('status', $request['status']);
         }
         if (data_get($request, 'order_by')) {
