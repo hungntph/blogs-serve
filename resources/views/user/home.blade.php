@@ -28,7 +28,11 @@
         @foreach ($blogs as $blog)
         <div class="col-md-4 col-lg-4 col-sx-12 col-sm-6">
             <div class="card">
-                <img src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}" class="card-img-top img-size " alt="...">
+                @if ($blog->image)
+                    <img src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}" class="card-img-top img-size " alt="...">
+                @else
+                    <img src="/image/default-blog.png" class="card-img-top img-size " alt="...">
+                @endif
                 <div class="card-body">
                     <div class="author-time">
                         <h7 class="author"><i class='bx bx-user'></i>{{ $blog->user->name }}</h7>

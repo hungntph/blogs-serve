@@ -81,6 +81,10 @@
                 </ul>
             </div>
         </div>
+        @else
+        <div class="navbar-menu-user">
+            <a href="{{ route('login') }}">{{ __('message.login') }}</a>
+        </div>
         @endif
     </div>
 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Services\User\BlogService;
 use App\Services\User\CategoryService;
 use App\Services\User\UploadFileService;
@@ -47,7 +48,7 @@ class AdminCategoryController extends Controller
         return view('admin.category_edit', compact('auth', 'category'));
     }
 
-    public function update(int $id, CreateCategoryRequest $request)
+    public function update(int $id, UpdateCategoryRequest $request)
     {
         $update = $this->categoryService->update($id, $request->only('name'));
         if ($update) {
