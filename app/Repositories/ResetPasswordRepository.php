@@ -16,7 +16,7 @@ class ResetPasswordRepository
         return ResetPassword::create($data);
     }
 
-    public function findByToken(string $token): ResetPassword
+    public function findByToken(string $token): ResetPassword | null
     {
         return ResetPassword::where('token', $token)->first();
     }

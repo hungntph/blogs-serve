@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection as SupportCollection;
@@ -31,12 +32,17 @@ class BlogRepository
 
     public function getRelatedBlog(int $id): Collection
     {
-        return Blog::inRandomOrder()->approved()->where('id', '!=', $id)->limit(config('constant.limit'))->get();
+        return Blog::with('user')->whereHas('user', function ($q) {
+            $q->where('status', User::STATUS_VERIFIED);
+        })
+        ->inRandomOrder()->approved()->where('id', '!=', $id)->limit(config('constant.limit'))->get();
     }
 
     public function getBlogsList(array $request): LengthAwarePaginator
     {
-        $builder = Blog::approved()->with('user');
+        $builder = Blog::approved()->with('user')->whereHas('user', function ($q) {
+            $q->where('status', User::STATUS_VERIFIED);
+        });
         if (data_get($request, 'query')) {
             $builder->where('title', 'like', '%' . $request['query'] . '%');
         }

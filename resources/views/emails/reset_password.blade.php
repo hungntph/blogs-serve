@@ -6,7 +6,7 @@
 <body>
     <h2>Hello {{ $mailData['name'] }}</h2>
     <p>
-        <a href="{{ route('reset.mail', ['token'=> $token]) }}">
+        <a href="{{ route('reset.mail', ['token' => $token]) }}">
             Reset password
         </a>
     </p>

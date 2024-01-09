@@ -59,7 +59,9 @@ class AdminBlogController extends Controller
         $blog = $this->blogService->getBlog($id);
         $delete = $this->blogService->deleteBlog($id);
         if ($delete) {
-            $this->uploadFileService->deleteFile($blog->image);
+            if ($blog->image) {
+                $this->uploadFileService->deleteFile($blog->image);
+            }
             $this->commentService->deleteComment($id);
             return back()->with('delete-blog-success', trans('message.delete-blog-success'));
         }
