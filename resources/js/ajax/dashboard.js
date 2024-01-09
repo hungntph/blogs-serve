@@ -20,7 +20,7 @@ function chartData(ctx, type, labels, datas) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Blogs',
+                label: 'Data',
                 data: datas,
                 borderWidth: 1
             }]
