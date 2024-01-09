@@ -11,7 +11,6 @@
                     @if ($auth->avatar)
                     <img src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}">
                     @endif
-                    <img>
                 </span>
                 <div class="header-title-user-profile" id="profile">
                     <ul>

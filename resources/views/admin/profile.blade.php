@@ -31,7 +31,7 @@ use App\Models\User;
                 @endif
                 <div class="profile-info-image">
                     @if($auth->avatar)
-                    <img id="showImage" src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}"/>
+                    <img id="showImage" src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}"/>
                     @else
                     <img id="showImage" src="/image/default-user.png">
                     @endif
