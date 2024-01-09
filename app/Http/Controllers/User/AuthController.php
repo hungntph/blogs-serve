@@ -83,9 +83,11 @@ class AuthController extends Controller
         $user = $this->userService->login($request);
         if ($user) {
             if ($user->status == User::STATUS_NOT_VERIFIED) {
+                Auth::logout();
                 return redirect()->route('resend-mail-verify');
             }
             if ($user->status == User::STATUS_BLOCKED) {
+                Auth::logout();
                 return back()->with('blocked', trans('message.blocked'));
             }
             Auth::login($user, $request['remember'] ? true: false);
