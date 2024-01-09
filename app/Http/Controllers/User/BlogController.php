@@ -94,7 +94,9 @@ class BlogController extends Controller
         if (Gate::allows('delete', $request)) {
             $deleted = $this->blogService->deleteBlog($id);
             if ($deleted) {
-                $this->uploadFileService->deleteFile($request['image']);
+                if ($request['image']) {
+                    $this->uploadFileService->deleteFile($request['image']);
+                }
                 $this->commentService->deleteComment($id);
                 return redirect()->route('home')->with('delete-blog-success', trans('message.delete-blog-success'));
             }
