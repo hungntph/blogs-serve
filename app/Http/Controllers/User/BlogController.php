@@ -8,6 +8,7 @@ use App\Http\Requests\DeleteBlogRequest;
 use App\Http\Requests\GetListBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
+use App\Models\User;
 use App\Services\User\BlogService;
 use App\Services\User\CategoryService;
 use App\Services\User\CommentService;
@@ -58,7 +59,8 @@ class BlogController extends Controller
 
     public function update($id, UpdateBlogRequest $request)
     {
-        if (Gate::allows('update', $request)) {
+        $blog = $this->blogService->getBlog($id);
+        if (Gate::allows('update', $blog)) {
             if ($request->file('file')) {
                 $uploadFile = $this->uploadFileService->uploadFile($request->file('file'));
                 $request = array_merge($request->only('id', 'user_id', 'category_id', 'title', 'content'), ['image' => $uploadFile]);
@@ -78,6 +80,9 @@ class BlogController extends Controller
     {
         $auth = auth()->user();
         $blog = $this->blogService->getBlog($id);
+        if ($blog->user->status != User::STATUS_VERIFIED) {
+            abort(403);
+        }
         $checkLike = $this->blogService->checklike($blog);
         $relatedBlogs = $this->blogService->getRelatedBlog($id);
         if ($blog->status == Blog::STATUS_NOT_APPROVED) {
@@ -91,7 +96,8 @@ class BlogController extends Controller
 
     public function destroy(DeleteBlogRequest $request, int $id)
     {
-        if (Gate::allows('delete', $request)) {
+        $blog = $this->blogService->getBlog($id);
+        if (Gate::allows('delete', $blog)) {
             $deleted = $this->blogService->deleteBlog($id);
             if ($deleted) {
                 if ($request['image']) {

@@ -29,9 +29,9 @@
         <div class="col-md-4 col-lg-4 col-sx-12 col-sm-6">
             <div class="card">
                 @if ($blog->image)
-                    <img src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}" class="card-img-top img-size " alt="...">
+                <img src="{{ Vite::asset('public/storage/upload/' . $blog->image) }}" class="card-img-top img-size " alt="...">
                 @else
-                    <img src="/image/default-blog.png" class="card-img-top img-size " alt="...">
+                <img src="/image/default-blog.png" class="card-img-top img-size " alt="...">
                 @endif
                 <div class="card-body">
                     <div class="author-time">

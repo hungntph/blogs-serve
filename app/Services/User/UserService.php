@@ -9,17 +9,23 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\LoginUserRequest;
 use App\Mail\SendMailResetPassword;
 use App\Models\Blog;
+use App\Repositories\BlogRepository;
+use App\Repositories\CommentRepository;
 use App\Repositories\ResetPasswordRepository;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\ResetPassword;
 
 class UserService
 {
     public function __construct(
         public UserRepository $userRepository,
-        public ResetPasswordRepository $resetPasswordRepository
+        public ResetPasswordRepository $resetPasswordRepository,
+        public BlogRepository $blogRepository,
+        public UploadFileService $uploadFileService,
+        public CommentRepository $commentRepository,
     ) {
     }
 
@@ -110,6 +116,15 @@ class UserService
     {
         $passwordReset = $this->resetPasswordRepository->create($email);
         return $passwordReset->token;
+    }
+
+    public function checkToken(string $token): ResetPassword | null
+    {
+        try {
+            return $this->resetPasswordRepository->findByToken($token);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     public function reseted(array $request): bool

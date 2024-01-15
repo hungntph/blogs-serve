@@ -14,7 +14,7 @@
 
     <div id="commentList">
         <div class="blog-container-detail-comments" id="list">
-        @foreach ($blog->comments as $comment)
+            @foreach ($blog->comments as $comment)
             <div class="userComment">
                 <div class="blog-container-detail-comments-user">
                     @if ($comment->user->avatar)

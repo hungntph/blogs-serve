@@ -121,7 +121,11 @@ class AuthController extends Controller
 
     public function mailResetPassword(string $token)
     {
-        return view("auth.reset-password", compact('token'));
+        $checkToken = $this->userService->checkToken($token);
+        if ($checkToken) {
+            return view("auth.reset-password", compact('token'));
+        }
+        abort(403);
     }
 
     public function resetPassword(ResetPasswordRequest $request)
