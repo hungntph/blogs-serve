@@ -1,4 +1,9 @@
-<div class="navbar" id="navbar" style="position: fixed;">
+@php
+use App\Models\User;
+@endphp
+
+
+<div class="navbar" id="navbar">
     <div class="navbar-logo">
         <img src="/image/logo-regit.png">
         <span>RT-Blogs</span>
@@ -61,7 +66,9 @@
             </form>
         </div>
         <div>
+            @if (!$auth || $auth->role == User::USER_ROLE)
             <a href="{{ route('blog.index') }}">{{ __('message.create-blog') }}</a>
+            @endif
         </div>
         @if ($auth)
         <div class="navbar-menu-user">
@@ -71,6 +78,7 @@
             @endif
             <div class="navbar-menu-user-profile" id="profile">
                 <ul>
+                    @if ($auth->role == User::USER_ROLE)
                     <li><a href="{{ route('profile.index') }}">{{ __('message.profile') }}</a></li>
                     <li><a href="{{ route('change.password') }}">{{ __('message.change-password') }}</a></li>
                     <li><a href="{{ route('blogs-user') }}">{{ __('message.my-blog') }}</a></li>
@@ -78,6 +86,9 @@
                         @csrf
                         <a href="#" onclick="this.parentNode.submit();">{{ __('message.logout') }}</a>
                     </form>
+                    @elseif ($auth->role == User::ADMIN_ROLE)
+                    <li><a href="{{ route('admin.index') }}">{{ __('message.dashboard') }}</a></li>
+                    @endif
                 </ul>
             </div>
         </div>

@@ -27,6 +27,8 @@
     <script src="{{ Vite::asset('resources/js/app.js') }}"></script>
     <script type="module" src="{{ Vite::asset('resources/js/ajax/block-message.js') }}"></script>
     <script type="module" src="{{ Vite::asset('resources/js/connect.js') }}"></script>
+
+    @yield('scripts')
 </body>
 
 </html>

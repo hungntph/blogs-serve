@@ -19,12 +19,13 @@ class AdminController extends Controller
     ) {
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $auth = auth()->user();
-        $blogs = $this->blogRepository->getBlogByMonth();
-        $users = $this->userRepository->getUserByMonth();
-        return view("admin.dashboard", compact('auth', 'users', 'blogs'));
+        $blogs = $this->blogRepository->getBlogByMonth($request->only('year'));
+        $users = $this->userRepository->getUserByMonth($request->only('year'));
+        $years = $this->userRepository->getYears();
+        return view("admin.dashboard", compact('auth', 'users', 'blogs', 'years'));
     }
 
     public function users(Request $request)

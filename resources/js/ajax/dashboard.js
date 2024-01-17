@@ -11,7 +11,7 @@ $(document).ready(function () {
     chartData(blog, 'bar', blogsLabel, blogsData)
 
     const user = document.getElementById('userChart');
-    chartData(user, 'pie', usersLabel, usersData)
+    chartData(user, 'bar', usersLabel, usersData)
 })
 
 function chartData(ctx, type, labels, datas) {

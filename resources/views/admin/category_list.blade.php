@@ -49,8 +49,8 @@
                     <a href="{{ route('category-edit', $category->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                     <a onclick="tooglePopup()"><i class="fa-solid fa-trash"></i></a>
                 </td>
+                @include('admin.category_delete_popup')
             </tr>
-            @include('admin.category_delete_popup')
             @endforeach
         </tbody>
     </table>

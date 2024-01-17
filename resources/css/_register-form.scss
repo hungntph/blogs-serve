@@ -45,6 +45,9 @@
   padding: 75px 0px 0px 0px;
   margin: 0 0 20px 0;
   width: 100%;
+  @include mobie {
+   margin: 0 50px 0 10px;
+  }
   &-signup {
     width: 570px;
     &-input {

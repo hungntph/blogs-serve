@@ -75,6 +75,7 @@ $(document).ready(function () {
         let form = comment.siblings('form');
         comment.hide();
         form.removeClass('hidden');
+        form.find('input').focus();
     })
 
     $('#comments').on('click', '.cancel-edit', function () {

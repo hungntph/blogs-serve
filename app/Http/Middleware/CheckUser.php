@@ -20,6 +20,6 @@ class CheckUser
         if (auth()->user() && auth()->user()->role == User::USER_ROLE) {
             return $next($request);
         }
-        return redirect()->route('login');
+        return abort(403);
     }
 }

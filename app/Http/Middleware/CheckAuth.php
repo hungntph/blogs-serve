@@ -18,6 +18,6 @@ class CheckAuth
         if (auth()->user()) {
             return $next($request);
         }
-        return redirect()->route('login');
+        return abort(403);
     }
 }

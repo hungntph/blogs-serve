@@ -19,6 +19,6 @@ class CheckAdmin
         if (auth()->user() && auth()->user()->role == User::ADMIN_ROLE) {
             return $next($request);
         }
-        return redirect()->route('login');
+        return abort(403);
     }
 }

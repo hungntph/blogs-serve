@@ -214,12 +214,13 @@
           border: 1px solid $placeholder;
           border-radius: 4px;
           font: 400 14px/23.17px Noto Sans JP;
-  
+          @include mobie {
+            margin: 120px 0 0 0;
+          }
           &::placeholder {
             color: $placeholder;
             font: 400 14px/23.17px Noto Sans JP;
           }
-  
           &:focus {
             outline: none;
           }
@@ -230,6 +231,9 @@
           height: 19px;
           border: none;
           margin: 3px 0 0 85%;
+          @include mobie {
+            margin: 120px 0 0 0;
+          }
         }
       }
       @include mobie {

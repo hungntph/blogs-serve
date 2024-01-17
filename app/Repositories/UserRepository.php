@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Illuminate\Support\Collection as SupportCollection;
 
 class UserRepository
 {
@@ -32,7 +31,9 @@ class UserRepository
 
     public function getUserByNameOrEmail(string $request): User | null
     {
-        return User::where('email', $request)->orWhere('name', $request)->first();
+        return User::where('email', $request)
+            ->orWhere('name', $request)
+            ->first();
     }
 
     public function updateMailVerifyAt(User $user, string $sendMailVerify): bool
@@ -59,15 +60,30 @@ class UserRepository
         return User::findOrFail($id);
     }
 
-    public function getUserByMonth(): SupportCollection
+    public function getUserByMonth($request): array
     {
-        $usersByMonth = User::selectRaw("count(id) as total, DATE_FORMAT(created_at, '%m-%Y') as dates")
+        $fields = [
+            "count(id) as total",
+            "DATE_FORMAT(created_at, '%m-%Y') as dates"
+        ];
+        $year = data_get($request, 'year') ?? now()->year;
+        $usersByMonth = User::popular($year)
+            ->selectRaw(implode(', ', $fields))
             ->groupBy('dates')
             ->orderBy('dates', 'asc')
             ->get();
+        $counts = collect($usersByMonth)->sum('total');
         $data = $usersByMonth->mapWithKeys(function ($item) {
             return [$item->dates => $item->total];
         });
-        return $data;
+        return ['data' => $data, 'total' => $counts];
+    }
+
+    public function getYears()
+    {
+        return User::selectRaw('YEAR(created_at) as year')
+            ->groupBy('year')
+            ->orderBy('year', 'desc')
+            ->get();
     }
 }

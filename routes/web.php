@@ -24,7 +24,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register.index');
     Route::post('/register', [AuthController::class, 'registerUser'])->name('register');
     Route::get('/verified/{register}/{token}', [AuthController::class, 'verified'])->name('register.verified');
-    Route::get('/login', [AuthController::class, 'login'])->name('login.index');
+    Route::get('/login', [AuthController::class, 'login'])->name('login.index')->middleware('guest');
     Route::post('/login', [AuthController::class, 'loginUser'])->name('login');
     Route::get('/blog/detail/{id}', [BlogController::class, 'show'])->name('blog.show');
     Route::get('/reset-password-form', [AuthController::class, 'resetForm'])->name('reset.index');

@@ -75,6 +75,7 @@ return [
     'update-status-failed' => 'Change status failed!',
     'users-by-month' => 'Users by month',
     'blogs-by-month' => 'Blogs by month',
+    'order-by-year' => 'Order by year',
  
     //user list
     'ul-user-list' => 'User list',
