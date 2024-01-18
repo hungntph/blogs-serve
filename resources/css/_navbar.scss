@@ -205,6 +205,7 @@
         position: relative;
   
         input {
+          margin: 100px 0 0 0;
           padding: 0 0 0 10px;
           width: 100%;
           height: 100%;
@@ -214,22 +215,27 @@
           border: 1px solid $placeholder;
           border-radius: 4px;
           font: 400 14px/23.17px Noto Sans JP;
-  
+          @include mobie {
+            margin: 120px 0 0 0;
+          }
           &::placeholder {
             color: $placeholder;
             font: 400 14px/23.17px Noto Sans JP;
           }
-  
           &:focus {
             outline: none;
           }
         }
         img {
           position: absolute;
+          top: 53px;
           width: 19px;
           height: 19px;
           border: none;
           margin: 3px 0 0 85%;
+          @include mobie {
+            margin: 120px 0 0 0;
+          }
         }
       }
       @include mobie {

@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Blog::class, 'likes', 'user_id', 'blog_id');
     }
+
+    public function scopePopular($query, $year)
+    {
+        return $query->whereYear('created_at', $year);
+    }
 }

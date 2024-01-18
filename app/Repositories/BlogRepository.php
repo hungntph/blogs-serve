@@ -6,7 +6,6 @@ use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection as SupportCollection;
 
 class BlogRepository
 {
@@ -17,7 +16,7 @@ class BlogRepository
 
     public function getBlogById(int $id): Blog
     {
-        return Blog::with('category', 'comments.user', 'user', 'likes')->findOrFail($id);
+        return Blog::with('category', 'user', 'likes')->findOrFail($id);
     }
 
     public function update(int $id, array $request): bool
@@ -32,17 +31,18 @@ class BlogRepository
 
     public function getRelatedBlog(int $id): Collection
     {
-        return Blog::with('user')->whereHas('user', function ($q) {
-            $q->where('status', User::STATUS_VERIFIED);
-        })
-        ->inRandomOrder()->approved()->where('id', '!=', $id)->limit(config('constant.limit'))->get();
+        return Blog::with('user')
+            ->whereRelation('user', 'status', User::STATUS_VERIFIED)
+            ->inRandomOrder()->approved()
+            ->where('id', '!=', $id)
+            ->limit(config('constant.limit'))->get();
     }
 
     public function getBlogsList(array $request): LengthAwarePaginator
     {
-        $builder = Blog::approved()->with('user')->whereHas('user', function ($q) {
-            $q->where('status', User::STATUS_VERIFIED);
-        });
+        $builder = Blog::approved()
+            ->with('user')
+            ->whereRelation('user', 'status', User::STATUS_VERIFIED);
         if (data_get($request, 'query')) {
             $builder->where('title', 'like', '%' . $request['query'] . '%');
         }
@@ -92,15 +92,22 @@ class BlogRepository
         return Blog::where('category_id', $id)->delete();
     }
 
-    public function getBlogByMonth(): SupportCollection
+    public function getBlogByMonth($request): array
     {
-        $blogsByMonth = Blog::selectRaw("count(id) as total, DATE_FORMAT(created_at, '%m-%Y') as dates")
+        $fields = [
+            "count(id) as total",
+            "DATE_FORMAT(created_at, '%m-%Y') as dates"
+        ];
+        $year = data_get($request, 'year') ?? now()->year;
+        $blogsByMonth = Blog::popular($year)
+            ->selectRaw(implode(', ', $fields))
             ->groupBy('dates')
             ->orderBy('dates', 'asc')
             ->get();
+        $counts = collect($blogsByMonth)->sum('total');
         $data = $blogsByMonth->mapWithKeys(function ($item) {
             return [$item->dates => $item->total];
         });
-        return $data;
+        return ['data' => $data, 'total' => $counts];
     }
 }

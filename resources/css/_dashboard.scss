@@ -4,9 +4,9 @@
   width: 300px;
   position: fixed;
   height: 100%;
-  background: $color-gray2;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.2);
   &-logo {
-    padding: 10px 7%;
+    padding: 10px 25%;
     img {
       margin: 10px 0;
       width: 61px;
@@ -17,7 +17,9 @@
     }
   }
   &-menu {
+    margin: 10px 12%;
     li {
+      padding: 7px 0;
       width: 100%;
       margin: 10px 0px;
       list-style: none;
@@ -28,6 +30,14 @@
       text-decoration: none;
       font: 500 18px/23.17px Noto Sans JP;
       color: $color-black1;
+    }
+    span {
+      margin: 0 5px;
+    }
+
+    li:has(> a.active) {
+      border-radius: 25px;
+      background-color: $color-gray;
     }
   }
 }

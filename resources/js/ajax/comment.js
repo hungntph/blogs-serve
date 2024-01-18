@@ -29,13 +29,15 @@ $(document).ready(function () {
             </div>
             <form id="formEdit" class="update hidden" comment-update-route="${route}/update/${comment.id}">
                 <input type="hidden" id="id" name="id" value="${comment.id}">
-                <input id="comment" name="comment" value="${comment.content}">
-                <button type="submit"> 
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </button>
-                <span class="cancel-edit">
-                    <i class="fa-solid fa-trash"></i>
-                </span>
+                <input id="comment" name="comment" value="${comment.content}" required>
+                <div class="form-icon">
+                    <button type="submit">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <span class="cancel-edit">
+                        <i class="fa-solid fa-xmark"></i>
+                    </span>
+                </div>
             </form>
         </div>
         </div>
@@ -75,6 +77,7 @@ $(document).ready(function () {
         let form = comment.siblings('form');
         comment.hide();
         form.removeClass('hidden');
+        form.find('input').focus();
     })
 
     $('#comments').on('click', '.cancel-edit', function () {

@@ -4,6 +4,7 @@ namespace App\Services\User;
 use App\Models\Blog;
 use App\Repositories\BlogRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CommentRepository;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -13,6 +14,7 @@ class BlogService
     public function __construct(
         public BlogRepository $blogRepository,
         public CategoryRepository $categoryRepository,
+        public CommentRepository $commentRepository,
     ) {
     }
 
@@ -118,6 +120,15 @@ class BlogService
     {
         try {
             return $this->blogRepository->getBlogsByCategory($id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function commentsByBlog(int $id): Collection
+    {
+        try {
+            return $this->commentRepository->commentsByBlog($id);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

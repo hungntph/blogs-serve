@@ -59,6 +59,11 @@
       height: 40px;
       margin: 16px 0 0 0;
     }
+    form {
+      @include mobie {
+        margin: 0 50px 0 50px;
+      }
+    }
     p {
       @extend %font-700;
       margin: 0 0 16px 0;
@@ -97,12 +102,18 @@
         }
         label {
           @extend %font-400;
+          @include mobie {
+            font: 10px/23.17px Noto Sans JP;
+          }
         }
       }
       a {
         @extend %font-400;
         color: $color-blue;
         text-decoration: none;
+        @include mobie {
+          font: 10px/23.17px Noto Sans JP;
+        }
       }
     }
   }

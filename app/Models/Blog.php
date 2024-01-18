@@ -66,4 +66,9 @@ class Blog extends Model
     {
         return Str::limit($this->content, self::CONTENT_LIMIT, '...');
     }
+
+    public function scopePopular($query, $year)
+    {
+        return $query->whereYear('created_at', $year);
+    }
 }

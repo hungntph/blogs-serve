@@ -5,7 +5,7 @@
         <img id="" src="{{ Vite::asset('public/storage/upload/' . $auth->avatar) }}" />
         @endif
         <form id="createComment">
-            <input type="text" name="content" id="content">
+            <input type="text" name="content" id="content" required>
             <input type="hidden" name="blog_id" id="blogId">
             <input type="submit" hidden>
         </form>
@@ -14,7 +14,7 @@
 
     <div id="commentList">
         <div class="blog-container-detail-comments" id="list">
-            @foreach ($blog->comments as $comment)
+            @foreach ($comments as $comment)
             <div class="userComment">
                 <div class="blog-container-detail-comments-user">
                     @if ($comment->user->avatar)
@@ -40,13 +40,15 @@
                 </div>
                 <form id="formEdit" class="update hidden" comment-update-route="{{ route('comment.update', $comment->id) }}">
                     <input type="hidden" id="id" name="id" value="{{ $comment->id }}">
-                    <input id="comment" name="comment" value="{{ $comment->content }}">
-                    <button type="submit">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
-                    <span class="cancel-edit">
-                        <i class="fa-solid fa-trash"></i>
-                    </span>
+                    <input id="comment" name="comment" value="{{ $comment->content }}" required>
+                    <div class="form-icon">
+                        <button type="submit">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <span class="cancel-edit">
+                            <i class="fa-solid fa-xmark"></i>
+                        </span>
+                    </div>
                 </form>
             </div>
             @endforeach
