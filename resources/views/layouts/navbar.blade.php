@@ -3,7 +3,7 @@ use App\Models\User;
 @endphp
 
 
-<div class="navbar" id="navbar">
+<div class="navbar" id="navbar" style="position: fixed;">
     <div class="navbar-logo">
         <img src="/image/logo-regit.png">
         <span>RT-Blogs</span>

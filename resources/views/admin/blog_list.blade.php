@@ -96,7 +96,7 @@ use App\Models\Blog;
                 <td>{{ Blog::STATUSES[$blog->status] }}</td>
                 <td>
                     <a href="{{ route('blog-edit', $blog->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a onclick="tooglePopup()"><i class="fa-solid fa-trash"></i></a>
+                    <a class="delete-blog" data-id="{{ $blog->id }}"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
             @include('admin.blog_delete_popup')
@@ -109,5 +109,9 @@ use App\Models\Blog;
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('scripts')
 
 @endsection

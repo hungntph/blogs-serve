@@ -48,21 +48,23 @@ class AdminBlogController extends Controller
         $blog = $this->blogService->getBlog($id);
         $updateBlog = $this->blogService->update($id, $request);
         if ($updateBlog) {
-            $this->uploadFileService->deleteFile($blog->image);
+            if ($blog->image) {
+                $this->uploadFileService->deleteFile($blog->image);
+            }
             return back()->with('blog-update-success', trans('message.update-success'));
         }
         return back()->with('blog-update-failed', trans('message.update-failed'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $blog = $this->blogService->getBlog($id);
-        $delete = $this->blogService->deleteBlog($id);
+        $blog = $this->blogService->getBlog($request['id']);
+        $delete = $this->blogService->deleteBlog($request['id']);
         if ($delete) {
             if ($blog->image) {
                 $this->uploadFileService->deleteFile($blog->image);
             }
-            $this->commentService->deleteComment($id);
+            $this->commentService->deleteComment($request['id']);
             return back()->with('delete-blog-success', trans('message.delete-blog-success'));
         }
         return back()->with('delete-blog-failed', trans('message.delete-blog-failed'));

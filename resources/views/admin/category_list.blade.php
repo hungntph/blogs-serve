@@ -47,7 +47,7 @@
                 <td>{{ $category->blogs->count() }}</td>
                 <td>
                     <a href="{{ route('category-edit', $category->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a onclick="tooglePopup()"><i class="fa-solid fa-trash"></i></a>
+                    <a class="delete-category" data-id="{{ $category->id }}"><i class="fa-solid fa-trash"></i></a>
                 </td>
                 @include('admin.category_delete_popup')
             </tr>
@@ -60,5 +60,9 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('scripts')
 
 @endsection

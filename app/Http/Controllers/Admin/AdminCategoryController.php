@@ -57,9 +57,9 @@ class AdminCategoryController extends Controller
         return back()->with('update-category-failed', trans('message.update-category-failed'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $delete = $this->categoryService->delete($id);
+        $delete = $this->categoryService->delete($request['id']);
         if ($delete) {
             return back()->with('delete-category-success', trans('message.delete-category-success'));
         }

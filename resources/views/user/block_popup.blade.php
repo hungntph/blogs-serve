@@ -1,6 +1,5 @@
 <div class="block-popup" id="blockPopup">
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
+    <form action="{{ route('login') }}" method="GET">
         <div class="blog-popup-content">
             <span>{{ __('message.block-message') }}</span>
         </div>
