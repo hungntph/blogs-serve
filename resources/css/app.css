@@ -857,16 +857,11 @@
 }
 .navbar-mobie-form form img {
   position: absolute;
-  top: 53px;
+  top: 63px;
   width: 19px;
   height: 19px;
   border: none;
   margin: 3px 0 0 85%;
-}
-@media screen and (max-width: 768px) {
-  .navbar-mobie-form form img {
-    margin: 120px 0 0 0;
-  }
 }
 @media screen and (max-width: 768px) {
   .navbar-mobie-form {

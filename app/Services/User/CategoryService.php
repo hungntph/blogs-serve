@@ -71,7 +71,9 @@ class CategoryService
                 $deleteBlogs = $this->blogRepository->deleteBlogsByCategory($id);
                 if ($deleteBlogs) {
                     foreach ($blogs as $blog) {
-                        $this->uploadFileService->deleteFile($blog->image);
+                        if ($blog->image) {
+                            $this->uploadFileService->deleteFile($blog->image);
+                        }
                     }
                 }
                 return true;

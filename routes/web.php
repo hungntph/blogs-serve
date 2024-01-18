@@ -31,13 +31,13 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/send-reset-password', [AuthController::class, 'sendResetPassword'])->name('reset.send');
     Route::get('/reset/{token}', [AuthController::class, 'mailResetPassword'])->name('reset.mail');
     Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('reset.password');
+    Route::get('/resend-mail-verify', [AuthController::class, 'resendMailVerify'])->name('resend-mail-verify');
+    Route::post('/resend', [AuthController::class, 'resendMail'])->name('resend');
 
     Route::group(['middleware' => 'auth'], function () {
         //Auth
         Route::group(['prefix' => 'auth'], function () {
             Route::post('/logout', [AuthController::class, 'logoutUser'])->name('logout');
-            Route::get('/resend-mail-verify', [AuthController::class, 'resendMailVerify'])->name('resend-mail-verify');
-            Route::post('/resend', [AuthController::class, 'resendMail'])->name('resend');
             Route::get('/profile', [UserController::class, 'index'])->name('profile.index');
             Route::put('/update/{id}', [UserController::class, 'update'])->name('profile.update');
             Route::get('/change-password', [UserController::class, 'changePassword'])->name('change.password');

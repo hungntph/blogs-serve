@@ -7,6 +7,7 @@
             <img src="/image/x.png" onclick="tooglePopup()">
         </div>
         <div class="blog-popup-content">
+            <input type="hidden" name="id">
             <span>{{ __('message.delete-category-confirm') }}</span>
         </div>
         <div class="blog-popup-button">
