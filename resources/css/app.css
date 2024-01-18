@@ -35,11 +35,6 @@
   margin: 0 0 20px 0;
   width: 100%;
 }
-@media screen and (max-width: 768px) {
-  .form {
-    margin: 0 30px;
-  }
-}
 .form-signup {
   width: 570px;
 }
@@ -48,6 +43,11 @@
 }
 .form-signup-input span {
   color: #C40000;
+}
+@media screen and (max-width: 768px) {
+  .form-signup form {
+    margin: 0 50px 0 50px;
+  }
 }
 .form-signup-btn {
   width: 100;
@@ -89,6 +89,15 @@
 .form-signup-help a {
   color: #007BFF;
   text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .form-signup-help a{
+    font: 10px/23.17px Noto Sans JP;
+  }
+  .form-signup-help-remember label{
+    font: 10px/23.17px Noto Sans JP;
+  }
 }
 
 .account-login {
@@ -819,6 +828,7 @@
   position: relative;
 }
 .navbar-mobie-form form input {
+  margin: 100px 0 0 0;
   padding: 0 0 0 10px;
   width: 100%;
   height: 100%;
@@ -828,6 +838,11 @@
   border: 1px solid #D4D1D4;
   border-radius: 4px;
   font: 400 14px/23.17px Noto Sans JP;
+}
+@media screen and (max-width: 768px) {
+  .navbar-mobie-form form input {
+    margin: 120px 0 0 0;
+  }
 }
 .navbar-mobie-form form input::-moz-placeholder {
   color: #D4D1D4;
@@ -842,10 +857,16 @@
 }
 .navbar-mobie-form form img {
   position: absolute;
+  top: 53px;
   width: 19px;
   height: 19px;
   border: none;
   margin: 3px 0 0 85%;
+}
+@media screen and (max-width: 768px) {
+  .navbar-mobie-form form img {
+    margin: 120px 0 0 0;
+  }
 }
 @media screen and (max-width: 768px) {
   .navbar-mobie-form {
@@ -1438,6 +1459,13 @@
 
 .main-content {
   padding: 0 0 0 310px;
+}
+.main-content .statistical {
+  display: flex;
+  margin: 20px 10px;
+}
+.main-content .statistical-user {
+  margin: 0 20px 0 20px;
 }
 .main-content .title {
   margin: 20px 0;

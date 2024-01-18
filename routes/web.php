@@ -42,6 +42,14 @@ Route::group(['prefix' => 'user'], function () {
             Route::put('/update/{id}', [UserController::class, 'update'])->name('profile.update');
             Route::get('/change-password', [UserController::class, 'changePassword'])->name('change.password');
             Route::put('/change-password/{id}', [UserController::class, 'updatePassword'])->name('update.password');
+            Route::post('/like-blog', [UserController::class, 'likeBlog'])->name('like.blog');
+
+            // comment
+            Route::group(['prefix' => 'comment'], function () {
+                Route::post('/create', [CommentController::class, 'create'])->name('comment.create');
+                Route::put('/update/{id}', [CommentController::class, 'update'])->name('comment.update');
+                Route::delete('/delete/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
+            });
         });
     });
 
@@ -70,9 +78,6 @@ Route::group(['prefix' => 'user'], function () {
     });
 
     Route::group(['middleware' => 'auth_user'], function () {
-        //User
-        Route::post('/like-blog', [UserController::class, 'likeBlog'])->name('like.blog');
-
         //blog
         Route::group(['prefix' => 'blog'], function () {
             Route::get('/', [BlogController::class, 'index'])->name('blog.index');
@@ -81,13 +86,6 @@ Route::group(['prefix' => 'user'], function () {
             Route::put('/update/{id}', [BlogController::class, 'update'])->name('blog.update');
             Route::delete('/delete/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
             Route::get('/blogs', [BlogController::class, 'blogs'])->name('blogs-user');
-        });
-
-        // comment
-        Route::group(['prefix' => 'comment'], function () {
-            Route::post('/create', [CommentController::class, 'create'])->name('comment.create');
-            Route::put('/update/{id}', [CommentController::class, 'update'])->name('comment.update');
-            Route::delete('/delete/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
         });
     });
 });

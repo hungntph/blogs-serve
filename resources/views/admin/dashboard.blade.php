@@ -7,7 +7,7 @@
 @include('layouts.main-content')
 
 <div class="main-content">
-    <div class="main-content-statistical">
+    <div class="statistical">
         <form action="{{ route('admin.index') }}" method="GET">
             <span>{{ __('message.order-by-year') }}</span>
             <select class="blogs-title-category" name="year" id="year" onchange="this.form.submit()">
@@ -18,11 +18,11 @@
                 @endforeach
             </select>
         </form>
-        <div class="main-content-statistical-user">
+        <div class="statistical-user">
             <span><i class="fa-solid fa-users"></i></span>
             <span>{{ $users['total'] }}</span>
         </div>
-        <div class="main-content-statistical-blog">
+        <div class="statistical-blog">
             <span><i class="fa-solid fa-blog"></i></span>
             <span>{{ $blogs['total'] }}</span>
         </div>

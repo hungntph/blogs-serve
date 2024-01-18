@@ -6,13 +6,13 @@ export default defineConfig({
         laravel({
             input: 
             [
-             'resources/css/app.css',
-             'resources/js/app.js',
-             'resources/js/connect.js',
-             'resources/js/ajax/like.js',
-             'resources/js/ajax/comment.js',
-             'resources/js/ajax/block-message.js',
-             'resources/js/ajax/dashboard.js',
+            'resources/css/app.css',
+            'resources/js/app.js',
+            'resources/js/connect.js',
+            'resources/js/ajax/like.js',
+            'resources/js/ajax/comment.js',
+            'resources/js/ajax/block-message.js',
+            'resources/js/ajax/dashboard.js',
             ],
             refresh: true,
         }),
